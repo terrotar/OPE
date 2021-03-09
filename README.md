@@ -1,4 +1,4 @@
 
 
 Cade a galera ??!?!?!
-<b>Gabriel: To aqui<b/>
+<br>Gabriel: To aqui</br>
