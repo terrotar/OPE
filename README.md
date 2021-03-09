@@ -7,3 +7,6 @@ ta bom ta bom mas nao se irrite
 
 
 Não sei  se é esse
+
+
+Teste concluido guerreiros, todos conseguiram concluir suas jornadas pelo Git!
