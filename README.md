@@ -1,3 +1,2 @@
 
-
-Cade crl ?!!?!??!
+Todos conseguiram configurar o git ?!?!?
