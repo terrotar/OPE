@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:@localhost:3306/TCC"
 # mysql://scott:tiger@localhost/mydatabase
+# oracle://scott:tiger@127.0.0.1:1521/sidname
 
 
 db = SQLAlchemy(app)
