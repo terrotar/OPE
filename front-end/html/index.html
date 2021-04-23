@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../CSS/destaque1.css">
     <link rel="stylesheet" href="../CSS/destaque2.css">
     <link rel="stylesheet" href="../CSS/destaque3.css">
+    <link rel="stylesheet" href="../CSS/scroll.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
     <script type="text/javascript" src="../js/responsivo.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,178 +19,292 @@
     <header>
         <div class="nav-carrinho">
 
-            <div class="nav-menu">
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <span>
+                                <img src="../img/Nav/nav-logo.png">
+                            </span>
+                        </li>
+                        
+                        <li>
+                            <button> Cadastre</button>                           
+                        </li>
 
-                <div class="nav-logo">
-                    <span></span>
-                </div> 
+                        <li>
+                            <button>Login</button>
+                        </li>
 
-                <div class="nav-button"> 
-                    <button class="login"><h1>LOGIN</h1></button>
-                    <button class="cadastro"><h1>CADATRAR</h1></button>
-                    <button class="carrinho"><img src="../img/Nav/carrinho01.png"></button>
-                </div>
-            
-                <div class="nav-redes">
+                        <li>
+                            <button>Carrinho</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="scroll-nav">
+                <scroll-container>
+                    <scroll-page>
+                        <img src="../img/Nav/nav-seta.png">
+                    </scroll-page>
+                </scroll-container>
+            </div>
+
+            <div class="redes">
                     <div class="face">
-                        <a href="https://www.Facebook.com" target="_blank"><img src="../img/Nav/nav-facebook.png" alt="Facebook"></a>
+                        <a href="https://www.Facebook.com" target="_blank"><img src="../img/Nav/nav-face.png" alt="Facebook"></a>
                     </div>
-    
+
                     <div class="insta">
-                        <a href="https://www.instagram.com" target="_blank"><img src="../img/Nav/nav-instagram.png" alt="instagram"></a>
+                        <a href="https://www.instagram.com" target="_blank"><img src="../img/Nav/nav-insta.png" alt="instagram"></a>
                     </div>
                 
                     <div class="whats">
                         <a href="https://web.whatsapp.com/send?phone=5511984821830" target="_blank"><img src="../img/Nav/nav-whatsapp.png" alt="whatsapp"></a>
                     </div>
-                
-                </div>
-
-                <div class="nav-seta">           
-                    <a href="#dhor-ozonio">
-                    <img src="../img/Nav/nav-seta.png">
-                    </a>
-                </div>
             </div>
+            
         </div>      
     </header>  
     
      <main>
         <section>
             <div>
-                <div class="dhor-ozonio" id="dhor-ozonio">
-                    <img src="../img/Dhor/dhor-ozonio-img.png">
+
+                <div>
+                    <h1>Clique aqui para saber mais sobre a empresa.</h1>
+                    <button>Saiba mais</button>
+
+                </div>
+
+                <div class="dhor-ozonio">
                     <div>
                         <h1>Ozonio Terapia</h1>
-                        <p>A ozonioterapia consiste num processo em que é administrado gás
-                            de ozônio no corpo para tratar alguns problemas de saúde. O 
-                            ozônio é um gás composto por 3 átomos de oxigênio que 
-                            tem importantes propriedades analgésicas, anti-inflamatórias
-                            e anti-sépticas, além de ter um efeito de melhora da oxigenação 
-                            dos tecidos, assim como fortalecimento do sistema imune.</p>
-                    </div>
+                        <img src="../img/Dhor/1.png" alt="generica1">
+                        <div style="overflow: auto; width: 640px; height: 200px; border:solid 1px">
+                            <table class="tabela" style="width:800px">
+                                
+                                <thead>
+                                    <tr>
+                                        <p> A ozonioterapia consiste num processo em que é administrado gás
+                                            de ozônio no corpo para tratar alguns problemas de saúde. O 
+                                            ozônio é um gás composto por 3 átomos de oxigênio que 
+                                            tem importantes propriedades analgésicas, anti-inflamatórias
+                                            e anti-sépticas, além de ter um efeito de melhora da oxigenação 
+                                            dos tecidos, assim como fortalecimento do sistema imune.
+                                        </p>
+                                        
+                                    </tr>
+                                </thead>    
+                        </table>
+                        </div>
                 </div>
             </div>
             
             <div>
                 <div class="dhor-hemoterapia">
-                    <img src="../img/Dhor/dhor-autohemo-img.png">
                     <div>
                         <h2>Auto-Hemoterapia</h2>
-                        <p>A hemoterapia é um tipo de tratamento em que uma quantidade
-                            pré-determinada de sangue é coletada de uma pessoa e, após 
-                            processamento e análise, os componentes do sangue podem 
-                            ser transfundidos para outra pessoa, ajudando no tratamento 
-                            da doença e melhora da pessoa.</p>
-                    </div>
+                        <img src="../img/Dhor/2.png" alt="generica2">
+                        <div style="overflow: auto; width: 640px; height: 200px; border:solid 1px">
+                            <table class="tabela" style="width:800px">
+                                <thead>
+                                    <tr>
+                                        <p> A hemoterapia é um tipo de tratamento em que uma quantidade
+                                            pré-determinada de sangue é coletada de uma pessoa e, após 
+                                            processamento e análise, os componentes do sangue podem 
+                                            ser transfundidos para outra pessoa, ajudando no tratamento 
+                                            da doença e melhora da pessoa.
+                                        </p>
+                                    </tr>
+                                </thead>                                         
+                            </table>            
+                        </div>
                 </div>
 
                 <div class="dhor-produtos">
-                    <img src="../img/Dhor/dhor-produtosnaturais-img.png">
                     <div>
-                        <h3>Produtos Naturais</h3>
-                        <p>Um produto natural é um composto químico ou substância produzida
-                            por um ser vivo - encontrado na natureza e que geralmente tem 
-                           atividade biológica ou farmacológica que pode ser usado na 
-                           descoberta ou concepção de produtos farmacêuticos.</p>
+                        <h2>Produtos Naturais</h2>
+                        <img src="../img/Dhor/3.png" alt="">
+                        <div style="overflow: auto; width: 640px; height: 200px; border:solid 1px">
+                            <table class="tabela" style="width:800px">
+                                <thead>
+                                    <tr>
+                                        <p>Um produto natural é um composto químico ou substância produzida
+                                            por um ser vivo - encontrado na natureza e que geralmente tem 
+                                           atividade biológica ou farmacológica que pode ser usado na 
+                                           descoberta ou concepção de produtos farmacêuticos.
+                                        </p>
+                                    </tr>
+                                </thead>                                         
+                            </table>            
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </section>
            
-        <section class="carrossel-ozonio">
+        <section class="carrossel-ozonio"><!--primeira seção carrossel ozonio-terapia.-->
 
             <div>
-                <h1>Ozonio Terapia</h1> 
-                <p>#</p>
-                <button class="bt-ozonio"></button>
-                <div class="c1"><img src="#" alt="1"></div>
-            </div>      
+                <h1>Tratamento Ozonio-Terapia</h1>
+            </div>
+
+            <div><!--essa div é para o carrossel de Tratamento Ozonio-terapia card 1.-->
+                <h2>Card1</h2>
+                <img src="../img/Dhor/4.png" alt="tozonio-1">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                    molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                    numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                    optio, eaque rerum! Provident similique accusantium nemo autem.
+                </p>
+                <button class="bt-ozonio1">Comprar</button>                
+            </div><!--Termina aqui.-->    
+
+            <div><!--essa div é para o carrossel de Tratamento Ozonio-terapia card 2.-->
+                <h2>Card2</h2>
+                <img src="../img/Dhor/5.png" alt="tozonio-2">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                    molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                    numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                    optio, eaque rerum! Provident similique accusantium nemo autem.
+                </p>
+                <button class="bt-ozonio2">Comprar</button>                
+            </div><!--Termina aqui.-->  
+
+            <div><!--essa div é para o carrossel de Tratamento Ozonio-terapia card 3.-->
+                <h2>Card3</h2>
+                <img src="../img/Dhor/6.png" alt="tozonio-3">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                    molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                    numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                    optio, eaque rerum! Provident similique accusantium nemo autem.
+                </p>
+                <button class="bt-ozonio3">Comprar</button>                
+            </div><!--Termina aqui.-->  
             
-        </section>
+        </section><!--primeira seção ozonio-terapia termina aqui.-->
+
            
-        <section class="carossel-hemoterapia">
-            <div>
-                <div class="cloudy-mockup">
-                    <div><img src="../IMG/cloudmockup.png"></div>
-                                     
-                    <button class="mockup-azul">15&deg;</button>
-                    <button class="mockup-amarelo">Cloudy</button>
-                    
-                </div>
-
-                <div class="cloudy-primeiro">
-                    <div><img src="../IMG/Cloudy.png"></div>
-                    <h3>When the clouds</h3>
-                    <p>Variable information on the air humidity, the feeling of the weather, and the ability to share this with your friends</p>
-                    <span><img src="../IMG/icones95-9-rainy.png"></span>
-                </div>
-                
-            </div>
+        <section class="carrossel-auto-hemo"><!--Segunda seção carrossel Auto-Hemoterapia.-->
 
             <div>
-                <div class="rainy-mockup">
-                     
-                    <h3>When the sun</h3>
-                    <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life. Sometimes the simplest things are the hardest to find. So we created a new line for everyday life. Sometimes the simplest things are the hardest to find. So we created a new line for everyday life. Sometimes the simplest things are the hardest to find. So we created a new line for everyday life</p>                   
-                    <span>95%</span>
-                    <span>9&deg;</span>
-                    <span>Rainy</span>
-                </div>
-                <div><img src="../IMG/Sunnymockup.png"></div>
+                <h1>Tratamento Auto-Hemoterapia</h1>
             </div>
-            <div>
-                <div>Mockup</div>
-                <div>
-                    <i>Icone</i> 
-                    <h3>When the rain</h3>
-                    <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life. Sometimes the simplest things are the hardest to find. So we created a new line for everyday life. Sometimes the simplest things are the hardest to find. So we created a new line for everyday life. Sometimes the simplest things are the hardest to find. So we created a new line for everyday life</p>                   
-                    <span>95%</span>
-                    <span>9&deg;</span>
-                    <span>Rainy</span>
-                    <div><img src="../IMG/rainymockup.png"></div>
-                </div>      
-            </div>
-        </section>
 
-        <section>
-            <h2>What people are saying</h2>
-            <p>Reviews</p>
-            <q>What art offers is space - a certain breathing room for the spirit. <small>John Updike</small></q>
-            <q>We do not see nature with our eyes, but with our understandings and our hearts.<small>William Hazlitt</small></q>
-            <q>The only courage that matters is the kind that gets you from one moment to the next. <small>Mignon McLaughlin</small></q>
-            <q>No man has a good enough memory to be a successful liar.<small>Abraham Lincoln</small></q>
-        </section>
+            <div><!--essa div é para o carrossel de Tratamento Auto-Hemoterapia card 1.-->
+                <h2>Card-1</h2>
+                <img src="../img/Dhor/7.png" alt="auto-hemo-1">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                    molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                    numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                    optio, eaque rerum! Provident similique accusantium nemo autem.
+                </p>
+                <button class="bt-auto-hemo-1">Comprar</button>                
+            </div><!--div card 1 Termina aqui.-->    
 
-        <section id="bannerfooter">
+            <div><!--essa div é para o carrossel de Tratamento Ozonio-terapia card 2.-->
+                <h2>Card-2</h2>
+                <img src="../img/Dhor/8.png" alt="auto-hemo-2">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                    molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                    numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                    optio, eaque rerum! Provident similique accusantium nemo autem.
+                </p>
+                <button class="bt-auto-hemo-2">Comprar</button>                
+            </div><!--div card 2 Termina aqui.-->  
+
+            <div><!--essa div é para o carrossel de Tratamento Ozonio-terapia card 3.-->
+                <h2>Card-3</h2>
+                <img src="../img/Dhor/9.png" alt="auto-hemo-3">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                    molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                    numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                    optio, eaque rerum! Provident similique accusantium nemo autem.
+                </p>    
+                <button class="bt-auto-hemo-3">Comprar</button>                
+            </div><!-- divid card 3 Termina aqui.-->  
             
-            <h2>How download the app?</h2> 
-            <p>Just download the app from the store.
-            Simple, nice and user-friendly application of theweather. Only relevant and useful information.</p>
-            <a href="#">app store</a>
-            <a href="#">google pay</a><br>
-            <img src="" alt="#">            
+        </section><!--Segunda seção ozonio-terapia termina aqui.-->
+
+        <div>
+            <h1>Produtos Naturais</h1>
+        </div>
+
+        <section class="catalogo-produtos-naturais">
+
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+            <div><a href="#">p1</a></div>
+
         </section>
     </main>    
-        <footer>
-            <div class="logotipo">
-                <div>
-                    <span class="spanfooter">
-                        Fun 
-                    </span>
+        <footer>            
+            <div>
 
-                    <span>
-                        Weather.
-                    </span>
-                </div>
+                <h3>
+                    Contato
+                </h3>
+                <p>
+                    Adriano Ramos
+                    telefone: (11)97552-4317<br>
+                    Edifício Santa Tereza.
+                    Rua: Quirino de Andrade - 193 - Sala 64.
+                    São Paulo - Centro.
+                </p>
+
             </div>
-            <nav class="redes">
+
+            <div>
+
+                <h3>
+                    Dias e Horários
+                </h3>
+                <p>
+                    Segunda-feira
+                    Terça-feira         
+                    Quarta-feira
+                    Quinta-feira
+                    Sexta-feira
+                    Sábado
+                    Domingo
+                </p>
+
+                <p>
+                    14:00 às 20:00
+                    14:00 às 20:00
+                    14:00 às 20:00
+                    14:00 às 20:00
+                    14:00 às 20:00
+                    Fechado.
+                    Fechado.
+                </p>
+
+            </div>
+            <div>
+            
                 <ul>
                     <li><a href="https://www.Facebook.com" target="_blank"><img src="../IMG/facebook.png" alt="Facebook"></a></li>
-                    <li><a href="https://www.Instagran.com" target="_blank"><img src="../IMG/instagram.png" alt="Instagran"></a></li>
+                    <li><a href="https://www.instagram  .com" target="_blank"><img src="../IMG/instagram.png" alt="Instagran"></a></li>
                     <li><a href="https://www.Twitter.com" target="_blank"><img src="../IMG/twitter.png" alt="Twitter"></a></li>
-                    </ul>
-            </nav>
+                </ul>
+
+            </div>
         </footer>
 </body>
 </html>
