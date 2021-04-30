@@ -3,6 +3,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_property
 import requests
+import datetime
+from validate_docbr import CPF
+
+
+# class from package validate_docbr to validate the docs
+cpf = CPF()
 
 
 @login_manager.user_loader
@@ -16,24 +22,55 @@ class User(db.Model, UserMixin):
     _email = db.Column("email", db.String, unique=True, nullable=False)
     _password = db.Column("password", db.String, nullable=False)
     _cpf = db.Column("cpf", db.Integer, unique=True, nullable=False)
-    _cep = db.Column("cep", db.Integer, unique=False, nullable=False)
+    _cep = db.Column("cep", db.String, unique=False, nullable=False)
     _adress = db.Column("adress", db.String, unique=False, nullable=False)
     _uf = db.Column("uf", db.String, unique=False, nullable=False)
     _complement = db.Column("complement", db.String, unique=False, nullable=True)
     _name = db.Column("name", db.String, unique=False, nullable=False)
-    # Nedd to create age attribute
+    _bday = db.Column("bday", db.Integer, unique=False, nullable=False)
+    _bmonth = db.Column("bmonth", db.Integer, unique=False, nullable=False)
+    _byear = db.Column("byear", db.Integer, unique=False, nullable=False)
 
-    def __init__(self, email, password, cpf, cep, complement, name):
+    # When create a new User object, you must use the following functions:
+
+    # check_age() --> Validates if user can purchase items or not
+    # check_cpf() --> Validates the cpf format when user register a new account
+    # set_adress() --> Get the adress via API and set in user attributes
+    def __init__(self, email, password, cpf, cep, complement, name, bday, bmonth, byear):
         self._email = email
         self._password = generate_password_hash(password)
+        # cpf cant be masked already(cpf.mask(cpf_to_mask))
+        # it can be like "12345678910" or 12345678910
+        # Although, the mapped is set to be Integer
         self._cpf = cpf
         # Create cpf that verify name
         self._cep = cep
         self._complement = complement
         self._name = name
+        self._bday = bday
+        self._bmonth = bmonth
+        self._byear = byear
 
-    # Properties of GET and SET
+    # VALIDATORS
+    # Age must be >= 18 to purchase items
+    def check_age(self):
+        today = datetime.date.today()
+        birth = datetime.date(self._byear, self._bmonth, self._bday)
+        days = today - birth
+        age = int(days.days)//365
+        if age >= 18:
+            return True
+        else:
+            return False
+
+    # Cpf must be validated with it's rules
+    def check_cpf(self):
+        num = cpf.mask(str(self._cpf))
+        return cpf.validate(num)
+
+    # PROPERTIES of GET and SET attributes
     # Email
+
     @hybrid_property
     def email(self):
         return self._email
@@ -64,7 +101,7 @@ class User(db.Model, UserMixin):
     def cpf(self, cpf):
         self._cpf = cpf
 
-    #Cep
+    # Cep
     @hybrid_property
     def cep(self):
         return self._cep
@@ -78,8 +115,8 @@ class User(db.Model, UserMixin):
     def adress(self):
         return self._adress
 
-    def set_adress(self, cep):
-        adress = requests.get(f"https://viacep.com.br/ws/{cep}/json/")
+    def set_adress(self):
+        adress = requests.get(f"https://viacep.com.br/ws/{self._cep}/json/")
         self._adress = adress.json()["logradouro"]
         self._uf = adress.json()["uf"]
 
@@ -93,9 +130,31 @@ class User(db.Model, UserMixin):
     def name(self):
         return self._name
 
+    @name.setter
+    def name(self, name):
+        self._name = name
+
     # Complement
+    @hybrid_property
     def complement(self):
         return self._complement
+
+    @complement.setter
+    def complement(self, complement):
+        self._complement = complement
+
+    # Bday, bmonth and byear
+    @hybrid_property
+    def bday(self):
+        return self._bday
+
+    @hybrid_property
+    def bmonth(self):
+        return self._bmonth
+
+    @hybrid_property
+    def byear(self):
+        return self._byear
 
 
 db.create_all()
