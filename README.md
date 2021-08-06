@@ -17,6 +17,6 @@ Pedro: OK
 
 Diego: --
 
-Gabriel: --
+Gabriel: -- OK
 
 Vitor: --
