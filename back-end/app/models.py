@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
     _password = db.Column("password", db.String, nullable=False)
     _cpf = db.Column("cpf", db.Integer, unique=True, nullable=False)
     _cep = db.Column("cep", db.String, unique=False, nullable=False)
-    _adress = db.Column("adress", db.String, unique=False, nullable=False)
+    _address = db.Column("address", db.String, unique=False, nullable=False)
     _uf = db.Column("uf", db.String, unique=False, nullable=False)
     _complement = db.Column("complement", db.String, unique=False, nullable=True)
     _name = db.Column("name", db.String, unique=False, nullable=False)
@@ -112,13 +112,13 @@ class User(db.Model, UserMixin):
 
     # Adress
     @hybrid_property
-    def adress(self):
-        return self._adress
+    def address(self):
+        return self._address
 
-    def set_adress(self):
-        adress = requests.get(f"https://viacep.com.br/ws/{self._cep}/json/")
-        self._adress = adress.json()["logradouro"]
-        self._uf = adress.json()["uf"]
+    def set_address(self):
+        address = requests.get(f"https://viacep.com.br/ws/{self._cep}/json/")
+        self._adress = address.json()["logradouro"]
+        self._uf = address.json()["uf"]
 
     # UF
     @hybrid_property

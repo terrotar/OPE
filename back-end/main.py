@@ -52,7 +52,7 @@ def register():
             return render_template('register.html',
                                    check_error=True)
         if(new_user.check_cpf() is True) and (new_user.check_age() is True):
-            new_user.set_adress()
+            new_user.set_address()
             db.session.add(new_user)
             db.session.commit()
             return render_template('index.html')
@@ -94,7 +94,7 @@ def change_data(username):
             user.cep = cep
             user.complement = complement
             user.name = name
-            user.set_adress()
+            user.set_address()
             db.session.commit()
             return render_template('login.html')
         else:
