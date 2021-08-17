@@ -15,7 +15,7 @@ deem um OK pf só pra confirmar
 
 Pedro: OK
 
-Diego: --
+Diego: OK
 
 Gabriel: -- OK
 
