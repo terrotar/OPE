@@ -17,7 +17,7 @@ Pedro: OK
 
 Diego Fonseca: OK
 
-Diego Bezerra: --
+Diego Bezerra: OK
 
 Gabriel: -- OK
 
