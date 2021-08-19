@@ -15,7 +15,9 @@ deem um OK pf só pra confirmar
 
 Pedro: OK
 
-Diego: OK
+Diego Fonseca: OK
+
+Diego Bezerra: --
 
 Gabriel: -- OK
 
