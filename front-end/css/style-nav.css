@@ -17,7 +17,7 @@ header nav ul li.logo {
 }
 
 .logo img {
-  width:24%;
+  width:68%;
 }
 
 header {
@@ -68,7 +68,7 @@ a button {
 }
 
 header nav ul li:not(:last-of-type) a button {
-  margin-right: 16px;
+  margin-right: 30px;
   
 }
 
@@ -76,6 +76,27 @@ header nav ul li:not(:last-of-type) a button {
   padding: 0 20px 0 0;
 }
 
+.carrinho img {
+  position: relative;
+  width: 51%;
+  left: -38px;
+  top: 5px;
+}
+
+.registrar button {
+  position: relative;    
+  padding: 6px 33px;
+}
+
+.login button {
+  position: relative;    
+  padding: 6px 33px;
+}
+
+.carrinho button {
+  position: relative;    
+  padding: 0px 33px;
+}
 
 
 
