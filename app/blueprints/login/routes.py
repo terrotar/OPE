@@ -1,17 +1,20 @@
-from app import app, db
-from flask import render_template, request
+from flask import Blueprint, render_template, request
+
 from flask_login import login_user, logout_user
-from app.models import User
+
+from app import db
+
+from app.models.user_model import User
 
 
-@app.route('/', methods=['GET'])
-def index():
-    if(request.method == 'GET'):
-        return render_template('index.html')
+# Instancia do Blueprint login
+login = Blueprint('login', __name__,
+                  template_folder="../../html_teste",
+                  static_folder="../../estaticos_teste")
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+@login.route('/login', methods=['GET', 'POST'])
+def log_user():
     if(request.method == 'GET'):
         return render_template('login.html')
     if(request.method == 'POST'):
@@ -23,45 +26,16 @@ def login():
                                error=True)
     else:
         login_user(user)
-        return render_template('index.html')
+        return render_template('index_teste.html')
 
 
-@app.route('/logout', methods=['GET'])
+@login.route('/logout', methods=['GET'])
 def logout():
     logout_user()
-    return render_template('index.html')
+    return render_template('index_teste.html')
 
 
-@app.route('/cadastrar', methods=['GET', 'POST'])
-def register():
-    if(request.method == 'GET'):
-        return render_template('register.html')
-    if(request.method == 'POST'):
-        new_user = User(email=request.form['email'],
-                        password=request.form['password'],
-                        cpf=request.form['cpf'],
-                        cep=request.form['cep'],
-                        complement=request.form['complement'],
-                        name=request.form['name'],
-                        bday=int(request.form['bday']),
-                        bmonth=int(request.form['bmonth']),
-                        byear=int(request.form['byear']))
-        email_checker = User.query.filter_by(email=request.form['email']).first()
-        cpf_checker = User.query.filter_by(cpf=request.form['cpf']).first()
-        if email_checker or cpf_checker:
-            return render_template('register.html',
-                                   check_error=True)
-        if(new_user.check_cpf() is True) and (new_user.check_age() is True):
-            new_user.set_address()
-            db.session.add(new_user)
-            db.session.commit()
-            return render_template('index.html')
-        else:
-            return render_template('register.html',
-                                   check_error=True)
-
-
-@app.route('/<username>/change_password', methods=['GET', 'POST'])
+@login.route('/<username>/change_password', methods=['GET', 'POST'])
 def change_password(username):
     if(request.method == 'GET'):
         return render_template('change_pwd.html')
@@ -78,7 +52,7 @@ def change_password(username):
                                    check_error=True)
 
 
-@app.route('/<username>/change_data', methods=['GET', 'POST'])
+@login.route('/<username>/change_data', methods=['GET', 'POST'])
 def change_data(username):
     if(request.method == 'GET'):
         return render_template('change_data.html')
@@ -102,7 +76,7 @@ def change_data(username):
                                    check_error=True)
 
 
-@app.route('/<username>/delete', methods=['GET', 'POST'])
+@login.route('/<username>/delete', methods=['GET', 'POST'])
 def delete_user(username):
     if(request.method == 'GET'):
         return render_template('delete_account.html')
@@ -112,11 +86,7 @@ def delete_user(username):
         if user and user.verify_password(pwd):
             db.session.delete(user)
             db.session.commit()
-            return render_template('index.html')
+            return render_template('index_teste.html')
         else:
             return render_template('delete_account.html',
                                    check_error=True)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

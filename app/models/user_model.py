@@ -1,4 +1,4 @@
-from app import db, login_manager
+from app.config import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -117,7 +117,7 @@ class User(db.Model, UserMixin):
 
     def set_address(self):
         address = requests.get(f"https://viacep.com.br/ws/{self._cep}/json/")
-        self._adress = address.json()["logradouro"]
+        self._address = address.json()["logradouro"]
         self._uf = address.json()["uf"]
 
     # UF
@@ -155,6 +155,3 @@ class User(db.Model, UserMixin):
     @hybrid_property
     def byear(self):
         return self._byear
-
-
-db.create_all()
