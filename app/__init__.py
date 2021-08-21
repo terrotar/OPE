@@ -11,7 +11,7 @@ from .blueprints.login.routes import login
 def create_app(config):
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///sqlite_therapies.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://tcc:panelinha@localhost/TCC"
     app.config['SECRET_KEY'] = "f1S\xbd\xb4cK/\xf4\x11\x0f\xc7f\xda7@"
 
     db.init_app(app)
