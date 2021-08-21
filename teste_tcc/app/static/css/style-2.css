@@ -1,0 +1,36 @@
+.container {
+    margin: 0 auto;
+    max-width: 320px;
+    padding: 0 12px;
+    position: relative;
+    top: 20px;
+  }
+
+  ul.cards {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  
+  ul.cards li {
+    height: 180px;
+    width: 180px;
+    background: #fff;
+    border: 1px solid #000;
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 680px;
+      padding: 0 12px;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1170px;
+      padding: 0 12px;
+    }
+  }
