@@ -117,7 +117,7 @@ class User(db.Model, UserMixin):
 
     def set_address(self):
         address = requests.get(f"https://viacep.com.br/ws/{self._cep}/json/")
-        self._adress = address.json()["logradouro"]
+        self._address = address.json()["logradouro"]
         self._uf = address.json()["uf"]
 
     # UF
@@ -155,6 +155,3 @@ class User(db.Model, UserMixin):
     @hybrid_property
     def byear(self):
         return self._byear
-
-
-db.create_all()

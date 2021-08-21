@@ -9,13 +9,15 @@
     <div class="container" style="margin-left: 1400px; margin-top: 5px;">
 
         <a href="{{ url_for('home.index') }}">
-            <img src="../static/images/company_logo.png" style="width: 150px; height: 70px;" alt="Logo da Empresa">
+            <img src="../estaticos_teste/imgs/company_logo.png" style="width: 150px; height: 70px;" alt="Logo da Empresa">
         </a>
-
-
-     
-
-
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('login.log_user') }}" class="btn btn-outline-dark btn-lg">Perfil</a>
+            <a href="{{ url_for('login.logout') }}" class="btn btn-outline-dark btn-lg">Deslogar</a>
+        {% else %}
+            <a href="{{ url_for('register.register_user') }}" class="btn btn-outline-dark btn-lg">Cadastrar</a>
+            <a href="{{ url_for('login.log_user') }}" class="btn btn-outline-dark btn-lg">Logar</a>
+        {% endif %}
 
         <a href="#" class="btn btn-outline-dark btn-lg">Carrinho</a>
 
