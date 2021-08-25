@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     _email = db.Column("email", db.String, unique=True, nullable=False)
     _password = db.Column("password", db.String, nullable=False)
-    _cpf = db.Column("cpf", db.Integer, unique=True, nullable=False)
+    _cpf = db.Column("cpf", db.BigInteger, unique=True, nullable=False)
     _cep = db.Column("cep", db.String, unique=False, nullable=False)
     _address = db.Column("address", db.String, unique=False, nullable=False)
     _uf = db.Column("uf", db.String, unique=False, nullable=False)

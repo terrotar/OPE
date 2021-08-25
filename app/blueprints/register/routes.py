@@ -18,7 +18,7 @@ def register_user():
     if(request.method == 'POST'):
         new_user = User(email=request.form['email'],
                         password=request.form['password'],
-                        cpf=request.form['cpf'],
+                        cpf=int(request.form['cpf']),
                         cep=request.form['cep'],
                         complement=request.form['complement'],
                         name=request.form['name'],

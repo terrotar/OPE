@@ -11,6 +11,7 @@ requests = "*"
 validate-docbr = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
+flask-migrate = "*"
 
 [dev-packages]
 
