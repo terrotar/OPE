@@ -28,16 +28,15 @@ class User(db.Model, UserMixin):
     _city = db.Column("cidade", db.String, unique=False, nullable=False)
     _complement = db.Column("complemento", db.String, unique=False, nullable=True)
     _name = db.Column("nome", db.String, unique=False, nullable=False)
-    _bday = db.Column("bday", db.Integer, unique=False, nullable=False)
-    _bmonth = db.Column("bmonth", db.Integer, unique=False, nullable=False)
-    _byear = db.Column("byear", db.Integer, unique=False, nullable=False)
+    _birthday = db.Column("nascimento", db.Date, unique=False, nullable=False)
+    _age = db.Column("idade", db.Integer, unique=False, nullable=True)
 
     # When create a new User object, you must use the following functions:
 
     # check_age() --> Validates if user can purchase items or not
     # check_cpf() --> Validates the cpf format when user register a new account
     # set_adress() --> Get the adress via API and set in user attributes
-    def __init__(self, email, password, cpf, cep, complement, name, bday, bmonth, byear):
+    def __init__(self, email, password, cpf, cep, complement, name, birthday):
         self._email = email
         self._password = generate_password_hash(password)
         # cpf cant be masked already(cpf.mask(cpf_to_mask))
@@ -48,16 +47,13 @@ class User(db.Model, UserMixin):
         self._cep = cep
         self._complement = complement
         self._name = name
-        self._bday = bday
-        self._bmonth = bmonth
-        self._byear = byear
+        self._birthday = birthday
 
     # VALIDATORS
     # Age must be >= 18 to purchase items
     def check_age(self):
         today = datetime.date.today()
-        birth = datetime.date(self._byear, self._bmonth, self._bday)
-        days = today - birth
+        days = today - self._birthday
         age = int(days.days)//365
         if age >= 18:
             return True
@@ -145,15 +141,26 @@ class User(db.Model, UserMixin):
     def complement(self, complement):
         self._complement = complement
 
-    # Bday, bmonth and byear
+    # Age
     @hybrid_property
-    def bday(self):
-        return self._bday
+    def age(self):
+        today = datetime.date.today()
+        days = today - self._birthday
+        age = int(days.days)//365
+        self._age = age
+        return self._age
 
-    @hybrid_property
-    def bmonth(self):
-        return self._bmonth
+    @age.setter
+    def age(self):
+        today = datetime.date.today()
+        days = today - self._birthday
+        age = int(days.days)//365
+        self._age = age
+        return self._age
 
-    @hybrid_property
-    def byear(self):
-        return self._byear
+    def age(self):
+        today = datetime.date.today()
+        days = today - self._birthday
+        age = int(days.days)//365
+        self._age = age
+        return self._age

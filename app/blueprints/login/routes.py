@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 
 from app import db
 
@@ -26,6 +26,7 @@ def log_user():
                                error=True)
     else:
         login_user(user)
+        user.age()
         return render_template('index_teste.html')
 
 
