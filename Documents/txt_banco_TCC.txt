@@ -13,7 +13,7 @@ CREATE TABLE terapias(
 	preço real NOT NULL
 );
 
-CREATE TABLE admin(
+CREATE TABLE funcionario(
 	id serial PRIMARY KEY,
 	email varchar(255) UNIQUE NOT NULL,
 	senha varchar(255) NOT NULL,
