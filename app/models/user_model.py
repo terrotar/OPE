@@ -24,10 +24,12 @@ class User(db.Model, UserMixin):
     _cpf = db.Column("cpf", db.BigInteger, unique=True, nullable=False)
     _cep = db.Column("cep", db.String, unique=False, nullable=False)
     _address = db.Column("endereco", db.String, unique=False, nullable=False)
+    _number = db.Column("numero", db.String, unique=False, nullable=False)
     _uf = db.Column("uf", db.String, unique=False, nullable=False)
     _city = db.Column("cidade", db.String, unique=False, nullable=False)
     _complement = db.Column("complemento", db.String, unique=False, nullable=True)
-    _name = db.Column("nome", db.String, unique=False, nullable=False)
+    _fname = db.Column("nome", db.String, unique=False, nullable=False)
+    _lname = db.Column("sobrenome", db.String, unique=False, nullable=False)
     _birthday = db.Column("nascimento", db.Date, unique=False, nullable=False)
     _age = db.Column("idade", db.Integer, unique=False, nullable=True)
 
@@ -36,7 +38,7 @@ class User(db.Model, UserMixin):
     # check_age() --> Validates if user can purchase items or not
     # check_cpf() --> Validates the cpf format when user register a new account
     # set_adress() --> Get the adress via API and set in user attributes
-    def __init__(self, email, password, cpf, cep, complement, name, birthday):
+    def __init__(self, email, password, cpf, cep, number, complement, fname, lname, birthday):
         self._email = email
         self._password = generate_password_hash(password)
         # cpf cant be masked already(cpf.mask(cpf_to_mask))
@@ -45,8 +47,10 @@ class User(db.Model, UserMixin):
         self._cpf = cpf
         # Create cpf that verify name
         self._cep = cep
+        self._number = number
         self._complement = complement
-        self._name = name
+        self._fname = fname
+        self._lname = lname
         self._birthday = birthday
 
     # VALIDATORS
@@ -107,6 +111,15 @@ class User(db.Model, UserMixin):
     def cep(self, cep):
         self._cep = cep
 
+    # Number
+    @hybrid_property
+    def number(self):
+        return self._number
+
+    @number.setter
+    def number(self, number):
+        self._number = number
+
     # Adress
     @hybrid_property
     def address(self):
@@ -123,14 +136,23 @@ class User(db.Model, UserMixin):
     def uf(self):
         return self._uf
 
-    # Name
+    # Fname
     @hybrid_property
-    def name(self):
-        return self._name
+    def fname(self):
+        return self._fname
 
-    @name.setter
-    def name(self, name):
-        self._name = name
+    @fname.setter
+    def fname(self, fname):
+        self._fname = fname
+
+    # Lname
+    @hybrid_property
+    def lname(self):
+        return self._lname
+
+    @lname.setter
+    def lname(self, lname):
+        self._lname = lname
 
     # Complement
     @hybrid_property

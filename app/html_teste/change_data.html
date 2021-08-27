@@ -36,13 +36,23 @@
           </div>
           <br>
           <div class="form-group col-3">
+            <label for="number">Número</label>
+            <input type="tel" name="number" class="form-control" id="number" placeholder="{{ current_user.number }}" required>
+          </div>
+          <br>
+          <div class="form-group col-3">
             <label for="complement">Complemento</label>
             <input type="text" name="complement" class="form-control" id="complement" placeholder="{{ current_user.complement }}" required>
           </div>
           <br>
           <div class="form-group col-3">
-            <label for="name">Nome Completo</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="{{ current_user.name }}" required>
+            <label for="fname">Nome</label>
+            <input type="text" name="fname" class="form-control" id="fname" placeholder="{{ current_user.fname }}" required>
+          </div>
+          <br>
+          <div class="form-group col-3">
+            <label for="lname">Sobreome</label>
+            <input type="text" name="lname" class="form-control" id="lname" placeholder="{{ current_user.lname }}" required>
           </div>
           <br>
           <div class="form-group col-3">

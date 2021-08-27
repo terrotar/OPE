@@ -39,14 +39,14 @@ def logout():
     return render_template('index_teste.html')
 
 
-@login.route('/<username>/change_password', methods=['GET', 'POST'])
-def change_password(username):
+@login.route('/<user_email>/change_password', methods=['GET', 'POST'])
+def change_password(user_email):
     if(request.method == 'GET'):
         return render_template('change_pwd.html')
     if(request.method == 'POST'):
         pwd = request.form['password']
         new_pwd = request.form['new_password']
-        user = User.query.filter_by(name=username).first()
+        user = User.query.filter_by(email=user_email).first()
         if user and user.verify_password(pwd):
             user.password = new_pwd
             db.session.commit()
@@ -56,22 +56,26 @@ def change_password(username):
                                    check_error=True)
 
 
-@login.route('/<username>/change_data', methods=['GET', 'POST'])
-def change_data(username):
+@login.route('/<user_email>/change_data', methods=['GET', 'POST'])
+def change_data(user_email):
     if(request.method == 'GET'):
         return render_template('change_data.html')
     if(request.method == 'POST'):
         email = request.form['email']
         cep = request.form['cep']
+        number = request.form['number']
         complement = request.form['complement']
-        name = request.form['name']
+        fname = request.form['fname']
+        lname = request.form['lname']
         pwd = request.form['password']
-        user = User.query.filter_by(name=username).first()
+        user = User.query.filter_by(email=user_email).first()
         if user and user.verify_password(pwd):
             user.email = email
             user.cep = cep
+            user.number = number
             user.complement = complement
-            user.name = name
+            user.fname = fname
+            user.lname = lname
             user.set_address()
             db.session.commit()
             return render_template('login.html')
@@ -80,13 +84,13 @@ def change_data(username):
                                    check_error=True)
 
 
-@login.route('/<username>/delete', methods=['GET', 'POST'])
-def delete_user(username):
+@login.route('/<user_email>/delete', methods=['GET', 'POST'])
+def delete_user(user_email):
     if(request.method == 'GET'):
         return render_template('delete_account.html')
     if(request.method == 'POST'):
         pwd = request.form['password']
-        user = User.query.filter_by(name=username).first()
+        user = User.query.filter_by(email=user_email).first()
         if user and user.verify_password(pwd):
             db.session.delete(user)
             db.session.commit()

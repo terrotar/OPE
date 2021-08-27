@@ -26,8 +26,10 @@ def register_user():
                         password=request.form['password'],
                         cpf=int(request.form['cpf']),
                         cep=request.form['cep'],
+                        number=request.form['number'],
                         complement=request.form['complement'],
-                        name=request.form['name'],
+                        fname=request.form['fname'],
+                        lname=request.form['lname'],
                         birthday=birthday)
         email_checker = User.query.filter_by(email=request.form['email']).first()
         cpf_checker = User.query.filter_by(cpf=request.form['cpf']).first()
