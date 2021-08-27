@@ -25,6 +25,7 @@ class User(db.Model, UserMixin):
     _cep = db.Column("cep", db.String, unique=False, nullable=False)
     _address = db.Column("address", db.String, unique=False, nullable=False)
     _uf = db.Column("uf", db.String, unique=False, nullable=False)
+    _city = db.Column("city", db.String, unique=False, nullable=False)
     _complement = db.Column("complement", db.String, unique=False, nullable=True)
     _name = db.Column("name", db.String, unique=False, nullable=False)
     _bday = db.Column("bday", db.Integer, unique=False, nullable=False)
@@ -119,6 +120,7 @@ class User(db.Model, UserMixin):
         address = requests.get(f"https://viacep.com.br/ws/{self._cep}/json/")
         self._address = address.json()["logradouro"]
         self._uf = address.json()["uf"]
+        self._city = address.json()["localidade"]
 
     # UF
     @hybrid_property
