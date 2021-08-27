@@ -17,17 +17,17 @@ def get_user(user_id):
 
 
 class User(db.Model, UserMixin):
-    __tablename__ = "user"
+    __tablename__ = "usuario"
     id = db.Column(db.Integer, primary_key=True)
     _email = db.Column("email", db.String, unique=True, nullable=False)
-    _password = db.Column("password", db.String, nullable=False)
+    _password = db.Column("senha", db.String, nullable=False)
     _cpf = db.Column("cpf", db.BigInteger, unique=True, nullable=False)
     _cep = db.Column("cep", db.String, unique=False, nullable=False)
-    _address = db.Column("address", db.String, unique=False, nullable=False)
+    _address = db.Column("endereco", db.String, unique=False, nullable=False)
     _uf = db.Column("uf", db.String, unique=False, nullable=False)
-    _city = db.Column("city", db.String, unique=False, nullable=False)
-    _complement = db.Column("complement", db.String, unique=False, nullable=True)
-    _name = db.Column("name", db.String, unique=False, nullable=False)
+    _city = db.Column("cidade", db.String, unique=False, nullable=False)
+    _complement = db.Column("complemento", db.String, unique=False, nullable=True)
+    _name = db.Column("nome", db.String, unique=False, nullable=False)
     _bday = db.Column("bday", db.Integer, unique=False, nullable=False)
     _bmonth = db.Column("bmonth", db.Integer, unique=False, nullable=False)
     _byear = db.Column("byear", db.Integer, unique=False, nullable=False)
