@@ -1,0 +1,51 @@
+CREATE TABLE produtos(
+	id serial PRIMARY KEY,
+	nome varchar (255) NOT NULL,
+	descrição TEXT NOT NULL,
+	tamanho real NOT NULL,
+	preço real NOT NULL
+);
+
+CREATE TABLE terapias(
+	id serial PRIMARY KEY,
+	nome varchar (255) NOT NULL,
+	descrição TEXT NOT NULL,
+	preço real NOT NULL
+);
+
+CREATE TABLE admin(
+	id serial PRIMARY KEY,
+	email varchar(255) UNIQUE NOT NULL,
+	senha varchar(255) NOT NULL,
+	nome varchar(255) NOT NULL
+);
+
+
+CREATE TABLE usuario(
+	id serial PRIMARY KEY,
+	email varchar(255) UNIQUE NOT NULL,
+	senha varchar(255) NOT NULL,
+	cpf char (11) UNIQUE NOT NULL,
+	cep char (8) NOT NULL,
+	uf char (2) NOT NULL,
+	cidade char(255) NOT NULL,
+	endereco varchar (255) NOT NULL,
+	complemento varchar (255) NULL,
+	nome varchar (255) NOT NULL,
+	bday integer NOT NULL,
+	bmonth integer NOT NULL,
+	byear integer NOT NULL
+);
+
+CREATE TABLE carrinho(
+	id_usuario INTEGER NOT NULL REFERENCES usuario(id)	
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	id_terapias INTEGER NOT NULL REFERENCES terapias(id)	
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	id_produtos INTEGER NOT NULL REFERENCES produtos(id)	
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	PRIMARY KEY(id_terapias, id_produtos)
+);
