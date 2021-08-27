@@ -36,7 +36,7 @@ def register_user():
                                    check_error=True)
         if(new_user.check_cpf() is True) and (new_user.check_age() is True):
             new_user.set_address()
-            # teste de atualizar idade new_user.age()
+            new_user.set_age()
             db.session.add(new_user)
             db.session.commit()
             return render_template('index_teste.html')

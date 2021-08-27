@@ -144,23 +144,10 @@ class User(db.Model, UserMixin):
     # Age
     @hybrid_property
     def age(self):
-        today = datetime.date.today()
-        days = today - self._birthday
-        age = int(days.days)//365
-        self._age = age
         return self._age
 
-    @age.setter
-    def age(self):
+    def set_age(self):
         today = datetime.date.today()
         days = today - self._birthday
         age = int(days.days)//365
         self._age = age
-        return self._age
-
-    def age(self):
-        today = datetime.date.today()
-        days = today - self._birthday
-        age = int(days.days)//365
-        self._age = age
-        return self._age

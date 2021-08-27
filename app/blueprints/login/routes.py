@@ -26,7 +26,10 @@ def log_user():
                                error=True)
     else:
         login_user(user)
-        user.age()
+        user_id = current_user.get_id()
+        user = User.query.get(user_id)
+        user.set_age()
+        db.session.commit()
         return render_template('index_teste.html')
 
 
