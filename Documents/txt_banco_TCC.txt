@@ -27,15 +27,17 @@ CREATE TABLE usuario(
 	senha varchar(255) NOT NULL,
 	cpf char (11) UNIQUE NOT NULL,
 	cep char (8) NOT NULL,
+	numero text NOT NULL,
 	uf char (2) NOT NULL,
 	cidade char(255) NOT NULL,
 	endereco varchar (255) NOT NULL,
 	complemento varchar (255) NULL,
 	nome varchar (255) NOT NULL,
-	bday integer NOT NULL,
-	bmonth integer NOT NULL,
-	byear integer NOT NULL
+	sobrenome varchar (255) NOT NULL,
+	nascimento date NOT NULL,
+	idade int NOT NULL,
 );
+
 
 CREATE TABLE carrinho(
 	id_usuario INTEGER NOT NULL REFERENCES usuario(id)	
