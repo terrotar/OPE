@@ -1,53 +1,76 @@
-CREATE TABLE produtos(
-	id serial PRIMARY KEY,
-	nome varchar (255) NOT NULL,
-	descrição TEXT NOT NULL,
-	tamanho real NOT NULL,
-	preço real NOT NULL
+CREATE TABLE produto(
+    id_produto serial PRIMARY KEY,
+    nome varchar (255) NOT NULL,
+    descricao TEXT NOT NULL,
+    tamanho real NOT NULL,
+    preco real NOT NULL
 );
 
-CREATE TABLE terapias(
-	id serial PRIMARY KEY,
-	nome varchar (255) NOT NULL,
-	descrição TEXT NOT NULL,
-	preço real NOT NULL
+CREATE TABLE terapia(
+    id_terapia serial PRIMARY KEY,
+    nome varchar (255) NOT NULL,
+    descricao TEXT NOT NULL,
+    preco real NOT NULL
 );
 
 CREATE TABLE funcionario(
-	id serial PRIMARY KEY,
-	email varchar(255) UNIQUE NOT NULL,
-	senha varchar(255) NOT NULL,
-	nome varchar(255) NOT NULL
+    id_funcionario serial PRIMARY KEY,
+    email varchar(255) UNIQUE NOT NULL,
+    senha varchar(255) NOT NULL,
+    nome varchar(255) NOT NULL
 );
 
 
 CREATE TABLE usuario(
-	id serial PRIMARY KEY,
-	email varchar(255) UNIQUE NOT NULL,
-	senha varchar(255) NOT NULL,
-	cpf char (11) UNIQUE NOT NULL,
-	cep char (8) NOT NULL,
-	numero text NOT NULL,
-	uf char (2) NOT NULL,
-	cidade char(255) NOT NULL,
-	endereco varchar (255) NOT NULL,
-	complemento varchar (255) NULL,
-	nome varchar (255) NOT NULL,
-	sobrenome varchar (255) NOT NULL,
-	nascimento date NOT NULL,
-	idade int NOT NULL,
+    id_usuario serial PRIMARY KEY,
+    email varchar(255) UNIQUE NOT NULL,
+    senha varchar(255) NOT NULL,
+    cpf char (11) UNIQUE NOT NULL,
+    cep char (8) NOT NULL,
+    numero text NOT NULL,
+    uf char (2) NOT NULL,
+    cidade varchar(255) NOT NULL,
+    endereco varchar (255) NOT NULL,
+    complemento varchar (255) NULL,
+    nome varchar (255) NOT NULL,
+    sobrenome varchar (255) NOT NULL,
+    nascimento date NOT NULL,
+    idade int NOT NULL
 );
 
 
+CREATE TABLE terapia_carrinho(
+	id_terapia_carrinho serial PRIMARY KEY,
+	qtd smallint NOT NULL,
+	preco_unit real NOT NULL,
+	hora_venda timestamp NOT NULL,
+	id_terapia integer NOT NULL REFERENCES terapia(id_terapia)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+
+CREATE TABLE produto_carrinho(
+	id_produto_carrinho serial PRIMARY KEY,
+	qtd smallint NOT NULL,
+	preco_unit real NOT NULL,
+	hora_venda timestamp NOT NULL,
+	id_produto integer NOT NULL REFERENCES produto(id_produto)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+
+
 CREATE TABLE carrinho(
-	id_usuario INTEGER NOT NULL REFERENCES usuario(id)	
-	ON DELETE CASCADE
-	ON UPDATE CASCADE,
-	id_terapias INTEGER NOT NULL REFERENCES terapias(id)	
-	ON DELETE CASCADE
-	ON UPDATE CASCADE,
-	id_produtos INTEGER NOT NULL REFERENCES produtos(id)	
-	ON DELETE CASCADE
-	ON UPDATE CASCADE,
-	PRIMARY KEY(id_terapias, id_produtos)
+    id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    id_terapia_carrinho INTEGER NOT NULL REFERENCES terapia_carrinho(id_terapia_carrinho)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    id_produto_carrinho INTEGER NOT NULL REFERENCES produto_carrinho(id_produto_carrinho)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    PRIMARY KEY(id_terapia_carrinho, id_produto_carrinho)
 );
