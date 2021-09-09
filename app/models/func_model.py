@@ -13,7 +13,7 @@ def get_user(user_id):
 # Columns of table funcionario
 class Admin(db.Model, UserMixin):
     __tablename__ = "funcionario"
-    id_funcionario = db.Column("id_funcionario", db.Integer, primary_key=True)
+    id = db.Column("id_funcionario", db.Integer, primary_key=True)
     _email = db.Column("email", db.String, unique=True, nullable=False)
     _password = db.Column("senha", db.String, nullable=False)
     _fname = db.Column("nome", db.String, unique=False, nullable=False)

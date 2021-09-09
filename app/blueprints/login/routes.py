@@ -21,7 +21,7 @@ def log_user():
         email = request.form['email']
         password = request.form['password']
     user = User.query.filter_by(email=email).first()
-    if(not user and not user.verify_password(password)):
+    if(not user or not user.verify_password(password)):
         return render_template('login.html',
                                error=True)
     else:

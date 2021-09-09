@@ -16,7 +16,7 @@
 
 
     {% if error %}
-    <h3>Usuário não cadastrado ou senha inválida.</h3>
+    <h3>Funcionário não cadastrado ou senha inválida.</h3>
     {% endif %}
 
     <br>
@@ -46,12 +46,9 @@
 
           <h3>Bem vindo, {{ current_user.fname }} !</h3>
 
-
-
           <br>
-          <a href="{{ url_for('login.change_password', user_email=current_user.email) }}" class="btn btn-outline-light btn-sm bg-primary">Alterar Senha</a>
-          <a href="{{ url_for('login.change_data', user_email=current_user.email) }}" class="btn btn-outline-light btn-sm bg-primary">Alterar Dados</a>
-          <a href="{{ url_for('login.delete_user', user_email=current_user.email) }}" class="btn btn-outline-dark btn-sm bg-sucess">Excluir Conta</a>
+
+          <a href="{{ url_for('admin.logout') }}">Deslogar</a>
 
 
           {% endif %}
