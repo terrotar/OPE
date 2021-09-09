@@ -8,6 +8,9 @@ from .blueprints.register.routes import register
 from .blueprints.login.routes import login
 from .blueprints.admin.routes import admin
 
+from .models.user_model import User
+from .models.func_model import Admin
+
 
 def create_app(config):
     app = Flask(__name__)
