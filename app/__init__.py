@@ -6,6 +6,7 @@ from .config import db, login_manager, migrate
 from .blueprints.home.routes import home
 from .blueprints.register.routes import register
 from .blueprints.login.routes import login
+from .blueprints.admin.routes import admin
 
 
 def create_app(config):
@@ -16,9 +17,11 @@ def create_app(config):
 
     db.init_app(app)
 
+    # Blueprints
     app.register_blueprint(home)
     app.register_blueprint(login)
     app.register_blueprint(register)
+    app.register_blueprint(admin)
 
     login_manager.init_app(app)
 
