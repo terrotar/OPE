@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Calling Therapies - homepage</title>
   <link rel="stylesheet" href="../static/css/style-nav.css" />
   <link rel="stylesheet" href="../static/css/style-2.css" />
   <link rel="stylesheet" href="../static/css/style-3.css" />
@@ -27,14 +27,17 @@
                         <img src="../static/img/Nav/logo.png">
                     </a>
                 </li>
+                
+
+
+                {% if current_user.is_authenticated %}
                 <li>
-                    <a href="{{ url_for('register.register_user') }}" class="registrar">
+                    <a href="{{ url_for('login.log_user') }}" class="registrar">
                         <button>
-                            Registrar
+                            Perfil
                         </button>
                     </a>
                 </li>
-                {% if current_user.is_authenticated %}
                 <li>
                     <a href="{{ url_for('login.logout') }}" class="login">
                         <button>
@@ -43,6 +46,13 @@
                     </a>
                 </li>
                 {% else %}
+                <li>
+                    <a href="{{ url_for('register.register_user') }}" class="registrar">
+                        <button>
+                            Registrar
+                        </button>
+                    </a>
+                </li>
                 <li>
                     <a href="{{ url_for('login.log_user') }}" class="login">
                         <button>
@@ -314,6 +324,7 @@
     </footer>
 
 
-  </body>
+
 {% endblock %}
+</body>
 </html>

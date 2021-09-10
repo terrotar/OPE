@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect
 
 from flask_login import login_user, logout_user, current_user
 
-from app import db
+from app import db, login_manager
 
 from app.models.user_model import User
 
@@ -25,13 +25,12 @@ def log_user():
             return render_template('login.html',
                                    error=True)
         else:
-            # return {"User": f"{login_user(user)}"}
             login_user(user)
             user_id = current_user.get_id()
             user = User.query.get(user_id)
             user.set_age()
             db.session.commit()
-            return redirect('/')
+            return render_template('index_teste.html')
 
 
 @login.route('/logout', methods=['GET'])

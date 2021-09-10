@@ -13,7 +13,7 @@ cpf = CPF()
 
 @login_manager.user_loader
 def get_user(user_id):
-    return User.query.filter_by(id=user_id).first()
+    return User.query.get(user_id)
 
 
 class User(db.Model, UserMixin):

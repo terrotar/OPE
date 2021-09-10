@@ -18,6 +18,7 @@ def create_app(config):
 
     app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost/TCC"
     app.config['SECRET_KEY'] = "f1S\xbd\xb4cK/\xf4\x11\x0f\xc7f\xda7@"
+    app.secret_key = "\xc8\n~R\xae\xe3\xaao~\xb8E\x0fw\xc99"
 
     db.init_app(app)
 
