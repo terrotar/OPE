@@ -10,6 +10,7 @@ from .blueprints.admin.routes import admin
 
 from .models.user_model import User
 from .models.func_model import Admin
+from .models.prod_model import Product
 
 
 def create_app(config):
