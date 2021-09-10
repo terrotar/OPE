@@ -9,6 +9,9 @@ from app.models.func_model import Admin
 from app.models.prod_model import Product
 
 
+import requests
+
+
 # Blueprint admin
 admin = Blueprint('admin', __name__,
                   url_prefix="/admin",
@@ -37,7 +40,8 @@ def index():
 @admin.route('/logout', methods=['GET'])
 def logout():
     logout_user()
-    return render_template('index_admin.html')
+    return redirect('/admin')
+    # return render_template('index_admin.html')
 
 
 # URL that list all products
@@ -84,3 +88,22 @@ def add_product():
             db.session.add(new_product)
             db.session.commit()
             return redirect('/admin/products')
+
+
+# URL to change data of a product
+@admin.route('/change/product', methods=['GET', 'POST'])
+def change_product():
+    id_product = request.args.get('id_product')
+    product = Product.query.get(id_product)
+    if (request.method == 'GET'):
+        return render_template('change_prod.html',
+                               product=product)
+    if (request.method == 'POST'):
+        product_id = request.form['product_id']
+        product = Product.query.get(product_id)
+        product.name = request.form['name']
+        product.description = request.form['description']
+        product.size = request.form['size']
+        product.price = request.form['price']
+        db.session.commit()
+        return redirect('/admin/products')

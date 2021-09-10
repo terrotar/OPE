@@ -36,17 +36,17 @@
       <br>
       <br>
       <h3>Lista de Produtos</h3>
-      <a href="{{ url_for('admin.add_product') }}">Cadastrar Novo Produto</a>
+      <a href="{{ url_for('admin.add_product') }}">Novo Produto</a>
       <br>
       <br>
       <ul>
         {% for product in all_products %}
         <li><strong>ID:</strong> {{ product.id }}</li>
         <li><strong>Nome:</strong> {{ product.name }}</li>
-        <li><strong>Descrição:</strong> {{ product.description }}</li>
-        <li><strong>Tamanho:</strong> {{ product.size }}</li>
-        <li><strong>Preço:</strong> {{ product.price }}</li>
-          <a href="#">Alterar</a>
+        <li><strong>Descrição:</strong> {{ product.description }}.</li>
+        <li><strong>Tamanho:</strong> {{ product.size }} L</li>
+        <li><strong>Preço:</strong> R${{ product.price }}</li>
+          <a href="{{ url_for('admin.change_product', id_product=product.id) }}">Alterar</a>
           <a href="{{ url_for('admin.delete_product', id_product=product.id) }}">Deletar</a>
           <br>
           <br>

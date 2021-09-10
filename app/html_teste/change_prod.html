@@ -1,0 +1,73 @@
+{% block head %}
+    <title>Alterar Produto</title>
+{% endblock %}
+
+
+{% block body %}
+
+  <div class="container">
+
+    <h1>Alterar - Produto</h1>
+    <hr>
+
+    {% if current_user.is_authenticated %}
+
+      {% if check_error %}
+
+        <section>
+          <h3>Senha inválida.</h3>
+        </section>
+        <br>
+      {% endif %}
+
+
+        <form action="{{ url_for('admin.change_product') }}" method="POST">
+
+          <br>
+          <h3>Digite o ID para confirmar</h3>
+          <div class="form-group col-3">
+            <label for="product_id">ID</label>
+            <input type="text" name="product_id" class="form-control" id="product_id" placeholder="{{ product.id }}" required>
+          </div>
+          <hr>
+          <br>
+          <div class="form-group col-3">
+            <label for="name">Nome</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="{{ product.name }}" required>
+          </div>
+          <br>
+          <div class="form-group col-3">
+            <label for="description">Descrição</label>
+            <input type="text" name="description" class="form-control" id="description" placeholder="{{ product.description }}" required>
+          </div>
+          <br>
+          <div class="form-group col-3">
+            <label for="size">Tamanho</label>
+            <input type="text" name="size" class="form-control" id="size" placeholder="{{ product.size }}" required>
+          </div>
+          <br>
+          <div class="form-group col-3">
+            <label for="price">Preço</label>
+            <input type="text" name="price" class="form-control" id="price" placeholder="{{ product.price }}" required>
+          </div>
+          <br>
+
+
+          <button type="submit">Alterar</button>
+
+        </form>
+
+
+
+
+
+      </div>
+          {% endif %}
+
+
+          <hr>
+      <footer>
+        <p>&copy Calling Therapies - 2020</p>
+      </footer>
+
+{% endblock %}
