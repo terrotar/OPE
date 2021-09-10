@@ -1,0 +1,52 @@
+
+{% block head %}
+<title>Admin - Produtos</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+<h1>Produtos</h1>
+<hr>
+<br>
+
+
+
+{% if not current_user.is_authenticated %}
+
+
+{% if error %}
+<h3>Funcionário não cadastrado ou senha inválida.</h3>
+{% endif %}
+
+
+
+    <h1>Faça seu login primeiro na página de login de funcionarios.</h1>
+
+
+
+{% else %}
+
+
+      <h3>Bem vindo, {{ current_user.fname }} !</h3>
+
+      <a href="{{ url_for('admin.logout') }}">Deslogar</a>
+
+
+      <br>
+      <br>
+      <h3>Lista de Produtos</h3>
+      <ul>
+          <li><a href="#">Cadastrar</a></li>
+          <li><a href="#">Alterar</a></li>
+          <li><a href="#">Deletar</a></li>
+      </ul>
+
+
+
+      {% endif %}
+      <hr>
+  <footer>
+    <p>&copy Calling Therapies - 2020</p>
+  </footer>
+{% endblock %}

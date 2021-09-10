@@ -19,19 +19,19 @@ def get_user(user_id):
 class User(db.Model, UserMixin):
     __tablename__ = "usuario"
     id = db.Column("id_usuario", db.Integer, primary_key=True)
-    _email = db.Column("email", db.String, unique=True, nullable=False)
-    _password = db.Column("senha", db.String, nullable=False)
-    _cpf = db.Column("cpf", db.BigInteger, unique=True, nullable=False)
-    _cep = db.Column("cep", db.String, unique=False, nullable=False)
-    _address = db.Column("endereco", db.String, unique=False, nullable=False)
-    _number = db.Column("numero", db.String, unique=False, nullable=False)
-    _uf = db.Column("uf", db.String, unique=False, nullable=False)
-    _city = db.Column("cidade", db.String, unique=False, nullable=False)
-    _complement = db.Column("complemento", db.String, unique=False, nullable=True)
-    _fname = db.Column("nome", db.String, unique=False, nullable=False)
-    _lname = db.Column("sobrenome", db.String, unique=False, nullable=False)
-    _birthday = db.Column("nascimento", db.Date, unique=False, nullable=False)
-    _age = db.Column("idade", db.Integer, unique=False, nullable=True)
+    __email = db.Column("email", db.String, unique=True, nullable=False)
+    __password = db.Column("senha", db.String, nullable=False)
+    __cpf = db.Column("cpf", db.BigInteger, unique=True, nullable=False)
+    __cep = db.Column("cep", db.String, unique=False, nullable=False)
+    __address = db.Column("endereco", db.String, unique=False, nullable=False)
+    __number = db.Column("numero", db.String, unique=False, nullable=False)
+    __uf = db.Column("uf", db.String, unique=False, nullable=False)
+    __city = db.Column("cidade", db.String, unique=False, nullable=False)
+    __complement = db.Column("complemento", db.String, unique=False, nullable=True)
+    __fname = db.Column("nome", db.String, unique=False, nullable=False)
+    __lname = db.Column("sobrenome", db.String, unique=False, nullable=False)
+    __birthday = db.Column("nascimento", db.Date, unique=False, nullable=False)
+    __age = db.Column("idade", db.Integer, unique=False, nullable=True)
 
     # When create a new User object, you must use the following functions:
 
@@ -39,25 +39,25 @@ class User(db.Model, UserMixin):
     # check_cpf() --> Validates the cpf format when user register a new account
     # set_adress() --> Get the adress via API and set in user attributes
     def __init__(self, email, password, cpf, cep, number, complement, fname, lname, birthday):
-        self._email = email
-        self._password = generate_password_hash(password)
+        self.__email = email
+        self.__password = generate_password_hash(password)
         # cpf cant be masked already(cpf.mask(cpf_to_mask))
         # it can be like "12345678910" or 12345678910
         # Although, the mapped is set to be Integer
-        self._cpf = cpf
+        self.__cpf = cpf
         # Create cpf that verify name
-        self._cep = cep
-        self._number = number
-        self._complement = complement
-        self._fname = fname
-        self._lname = lname
-        self._birthday = birthday
+        self.__cep = cep
+        self.__number = number
+        self.__complement = complement
+        self.__fname = fname
+        self.__lname = lname
+        self.__birthday = birthday
 
     # VALIDATORS
     # Age must be >= 18 to purchase items
     def check_age(self):
         today = datetime.date.today()
-        days = today - self._birthday
+        days = today - self.__birthday
         age = int(days.days)//365
         if age >= 18:
             return True
@@ -66,7 +66,7 @@ class User(db.Model, UserMixin):
 
     # Cpf must be validated with it's rules
     def check_cpf(self):
-        num = cpf.mask(str(self._cpf))
+        num = cpf.mask(str(self.__cpf))
         return cpf.validate(num)
 
     # PROPERTIES of GET and SET attributes
@@ -74,102 +74,102 @@ class User(db.Model, UserMixin):
 
     @hybrid_property
     def email(self):
-        return self._email
+        return self.__email
 
     @email.setter
     def email(self, email):
-        self._email = email
+        self.__email = email
 
     # Password
     @hybrid_property
     def password(self):
-        return self._password
+        return self.__password
 
     @password.setter
     def password(self, password):
-        self._password = generate_password_hash(password)
+        self.__password = generate_password_hash(password)
 
     # Verify the hash password
     def verify_password(self, pwd):
-        return check_password_hash(self._password, pwd)
+        return check_password_hash(self.__password, pwd)
 
     # Cpf
     @hybrid_property
     def cpf(self):
-        return self._cpf
+        return self.__cpf
 
     @cpf.setter
     def cpf(self, cpf):
-        self._cpf = cpf
+        self.__cpf = cpf
 
     # Cep
     @hybrid_property
     def cep(self):
-        return self._cep
+        return self.__cep
 
     @cep.setter
     def cep(self, cep):
-        self._cep = cep
+        self.__cep = cep
 
     # Number
     @hybrid_property
     def number(self):
-        return self._number
+        return self.__number
 
     @number.setter
     def number(self, number):
-        self._number = number
+        self.__number = number
 
     # Adress
     @hybrid_property
     def address(self):
-        return self._address
+        return self.__address
 
     def set_address(self):
-        address = requests.get(f"https://viacep.com.br/ws/{self._cep}/json/")
-        self._address = address.json()["logradouro"]
-        self._uf = address.json()["uf"]
-        self._city = address.json()["localidade"]
+        address = requests.get(f"https://viacep.com.br/ws/{self.__cep}/json/")
+        self.__address = address.json()["logradouro"]
+        self.__uf = address.json()["uf"]
+        self.__city = address.json()["localidade"]
 
     # UF
     @hybrid_property
     def uf(self):
-        return self._uf
+        return self.__uf
 
     # Fname
     @hybrid_property
     def fname(self):
-        return self._fname
+        return self.__fname
 
     @fname.setter
     def fname(self, fname):
-        self._fname = fname
+        self.__fname = fname
 
     # Lname
     @hybrid_property
     def lname(self):
-        return self._lname
+        return self.__lname
 
     @lname.setter
     def lname(self, lname):
-        self._lname = lname
+        self.__lname = lname
 
     # Complement
     @hybrid_property
     def complement(self):
-        return self._complement
+        return self.__complement
 
     @complement.setter
     def complement(self, complement):
-        self._complement = complement
+        self.__complement = complement
 
     # Age
     @hybrid_property
     def age(self):
-        return self._age
+        return self.__age
 
     def set_age(self):
         today = datetime.date.today()
-        days = today - self._birthday
+        days = today - self.__birthday
         age = int(days.days)//365
-        self._age = age
+        self.__age = age

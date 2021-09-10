@@ -14,55 +14,55 @@ def get_user(user_id):
 class Admin(db.Model, UserMixin):
     __tablename__ = "funcionario"
     id = db.Column("id_funcionario", db.Integer, primary_key=True)
-    _email = db.Column("email", db.String, unique=True, nullable=False)
-    _password = db.Column("senha", db.String, nullable=False)
-    _fname = db.Column("nome", db.String, unique=False, nullable=False)
-    _lname = db.Column("sobrenome", db.String, unique=False, nullable=False)
+    __email = db.Column("email", db.String, unique=True, nullable=False)
+    __password = db.Column("senha", db.String, nullable=False)
+    __fname = db.Column("nome", db.String, unique=False, nullable=False)
+    __lname = db.Column("sobrenome", db.String, unique=False, nullable=False)
 
     def __init__(self, email, password, fname, lname):
-        self._email = email
-        self._password = generate_password_hash(password)
-        self._fname = fname
-        self._lname = lname
+        self.__email = email
+        self.__password = generate_password_hash(password)
+        self.__fname = fname
+        self.__lname = lname
 
 # PROPERTIES of GET and SET attributes
     # Email
 
     @hybrid_property
     def email(self):
-        return self._email
+        return self.__email
 
     @email.setter
     def email(self, email):
-        self._email = email
+        self.__email = email
 
     # Password
     @hybrid_property
     def password(self):
-        return self._password
+        return self.__password
 
     @password.setter
     def password(self, password):
-        self._password = generate_password_hash(password)
+        self.__password = generate_password_hash(password)
 
     # Verify the hash password
     def verify_password(self, pwd):
-        return check_password_hash(self._password, pwd)
+        return check_password_hash(self.__password, pwd)
 
     # Fname
     @hybrid_property
     def fname(self):
-        return self._fname
+        return self.__fname
 
     @fname.setter
     def fname(self, fname):
-        self._fname = fname
+        self.__fname = fname
 
     # Lname
     @hybrid_property
     def lname(self):
-        return self._lname
+        return self.__lname
 
     @lname.setter
     def lname(self, lname):
-        self._lname = lname
+        self.__lname = lname

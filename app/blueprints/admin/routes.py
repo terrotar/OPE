@@ -8,14 +8,14 @@ from app import db
 from app.models.func_model import Admin
 
 
-# Instancia do Blueprint admin
+# Blueprint admin
 admin = Blueprint('admin', __name__,
                   url_prefix="/admin",
                   template_folder="../../html_teste",
                   static_folder="../../estaticos_teste")
 
 
-# URL da homepage de admin
+# URL homepage/login table Admin/funcionario
 @admin.route('/', methods=['GET', 'POST'])
 def index():
     if(request.method == 'GET'):
@@ -32,7 +32,15 @@ def index():
         return render_template('index_admin.html')
 
 
+# URL logout Admin/funcionario
 @admin.route('/logout', methods=['GET'])
 def logout():
     logout_user()
     return render_template('index_admin.html')
+
+
+# URL product
+@admin.route('/products', methods=['GET', 'POST'])
+def list_products():
+    if (request.method == 'GET'):
+        return render_template('products.html')

@@ -46,9 +46,14 @@
 
           <h3>Bem vindo, {{ current_user.fname }} !</h3>
 
-          <br>
-
           <a href="{{ url_for('admin.logout') }}">Deslogar</a>
+
+
+          <br>
+          <br>
+          <h3><a href="{{ url_for('admin.list_products') }}">Produtos</a></h3>
+
+          <h3><a href="#">Tratamentos</a></h3>
 
 
           {% endif %}
