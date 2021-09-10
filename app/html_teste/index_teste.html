@@ -34,6 +34,15 @@
                         </button>
                     </a>
                 </li>
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a href="{{ url_for('login.logout') }}" class="login">
+                        <button>
+                            Logout
+                        </button>
+                    </a>
+                </li>
+                {% else %}
                 <li>
                     <a href="{{ url_for('login.log_user') }}" class="login">
                         <button>
@@ -41,6 +50,7 @@
                         </button>
                     </a>
                 </li>
+                {% endif %}
                 <li>
                     <a class="carrinho">
                         <button>

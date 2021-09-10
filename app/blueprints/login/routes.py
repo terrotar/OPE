@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 
 from flask_login import login_user, logout_user, current_user
 
@@ -20,23 +20,25 @@ def log_user():
     if(request.method == 'POST'):
         email = request.form['email']
         password = request.form['password']
-    user = User.query.filter_by(email=email).first()
-    if(not user or not user.verify_password(password)):
-        return render_template('login.html',
-                               error=True)
-    else:
-        login_user(user)
-        user_id = current_user.get_id()
-        user = User.query.get(user_id)
-        user.set_age()
-        db.session.commit()
-        return render_template('index_teste.html')
+        user = User.query.filter_by(email=email).first()
+        if(not user or not user.verify_password(password)):
+            return render_template('login.html',
+                                   error=True)
+        else:
+            # return {"User": f"{login_user(user)}"}
+            login_user(user)
+            user_id = current_user.get_id()
+            user = User.query.get(user_id)
+            user.set_age()
+            db.session.commit()
+            return redirect('/')
 
 
 @login.route('/logout', methods=['GET'])
 def logout():
-    logout_user()
-    return render_template('index_teste.html')
+    if (request.method == 'GET'):
+        logout_user()
+        return redirect('/')
 
 
 @login.route('/<user_email>/change_password', methods=['GET', 'POST'])

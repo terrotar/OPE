@@ -27,7 +27,7 @@
     {% endif %}
 
 
-        <form action="#" method="POST">
+        <form action="{{ url_for('login.log_user') }}" method="POST">
 
           <div class="form-group col-3">
             <label name="email">E-mail</label>
