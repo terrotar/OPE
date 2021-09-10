@@ -9,12 +9,12 @@
 
   <div class="container">
 
-    <h1>Login</h1>
-    <hr>
+    
 
     
     {% if not current_user.is_authenticated %}
-
+    <h1>Login</h1>
+    <hr>
 
     {% if error %}
     <h3>Usuário não cadastrado ou senha inválida.</h3>
@@ -45,6 +45,9 @@
 
 
           {% else %}
+
+          <h1>Perfil</h1>
+          <hr>
 
 
           <h3>Bem vindo, {{ current_user.fname }} !</h3>
