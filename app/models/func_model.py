@@ -1,10 +1,16 @@
-from app.config import db
+from app.config import db, login_manager
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
+@login_manager.user_loader
+def get_user(user_id):
+    return Admin.query.get(user_id)
+
+
 # Columns of table funcionario
-class Admin(db.Model):
+class Admin(db.Model, UserMixin):
     __tablename__ = "funcionario"
     id = db.Column("id_funcionario", db.Integer, primary_key=True)
     __email = db.Column("email", db.String, unique=True, nullable=False)
