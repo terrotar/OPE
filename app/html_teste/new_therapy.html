@@ -1,0 +1,63 @@
+{% block head %}
+
+    <title>Cadastro Terapia</title>
+{% endblock %}
+
+
+{% block body %}
+
+  <div class="container">
+
+    <h1>Cadastro - Terapia</h1>
+    <hr>
+
+    {% if not current_user.is_authenticated %}
+
+
+      {% else %}
+
+
+          <h3>Bem vindo, {{ current_user.fname }} !</h3>
+
+        
+
+          <br>
+          <h4>Novo Terapia</h4>
+          <br>
+
+
+          <form action="{{ url_for('admin.add_therapy') }}" method="POST">
+
+            <div class="form-group col-3">
+              <label name="name">Nome</label>
+              <input type="text" name="name" class="form-control" id="name" required>
+            </div>
+            <br>
+            <div class="form-group col-3">
+              <label for="description">Descrição</label>
+              <input type="text" name="description" class="form-control" id="description" required>
+            </div>
+            <br>
+            <div class="form-group col-3">
+              <label for="price">Preço</label>
+              <input type="number" name="price" class="form-control" id="price" step="0.01" required>
+            </div>
+            <br>
+
+
+            <button type="submit" class="btn btn-outline-light btn-lg bg-primary">Cadastrar</button>
+
+          </form>
+
+        </div>
+
+
+
+
+          {% endif %}
+          <hr>
+      <footer>
+        <p>&copy Calling Therapies - 2020</p>
+      </footer>
+
+{% endblock %}

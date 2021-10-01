@@ -1,0 +1,61 @@
+{% block head %}
+<title>Admin - Terapias</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+<h1>Terapias</h1>
+<hr>
+<br>
+
+
+
+{% if not current_user.is_authenticated %}
+
+
+{% if error %}
+<h3>Funcionário não cadastrado ou senha inválida.</h3>
+{% endif %}
+
+
+
+    <h1>Faça seu login primeiro na página de login de funcionarios.</h1>
+
+
+
+{% else %}
+
+
+      <h3>Bem vindo, {{ current_user.fname }} !</h3>
+
+      <a href="{{ url_for('admin.logout') }}">Deslogar</a>
+
+
+      <br>
+      <br>
+      <h3>Lista de Terapias</h3>
+      <a href="{{ url_for('admin.add_therapy') }}">Nova Terapia</a>
+      <br>
+      <br>
+      <ul>
+        {% for therapy in all_therapies %}
+        <li><strong>ID:</strong> {{ therapy.id }}</li>
+        <li><strong>Nome:</strong> {{ therapy.name }}</li>
+        <li><strong>Descrição:</strong> {{ therapy.description }}.</li>
+        <li><strong>Preço:</strong> R${{ therapy.price }}</li>
+        <a href="{{ url_for('admin.change_therapy', id_therapy=therapy.id) }}">Alterar</a>
+        <a href="{{ url_for('admin.delete_therapy', id_therapy=therapy.id) }}">Deletar</a>
+        <br>
+        <br>
+        {% endfor %}
+      </ul>
+
+
+
+      {% endif %}
+      <hr>
+  <footer>
+    <p>&copy Calling Therapies - 2020</p>
+  </footer>
+{% endblock %}
