@@ -13,6 +13,7 @@ from .models.func_model import Admin
 from .models.prod_model import Product
 from .models.therap_model import Therapy
 from .models.chart_therap_model import Chart_Therapy
+from .models.chart_prod_model import Chart_Product
 
 
 def create_app(config):
