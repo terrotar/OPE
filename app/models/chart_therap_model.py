@@ -6,8 +6,8 @@ from sqlalchemy.ext.hybrid import hybrid_property
 class Chart_Therapy(db.Model):
     __tablename__ = "terapia_carrinho"
     id = db.Column("id_terapia_carrinho", db.Integer, primary_key=True)
-    __id_user = db.Column("id_usuario", db.Integer, unique=False, nullable=False)
-    __id_therapy = db.Column("id_terapia", db.Integer, unique=False, nullable=False)
+    __id_user = db.Column("id_usuario", db.Integer, db.ForeignKey("usuario.id_usuario"))
+    __id_therapy = db.Column("id_terapia", db.Integer, db.ForeignKey("terapia.id_terapia"))
     __unit_price = db.Column("preco_unit", db.Float, unique=False, nullable=False)
     __qtd = db.Column("qtd", db.Integer, unique=False, nullable=False)
 
@@ -31,10 +31,6 @@ class Chart_Therapy(db.Model):
     @hybrid_property
     def id_therapy(self):
         return self.__id_therapy
-
-    @id_therapy.setter
-    def id_therapy(self, id_therapy):
-        self.__id_therapy = id_therapy
 
     # unit_price
     @hybrid_property

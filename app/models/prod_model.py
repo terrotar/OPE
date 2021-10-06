@@ -11,6 +11,9 @@ class Product(db.Model):
     __size = db.Column("tamanho", db.Float, unique=False, nullable=False)
     __price = db.Column("preco", db.Float, unique=False, nullable=False)
 
+    # Relationships
+    chart_product = db.relationship("produto_carrinho", backref="chart_product")
+
     def __init__(self, name, description, size, price):
         self.__name = name
         self.__description = description

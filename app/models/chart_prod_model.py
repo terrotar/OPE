@@ -6,8 +6,8 @@ from sqlalchemy.ext.hybrid import hybrid_property
 class Chart_Product(db.Model):
     __tablename__ = "produto_carrinho"
     id = db.Column("id_produto_carrinho", db.Integer, primary_key=True)
-    __id_user = db.Column("id_usuario", db.Integer, unique=False, nullable=False)
-    __id_product = db.Column("id_produto", db.Integer, unique=False, nullable=False)
+    __id_user = db.Column("id_usuario", db.Integer, db.ForeignKey("usuario.id_usuario"))
+    __id_product = db.Column("id_produto", db.Integer, db.ForeignKey("produto.id_produto"))
     __unit_price = db.Column("preco_unit", db.Float, unique=False, nullable=False)
     __qtd = db.Column("qtd", db.Integer, unique=False, nullable=False)
 
@@ -31,10 +31,6 @@ class Chart_Product(db.Model):
     @hybrid_property
     def id_product(self):
         return self.__id_product
-
-    @id_product.setter
-    def id_product(self, id_product):
-        self.__id_product = id_product
 
     # unit_price
     @hybrid_property

@@ -33,6 +33,10 @@ class User(db.Model, UserMixin):
     __birthday = db.Column("nascimento", db.Date, unique=False, nullable=False)
     __age = db.Column("idade", db.Integer, unique=False, nullable=True)
 
+    # Relationships
+    chart_product = db.relationship("produto_carrinho", backref="chart_product")
+    chart_therapy = db.relationship("terapia_carrinho", backref="chart_therapy")
+
     # When create a new User object, you must use the following functions:
 
     # check_age() --> Validates if user can purchase items or not
