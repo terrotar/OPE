@@ -16,6 +16,8 @@
 
       {% else %}
 
+      {% if current_user.user_type == "admin" %}
+
 
           <h3>Bem vindo, {{ current_user.fname }} !</h3>
 
@@ -52,7 +54,7 @@
         </div>
 
 
-
+{% endif %}
 
           {% endif %}
           <hr>

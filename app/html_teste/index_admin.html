@@ -11,13 +11,16 @@
 
 
 
-
     {% if not current_user.is_authenticated %}
+
+
 
 
     {% if error %}
     <h3>Funcionário não cadastrado ou senha inválida.</h3>
     {% endif %}
+
+
 
     <br>
 
@@ -44,6 +47,10 @@
 {% else %}
 
 
+  {% if current_user.user_type == "admin" %}
+
+
+
           <h3>Bem vindo, {{ current_user.fname }} !</h3>
 
           <a href="{{ url_for('admin.logout') }}">Deslogar</a>
@@ -54,6 +61,11 @@
           <h3><a href="{{ url_for('admin.list_products') }}">Produtos</a></h3>
 
           <h3><a href="{{ url_for('admin.list_therapies') }}">Tratamentos</a></h3>
+
+{% endif %}
+
+
+
 
 
           {% endif %}

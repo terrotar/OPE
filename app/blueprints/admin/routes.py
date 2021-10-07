@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, current_user
 
 from app import db
 
-from app.models.func_model import Admin
+from app.models.user_model import User
 from app.models.prod_model import Product
 from app.models.therap_model import Therapy
 
@@ -28,8 +28,8 @@ def index():
     if(request.method == 'POST'):
         email = request.form['email']
         password = request.form['password']
-    func = Admin.query.filter_by(email=email).first()
-    if(not func or not func.verify_password(password)):
+    func = User.query.filter_by(email=email).first()
+    if(not func or not func.verify_password(password) or func.user_type != "admin"):
         return render_template('index_admin.html',
                                error=True)
     else:

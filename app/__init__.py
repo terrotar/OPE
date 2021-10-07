@@ -9,7 +9,6 @@ from .blueprints.login.routes import login
 from .blueprints.admin.routes import admin
 
 from .models.user_model import User
-from .models.func_model import Admin
 from .models.prod_model import Product
 from .models.therap_model import Therapy
 from .models.chart_therap_model import Chart_Therapy

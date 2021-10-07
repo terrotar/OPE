@@ -19,7 +19,7 @@
         </section>
         <br>
       {% endif %}
-
+      {% if current_user.user_type == "admin" %}
 
         <form action="{{ url_for('admin.change_therapy') }}" method="POST">
 
@@ -57,6 +57,8 @@
 
 
       </div>
+
+      {% endif %}
           {% endif %}
 
 

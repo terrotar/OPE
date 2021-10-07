@@ -21,6 +21,9 @@
       {% endif %}
 
 
+      {% if current_user.user_type == "admin" %}
+      
+
         <form action="{{ url_for('admin.change_product') }}" method="POST">
 
           <br>
@@ -62,6 +65,8 @@
 
 
       </div>
+
+      {% endif %}
           {% endif %}
 
 

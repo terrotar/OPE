@@ -32,6 +32,7 @@ class User(db.Model, UserMixin):
     __lname = db.Column("sobrenome", db.String, unique=False, nullable=False)
     __birthday = db.Column("nascimento", db.Date, unique=False, nullable=False)
     __age = db.Column("idade", db.Integer, unique=False, nullable=True)
+    __user_type = db.Column("tipo_usuario", db.String(20), default='user')
 
     # Relationships
     Chart_Product = db.relationship("Chart_Product")
@@ -177,3 +178,12 @@ class User(db.Model, UserMixin):
         days = today - self.__birthday
         age = int(days.days)//365
         self.__age = age
+
+    # User_type
+    @hybrid_property
+    def user_type(self):
+        return self.__user_type
+
+    @user_type.setter
+    def user_type(self, user_type):
+        self.__user_type = user_type
