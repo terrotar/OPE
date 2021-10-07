@@ -34,8 +34,8 @@ class User(db.Model, UserMixin):
     __age = db.Column("idade", db.Integer, unique=False, nullable=True)
 
     # Relationships
-    chart_product = db.relationship("produto_carrinho", backref="chart_product")
-    chart_therapy = db.relationship("terapia_carrinho", backref="chart_therapy")
+    Chart_Product = db.relationship("Chart_Product")
+    Chart_Therapy = db.relationship("Chart_Therapy")
 
     # When create a new User object, you must use the following functions:
 
