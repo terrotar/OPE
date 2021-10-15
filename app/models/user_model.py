@@ -37,6 +37,7 @@ class User(db.Model, UserMixin):
     # Relationships
     Chart_Product = db.relationship("Chart_Product")
     Chart_Therapy = db.relationship("Chart_Therapy")
+    Chart = db.relationship("Chart")
 
     # When create a new User object, you must use the following functions:
 
