@@ -11,6 +11,8 @@ class Chart_Product(db.Model):
     __unit_price = db.Column("preco_unit", db.Float, unique=False, nullable=False)
     __qtd = db.Column("qtd", db.Integer, unique=False, nullable=False)
 
+    product = db.relationship("Product", back_populates="product")
+
     def __init__(self, id_user, id_product, unit_price, qtd):
         self.__id_user = id_user
         self.__id_product = id_product
