@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Calling Therapies - Carrinho</title>
+{% endblock %}
+
+
+{% block body %}
+
+  <div class="container">
+
+
+
+
+    {% if not current_user.is_authenticated %}
+    <h1>Carrinho</h1>
+    <hr>
+
+    {% if error %}
+    <h3>Usuário não cadastrado ou senha inválida.</h3>
+    {% endif %}
+
+
+
+
+        <br>
+
+
+
+          {% else %}
+
+            <h3>Bem vindo, {{ current_user.fname }} !</h3>
+            <hr>
+
+
+            <h1>Carrinho</h1>
+            <hr>
+
+
+            <h2>Produtos</h2>
+            <hr>
+            <ul>
+                {% for product in current_user.Chart_Product %}
+                <li><strong>ID do Produto:</strong> {{ product.id_product }}</li>
+                <li><strong>Preço:</strong> R${{ product.unit_price }}</li>
+                <li><strong>Quantidade:</strong> {{ product.qtd }}</li>
+                <br>
+                {% endfor %}
+              </ul>
+
+
+              <h2>Terapias</h2>
+              <hr>
+              <ul>
+                  {% for therapy in current_user.Chart_Therapy %}
+                  <li><strong>ID da Terapia:</strong> {{ therapy.id_therapy }}</li>
+                  <li><strong>Preço:</strong> R${{ therapy.unit_price }}</li>
+                  <li><strong>Quantidade:</strong> {{ therapy.qtd }}</li>
+                  <br>
+                  {% endfor %}
+                </ul>
+
+
+          {% endif %}
+          <hr>
+      <footer>
+        <p>&copy Calling Therapies - 2020</p>
+      </footer>
+{% endblock %}

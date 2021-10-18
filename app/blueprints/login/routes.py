@@ -40,6 +40,12 @@ def logout():
         return redirect('/')
 
 
+@login.route('/chart', methods=['GET'])
+def chart():
+    if (request.method == 'GET'):
+        return render_template('chart.html')
+
+
 @login.route('/<user_email>/change_password', methods=['GET', 'POST'])
 def change_password(user_email):
     if(request.method == 'GET'):

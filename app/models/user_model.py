@@ -35,12 +35,10 @@ class User(db.Model, UserMixin):
     __user_type = db.Column("tipo_usuario", db.String(20), default='user')
 
     # Relationships
-    Chart_Product = db.relationship("Chart_Product")
-    Chart_Therapy = db.relationship("Chart_Therapy")
-    Chart = db.relationship("Chart")
+    Chart_Product = db.relationship("Chart_Product", backref="products")
+    Chart_Therapy = db.relationship("Chart_Therapy", backref='therapies')
 
     # When create a new User object, you must use the following functions:
-
     # check_age() --> Validates if user can purchase items or not
     # check_cpf() --> Validates the cpf format when user register a new account
     # set_adress() --> Get the adress via API and set in user attributes
