@@ -1,0 +1,109 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Cadastrar</title>
+{% endblock %}
+
+{% block body %}
+
+<main role="main">
+
+    <!-- box-login -->
+    <div class="container col-md-6 mx-auto">
+        <br>
+        <h1 class="display-4">Cadastrar</h1>
+        <hr>
+
+
+        {% if check_error %}
+            <h3><strong>E-mail ou CPF já cadastrados no sistema.</strong></h3>
+            <br>
+        {% endif %}
+
+
+            <form action="{{ url_for('register.register_user') }}" method="POST">
+
+
+
+                <div class="row d-flex justify-content-between">
+
+                <div class="form-group lead">
+                    <label for="fname">Nome</label>
+                    <input type="text" class="form-control" id="fname" name="fname" placeholder="Digite seu Nome" required>
+                </div>
+
+                <div class="form-group lead">
+                    <label for="lname">Sobrenome</label>
+                    <input type="text" class="form-control" id="lname" name="lname" placeholder="Digite seu Sobrenome" required>
+                </div>
+
+                <div class="form-group lead">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div class="form-group lead">
+                    <label for="password">Senha</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+                </div>
+
+                <div class="form-group lead">
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+                </div>
+
+                <div class="form-group lead">
+                    <label for="cep">Cep</label>
+                    <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite seu Cep" required>
+                </div>
+
+                <div class="form-group lead">
+                    <label for="number">Número</label>
+                    <input type="text" class="form-control" id="number" name="number" placeholder="Digite seu Número" required>
+                </div>
+
+                <div class="form-group lead">
+                    <label for="complement">Complemento</label>
+                    <input type="text" class="form-control" id="complement" name="complement" default="" placeholder="Digite seu Complemento">
+                </div>
+
+
+
+
+
+
+
+                <div class="row" style="margin-top: 1rem;">
+
+                <div class="form-group lead col-2">
+                    <label for="bday">Dia</label>
+                    <input type="number" class="form-control" id="bday" name="bday" min=0 max=31 required>
+                </div>
+
+                <div class="form-group lead col-2">
+                    <label for="bmonth">Mês</label>
+                    <input type="number" class="form-control" id="bmonth" name="bmonth" min=0 max=12 required>
+                </div>
+
+                <div class="form-group lead col-2">
+                    <label for="byear">Ano</label>
+                    <input type="number" class="form-control" id="byear" name="byear" min=1920 max=2050 required>
+                </div>
+            </div>
+
+            </div>
+                <button class="btn btn-md bg-info btn-outline-light" type="submit">Cadastrar</button>
+
+
+            </form>
+       
+
+    <!-- box-login -->
+    </div>
+
+
+
+</main>
+
+{% endblock %}

@@ -37,29 +37,44 @@
             <div class="navbar navbar-dark bg-info box-shadow">
               <div class="container">
                 <ul class="navbar-text list-unstyled ml-auto d-flex justify-content-between">
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                  <strong>Album</strong>
+                <a href="#" class="navbar-brand">
+                  <a href='{{ url_for("home.index") }}'><img src="../static/img/Nav/logo.png" width="120" /></a>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
 
-                
+                  {% if current_user.is_authenticated %}
+                  <li class="nav-item active">
+                    <a class="nav-link link-navbar font-weight-bold" href="#">
+                        Perfil
+                    </a>
+                </li>
+                  {% else %}
                     <li class="nav-item active">
-                        <a class="nav-link github" href="#">
+                        <a class="nav-link link-navbar font-weight-bold" href="{{ url_for('register.register_user') }}">
                             Cadastrar
                         </a>
                     </li>
+                  {% endif %}
+
+                  {% if current_user.is_authenticated %}
+                  <li class="nav-item active">
+                    <a class="nav-link link-navbar font-weight-bold" href="{{ url_for('login.logout') }}">
+                        Logout
+                    </a>
+                </li>
+                  {% else %}
+                  <li class="nav-item active">
+                    <a class="nav-link link-navbar font-weight-bold" href="{{ url_for('login.log_user') }}">
+                        Login
+                    </a>
+                </li>
+                  {% endif %}
+
 
                     <li class="nav-item active">
-                        <a class="nav-link linkedin" href="#">
-                            Login
-                        </a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link linkedin" href="#">
+                        <a class="nav-link link-navbar font-weight-bold" href="#">
                             Carrinho
                         </a>
                     </li>
@@ -76,14 +91,23 @@
 
     {%block body %} {% endblock %}
 
+
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-0 border-top bg-dark fixed-bottom">
+        <p class="col-md-4 mb-0 text-white">&copy; 2021 CallingTherapies, Inc</p>
+  
+  
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="#" class="nav-link link-footer px-3 text-white"><strong>Home</strong></a></li>
+          <li class="nav-item"><a href="#" class="nav-link link-footer px-3 text-white"><strong>Contato</strong></a></li>
+          <li class="nav-item"><a href="#" class="nav-link link-footer px-3 text-white"><strong>Sobre</strong></a></li>
+        </ul>
+      </footer>
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/vendor/holder.min.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request
 
+from flask_login import login_user
+
 from app import db, login_manager
 
 from app.models.user_model import User
@@ -9,8 +11,8 @@ import datetime
 
 # Instancia do Blueprint register
 register = Blueprint('register', __name__,
-                     template_folder="../../html_teste",
-                     static_folder="../../estaticos_teste")
+                     template_folder="../../templates",
+                     static_folder="../../estatic")
 
 
 @register.route('/cadastrar', methods=['GET', 'POST'])
@@ -41,7 +43,8 @@ def register_user():
             new_user.set_age()
             db.session.add(new_user)
             db.session.commit()
-            return render_template('index_teste.html')
+            login_user(new_user)
+            return render_template('index.html')
         else:
             return render_template('register.html',
                                    check_error=True)

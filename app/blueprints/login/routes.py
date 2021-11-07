@@ -9,8 +9,8 @@ from app.models.user_model import User
 
 # Instancia do Blueprint login
 login = Blueprint('login', __name__,
-                  template_folder="../../html_teste",
-                  static_folder="../../estaticos_teste")
+                  template_folder="../../templates",
+                  static_folder="../../estatic")
 
 
 @login.route('/login', methods=['GET', 'POST'])
@@ -30,7 +30,7 @@ def log_user():
             user = User.query.get(user_id)
             user.set_age()
             db.session.commit()
-            return render_template('index_teste.html')
+            return render_template('index.html')
 
 
 @login.route('/logout', methods=['GET'])

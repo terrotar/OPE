@@ -17,21 +17,39 @@ body .navbar {
     margin-right: -15px !important;
 }
 
+body .product-card {
+  background-color: #17a3b857 !important;
+  box-shadow: 1px 1px 2px 1px !important;
+}
 
-.btn-group .prod-card {
+.container .card-horizontal {
+  background-color: #17a3b857 !important;
+  box-shadow: 1px 1px 2px 1px !important;
+}
+
+.btn-group .btn-card {
   background-color: white !important;
 }
 
 
-.prod-card:hover {
-  background-color: #1ec0c1 !important;
+.btn-card:hover {
+  background-color: #343a40 !important;
 }
 
 
-.card .tratamento-card {
-  max-width: 230px !important;
+.card-horizontal .dhor-img-card {
+  max-width: 16rem !important;
 }
 
+
+.link-footer:hover {
+  color: #1ec0c1 !important;
+}
+
+
+.link-navbar:hover {
+  color: #343a40 !important;
+}
 
 
 /* Bootstrap 4 template */
