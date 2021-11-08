@@ -16,34 +16,27 @@
 
     <div class="container-fluid">
         <header>
-            <div class="collapse bg-dark" id="navbarHeader">
-              <div class="container">
-                <div class="row">
-                  <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-                  </div>
-                  <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Contact</h4>
-                    <ul class="list-unstyled">
-                      <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                      <li><a href="#" class="text-white">Like on Facebook</a></li>
-                      <li><a href="#" class="text-white">Email me</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="navbar navbar-dark bg-info box-shadow">
-              <div class="container">
-                <ul class="navbar-text list-unstyled ml-auto d-flex justify-content-between">
-                <a href="#" class="navbar-brand">
-                  <a href='{{ url_for("home.index") }}'><img src="../static/img/Nav/logo.png" width="120" /></a>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
 
+
+
+
+            <div class="navbar navbar-dark bg-info box-shadow">
+
+                <ul class="navbar-text list-unstyled d-flex justify-content-between align-items-center" style="margin-top: -0.1rem; padding-left: 350px;">
+
+                  <a href="#" class="navbar-brand ml-5">
+                    <a href='{{ url_for("home.index") }}'><img src="../static/img/Nav/logo.png" width="120"/></a>
+                  </a>
+
+              </ul>
+
+
+
+
+
+              <ul class="navbar-text list-unstyled d-flex justify-content-between align-items-center" style="margin-top: -0.4rem; padding-right: 350px;">
+
+                <div class="nav navbar-buttons">
                   {% if current_user.is_authenticated %}
                   <li class="nav-item active">
                     <a class="nav-link link-navbar font-weight-bold" href="#">
@@ -78,10 +71,10 @@
                             Carrinho
                         </a>
                     </li>
+                  </div>
 
                 </ul>
 
-              </div>
             </div>
           </header>
     </div>
@@ -89,7 +82,31 @@
 
 
 
-    {%block body %} {% endblock %}
+
+              <div class="collapse" id="navbarToggleExternalContent">
+
+                <div class="bg-dark p-2">
+
+                  <section class="jumbotron text-center">
+                      <h1 class="jumbotron-heading">Calling Therapies</h1>
+                      <p class="lead text-muted">Explicação da empresa e bio do empresário</p>
+                  </section>
+
+                </div>
+
+              </div>
+
+              <nav class="navbar navbar-dark bg-dark d-flex justify-content-center">
+                <button class="navbar-toggler" type="button" style="border: 0; box-shadow: 0px 0px 0px 0px; align-items: center; padding-top: 15px;" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+                  <img src="../static/img/Nav/scroll-down-BIOS.png" />
+                </button>
+              </nav>
+
+
+
+
+
+    {% block body %} {% endblock %}
 
 
       <footer class="d-flex flex-wrap justify-content-between align-items-center py-0 border-top bg-dark fixed-bottom">
