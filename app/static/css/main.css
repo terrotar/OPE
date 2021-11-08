@@ -9,12 +9,7 @@ body .navbar {
     margin-left: -15px !important;
     margin-right: -15px !important;
     height: 66px !important;
-}
-
-
-#navbarHeader {
-    margin-left: -15px !important;
-    margin-right: -15px !important;
+    max-width: 1851px;
 }
 
 body .product-card {
@@ -24,7 +19,6 @@ body .product-card {
 }
 
 .container .card-horizontal {
-  /*background-color: #17a3b857 !important;*/
   border: 3px solid #8DC0F0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;

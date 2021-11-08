@@ -9,7 +9,7 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    {%block head %} {% endblock %}
+    {% block head %} {% endblock %}
 </head>
 
 <body>
@@ -20,12 +20,12 @@
 
 
 
-            <div class="navbar navbar-dark bg-info box-shadow">
+            <div class="navbar navbar-dark bg-info box-shadow" style="min-width: 1848px;">
 
-                <ul class="navbar-text list-unstyled d-flex justify-content-between align-items-center" style="margin-top: -0.1rem; padding-left: 350px;">
+                <ul class="navbar-text list-unstyled d-flex justify-content-between align-items-center" style="margin-top: -0.3rem; padding-left: 25rem;">
 
                   <a href="#" class="navbar-brand ml-5">
-                    <a href='{{ url_for("home.index") }}'><img src="../static/img/Nav/logo.png" width="120"/></a>
+                    <a href='{{ url_for("home.index") }}'><img src="../static/img/Nav/logo.png" width="135"/></a>
                   </a>
 
               </ul>
@@ -34,18 +34,18 @@
 
 
 
-              <ul class="navbar-text list-unstyled d-flex justify-content-between align-items-center" style="margin-top: -0.4rem; padding-right: 350px;">
+              <ul class="navbar-text list-unstyled d-flex justify-content-between align-items-center" style="margin-top: -0.4rem; padding-right: 25rem;">
 
                 <div class="nav navbar-buttons">
                   {% if current_user.is_authenticated %}
                   <li class="nav-item active">
-                    <a class="nav-link link-navbar font-weight-bold" href="#">
+                    <a class="nav-link link-navbar font-weight-bold lead px-3" href="#">
                         Perfil
                     </a>
                 </li>
                   {% else %}
                     <li class="nav-item active">
-                        <a class="nav-link link-navbar font-weight-bold" href="{{ url_for('register.register_user') }}">
+                        <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('register.register_user') }}">
                             Cadastrar
                         </a>
                     </li>
@@ -53,13 +53,13 @@
 
                   {% if current_user.is_authenticated %}
                   <li class="nav-item active">
-                    <a class="nav-link link-navbar font-weight-bold" href="{{ url_for('login.logout') }}">
+                    <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('login.logout') }}">
                         Logout
                     </a>
                 </li>
                   {% else %}
                   <li class="nav-item active">
-                    <a class="nav-link link-navbar font-weight-bold" href="{{ url_for('login.log_user') }}">
+                    <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('login.log_user') }}">
                         Login
                     </a>
                 </li>
@@ -67,7 +67,7 @@
 
 
                     <li class="nav-item active">
-                        <a class="nav-link link-navbar font-weight-bold" href="#">
+                        <a class="nav-link link-navbar font-weight-bold lead px-3" href="#">
                             Carrinho
                         </a>
                     </li>
@@ -96,7 +96,7 @@
 
               </div>
 
-              <nav class="navbar navbar-dark bg-dark d-flex justify-content-center">
+              <nav class="navbar navbar-dark bg-dark d-flex justify-content-center" style="max-width: 1851px; left: 12px;">
                 <button class="navbar-toggler" type="button" style="border: 0; box-shadow: 0px 0px 0px 0px; align-items: center; padding-top: 15px;" data-toggle="collapse" data-target="#navbarToggleExternalContent">
                   <img src="../static/img/Nav/scroll-down-BIOS.png" />
                 </button>
@@ -115,9 +115,15 @@
   
         <ul class="nav col-md-4 justify-content-end">
           <li class="nav-item"><a href="#" class="nav-link link-footer px-3 text-white"><strong>Home</strong></a></li>
-          <li class="nav-item"><a href="#" class="nav-link link-footer px-3 text-white"><strong>Contato</strong></a></li>
-          <li class="nav-item"><a href="#" class="nav-link link-footer px-3 text-white"><strong>Sobre</strong></a></li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link link-footer px-3 text-white" data-toggle="modal" data-target="#Modal">
+            <strong>Contato</strong>
+
+          </a>
+          </li>
         </ul>
+        
       </footer>
 
 
