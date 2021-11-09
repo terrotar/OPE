@@ -83,12 +83,16 @@ def change_data(user_email):
             user.complement = complement
             user.fname = fname
             user.lname = lname
-            user.set_address()
-            db.session.commit()
-            return render_template('login/login.html')
+            try:
+                if(user.set_Addres() is True):
+                    db.session.commit()
+                    return render_template('login/login.html')
+            except Exception:
+                return render_template('login/login.html',
+                                       error=True)
         else:
-            return render_template('change_data.html',
-                                   check_error=True)
+            return render_template('login/login.html',
+                                   error=True)
 
 
 @login.route('/<user_email>/delete', methods=['GET', 'POST'])

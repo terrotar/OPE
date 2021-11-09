@@ -113,7 +113,13 @@ class User(db.Model, UserMixin):
 
     @cep.setter
     def cep(self, cep):
-        self.__cep = cep
+        try:
+            address = requests.get(f"https://viacep.com.br/ws/{cep}/json/")
+            uf = address.json()["uf"]
+            if(uf):
+                self.__cep = cep
+        except Exception:
+            return False
 
     # Number
     @hybrid_property
