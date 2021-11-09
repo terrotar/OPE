@@ -22,7 +22,7 @@
 
             <div class="navbar navbar-dark bg-info box-shadow" style="min-width: 1848px;">
 
-                <ul class="navbar-text list-unstyled d-flex justify-content-between align-items-center" style="margin-top: -0.3rem; padding-left: 25rem;">
+                <ul class="navbar-text list-unstyled d-flex justify-content-between align-items-center" style="margin-top: -0.3rem; padding-left: 30rem;">
 
                   <a href="#" class="navbar-brand ml-5">
                     <a href='{{ url_for("home.index") }}'><img src="../static/img/Nav/logo.png" width="135"/></a>
@@ -109,21 +109,89 @@
     {% block body %} {% endblock %}
 
 
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-0 border-top bg-dark fixed-bottom">
-        <p class="col-md-4 mb-0 text-white">&copy; 2021 CallingTherapies, Inc</p>
-  
-  
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-0 border-top bg-dark sticky-bottom">
+
+        <div class="container">
+        <p class="mb-0 text-white" style="padding-left: 49rem;">&copy; 2021 CallingTherapies, Inc</p>
+      </div>
+
         <ul class="nav col-md-4 justify-content-end">
           <li class="nav-item"><a href="#" class="nav-link link-footer px-3 text-white"><strong>Home</strong></a></li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link link-footer px-3 text-white" data-toggle="modal" data-target="#Modal">
+            <a href="#" class="nav-link link-footer px-3 text-white modal-trigger" data-toggle="modal" data-target="#Contact">
             <strong>Contato</strong>
 
+            <div class="modal fade" id="Contact" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content bg-dark" style="left: 42rem; bottom: 10rem;">
+                  <div class="modal-header">
+                    <h5 class="modal-title"><strong>Contato</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body text-white">
+                    <p>
+                      <strong style="color: #1ec0c1">Nome: </strong>Adriano Ramos
+                      <br>
+                      <strong style="color: #1ec0c1">telefone: </strong>(11)97552-4317
+                      <br>
+                      <strong style="color: #1ec0c1">Rua: </strong>Quirino de Andrade, São Paulo, Edifício Santa Tereza, 193 - Sala 64
+                      
+                     </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </a>
+
           </li>
+
+
+          <li class="nav-item">
+            <a href="#" class="nav-link link-footer px-3 text-white modal-trigger" data-toggle="modal" data-target="#Schedule">
+            <strong>Horários</strong>
+
+            <div class="modal fade" id="Schedule" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content bg-dark" style="left: 42rem; bottom: 10rem;">
+                  <div class="modal-header">
+                    <h5 class="modal-title" style="color: #8DC0F0"><strong>Horários</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body text-white">
+                    <p>
+                      <strong style="color: #8DC0F0">Segunda-feira: </strong>14:00 às 20:00
+                      <br>
+                      <strong style="color: #8DC0F0">Terça-feira: </strong>14:00 às 20:00
+                      <br>
+                      <strong style="color: #8DC0F0">Quarta-feira: </strong>14:00 às 20:00
+                      <br>
+                      <strong style="color: #8DC0F0">Quinta-feira: </strong>14:00 às 20:00
+                      <br>
+                      <strong style="color: #8DC0F0">Sexta-feira: </strong>14:00 às 20:00
+                      <br>
+                      <strong style="color: #8DC0F0">Sábado: </strong>Fechado
+                      <br>
+                      <strong style="color: #8DC0F0">Domingo: </strong>Fechado
+                      <br>
+                     </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </a>
+
+          </li>
+
+
         </ul>
-        
+
       </footer>
 
 

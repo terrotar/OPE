@@ -56,6 +56,11 @@ body .product-card {
 }
 
 
+.modal-content {
+  border: 3px solid #8DC0F0 !important;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 20px !important;
+}
 
 
 
@@ -68,7 +73,7 @@ body .product-card {
 .jumbotron {
   padding-top: var(--jumbotron-padding-y);
   padding-bottom: var(--jumbotron-padding-y);
-  margin-bottom: 0;
+  margin-bottom: 1rem !important;
   background-color: #fff;
 }
 
@@ -99,6 +104,9 @@ body .product-card {
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;
+  height: 50px;
+  /*position: absolute;
+  bottom: 0;*/
 }
 
 
