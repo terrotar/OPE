@@ -11,7 +11,7 @@ class Therapy(db.Model):
     __price = db.Column("preco", db.Float, unique=False, nullable=False)
 
     # Relationships
-    chart_therapy = db.relationship("Chart_Therapy")
+    chart_therapy = db.relationship("Cart_Therapy")
 
     def __init__(self, name, description, price):
         self.__name = name

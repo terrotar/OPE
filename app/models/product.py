@@ -12,7 +12,7 @@ class Product(db.Model):
     __price = db.Column("preco", db.Float, unique=False, nullable=False)
 
     # Relationships
-    chart_product = db.relationship("Chart_Product")
+    cart_product = db.relationship("Cart_Product")
 
     def __init__(self, name, description, size, price):
         self.__name = name

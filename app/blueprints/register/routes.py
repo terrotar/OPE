@@ -4,7 +4,7 @@ from flask_login import login_user
 
 from app import db, login_manager
 
-from app.models.user_model import User
+from app.models.user import User
 
 import datetime
 

@@ -29,6 +29,9 @@ body .product-card {
   padding: 5px 32px 5px 32px;
 }
 
+.product-btn {
+  padding-left: 4rem !important;
+}
 
 .btn-card:hover {
   background-color: #17a2b8 !important;
@@ -62,9 +65,6 @@ body .product-card {
   border-radius: 20px !important;
 }
 
-
-
-/* Bootstrap 4 template */
 
 :root {
   --jumbotron-padding-y: 3rem;
@@ -116,6 +116,3 @@ footer p {
 
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
-
-/* Bootstrap 4 template */

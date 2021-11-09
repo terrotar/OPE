@@ -2,8 +2,8 @@ from app.config import db
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
-# Columns of table Chart_Therapy
-class Chart_Therapy(db.Model):
+# Columns of table Cart_Therapy
+class Cart_Therapy(db.Model):
     __tablename__ = "terapia_carrinho"
     id = db.Column("id_terapia_carrinho", db.Integer, primary_key=True)
     __id_user = db.Column("id_usuario", db.Integer, db.ForeignKey("usuario.id_usuario"))

@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, current_user
 
 from app import db, login_manager
 
-from app.models.user_model import User
+from app.models.user import User
 
 
 # Instancia do Blueprint login
@@ -16,13 +16,13 @@ login = Blueprint('login', __name__,
 @login.route('/login', methods=['GET', 'POST'])
 def log_user():
     if(request.method == 'GET'):
-        return render_template('login.html')
+        return render_template('login/login.html')
     if(request.method == 'POST'):
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
         if(not user or not user.verify_password(password)):
-            return render_template('login.html',
+            return render_template('login/login.html',
                                    error=True)
         else:
             login_user(user)
@@ -40,10 +40,10 @@ def logout():
         return redirect('/')
 
 
-@login.route('/chart', methods=['GET'])
+@login.route('/cart', methods=['GET'])
 def chart():
     if (request.method == 'GET'):
-        return render_template('chart.html')
+        return render_template('cart.html')
 
 
 @login.route('/<user_email>/change_password', methods=['GET', 'POST'])
@@ -51,13 +51,13 @@ def change_password(user_email):
     if(request.method == 'GET'):
         return render_template('change_pwd.html')
     if(request.method == 'POST'):
-        pwd = request.form['password']
+        pwd = request.form['old_password']
         new_pwd = request.form['new_password']
         user = User.query.filter_by(email=user_email).first()
         if user and user.verify_password(pwd):
             user.password = new_pwd
             db.session.commit()
-            return render_template('login.html')
+            return render_template('login/login.html')
         else:
             return render_template('change_pwd.html',
                                    check_error=True)
@@ -85,7 +85,7 @@ def change_data(user_email):
             user.lname = lname
             user.set_address()
             db.session.commit()
-            return render_template('login.html')
+            return render_template('login/login.html')
         else:
             return render_template('change_data.html',
                                    check_error=True)
@@ -101,7 +101,7 @@ def delete_user(user_email):
         if user and user.verify_password(pwd):
             db.session.delete(user)
             db.session.commit()
-            return render_template('index_teste.html')
+            return render_template('index.html')
         else:
             return render_template('delete_account.html',
                                    check_error=True)

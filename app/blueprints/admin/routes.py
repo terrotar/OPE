@@ -5,9 +5,9 @@ from flask_login import login_user, logout_user, current_user
 
 from app import db
 
-from app.models.user_model import User
-from app.models.prod_model import Product
-from app.models.therap_model import Therapy
+from app.models.user import User
+from app.models.product import Product
+from app.models.therapy import Therapy
 
 
 import requests
