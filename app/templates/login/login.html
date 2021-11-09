@@ -150,26 +150,21 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content bg-light" style="left: 42rem; bottom: 10rem;">
               <div class="modal-header">
-                <h5 class="modal-title text-dark"><strong>Alterar Senha</strong></h5>
+                <h5 class="modal-title text-dark"><strong>Deletar Conta</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body text-dark">
 
-                <form action="{{ url_for('login.change_password', user_email=current_user.email) }}" method="POST">
+                <form action="{{ url_for('login.delete_user', user_email=current_user.email) }}" method="POST">
 
                     <div class="form-group col-7 lead">
-                    <label for="new_password">Nova Senha</label>
-                    <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Digite sua nova Senha">
+                    <label for="password">Confirme sua Senha</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="******">
                     </div>
 
-                    <div class="form-group col-7 lead">
-                    <label for="old_password">Senha Antiga</label>
-                    <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Digite sua Senha antiga">
-                    </div>
-
-                    <button class="btn btn-md bg-warning btn-outline-dark" type="submit">Alterar</button>
+                    <button class="btn btn-md bg-danger btn-outline-light" type="submit">Deletar</button>
 
                 </form>
 
