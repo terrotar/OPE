@@ -18,12 +18,20 @@
         <hr>
 
 
+        {% if error %}
+            <h3><strong>E-mail ou Senha incorreto(s).</strong></h3>
+            <br>
+        {% endif %}
+
+
+        <!-- Profile Button Group -->
         <div class="btn-group d-flex align-items-center justify-content-center">
 
 
-                <button class="btn btn-lg bg-info btn-outline-light mr-5 border border-dark rounded"  data-toggle="modal" data-target="#Schedule" type="submit">Alterar senha</button>
-    
-                <div class="modal fade" id="Schedule" tabindex="-1" role="dialog" aria-hidden="true">
+             <!-- Button Change Password -->
+            <button class="btn btn-lg bg-info btn-outline-light mr-5 border border-dark rounded" data-toggle="modal" data-target="#change-password" type="submit">Alterar senha</button>
+
+                <div class="modal fade" id="change-password" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content bg-light" style="left: 42rem; bottom: 10rem;">
                       <div class="modal-header">
@@ -51,21 +59,96 @@
                         </form>
 
 
-        
                       </div>
                     </div>
                   </div>
                 </div>
-    
-              </a>
+                <!-- Button Change Password -->
 
 
 
 
+        <!-- Button Change Data -->
+        <button class="btn btn-lg bg-info btn-outline-light mr-5 border border-dark rounded" data-toggle="modal" data-target="#change-data" type="submit">Alterar Dados</button>
 
-            <button class="btn btn-lg bg-info btn-outline-light mr-5 border border-dark rounded" type="submit">Alterar Dados</button>
-            <button class="btn btn-lg bg-info btn-outline-light border border-dark rounded" type="submit">Deletar Conta</button>
+        <div class="modal fade" id="change-data" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-light" style="left: 42rem; bottom: 10rem;">
+              <div class="modal-header">
+                <h5 class="modal-title text-dark"><strong>Alterar Dados</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-dark">
+
+
+                <form action="{{ url_for('login.change_data', user_email=current_user.email) }}" method="POST">
+
+                        <div class="row d-flex justify-content-between">
+
+                        <div class="form-group lead col-6">
+                            <label for="fname">Nome</label>
+                            <input type="text" class="form-control" id="fname" name="fname" placeholder="{{ current_user.fname }}" required>
+                        </div>
+
+                        <div class="form-group lead col-6">
+                            <label for="lname">Sobrenome</label>
+                            <input type="text" class="form-control" id="lname" name="lname" placeholder="{{ current_user.lname }}" required>
+                        </div>
+
+                        <div class="form-group lead col-6">
+                            <label for="email">E-mail</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="{{ current_user.email }}" required>
+                        </div>
+
+                        <div class="form-group lead col-6">
+                            <label for="password">Senha</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="******" required>
+                        </div>
+
+                        <div class="form-group lead col-6">
+                            <label for="cep">Cep</label>
+                            <input type="text" class="form-control" id="cep" name="cep" placeholder="{{ current_user.cep }}" required>
+                        </div>
+
+                        <div class="form-group lead col-6">
+                            <label for="number">Número</label>
+                            <input type="text" class="form-control" id="number" name="number" placeholder="{{ current_user.number }}" required>
+                        </div>
+        
+                        <div class="form-group lead col-6">
+                            <label for="complement">Complemento</label>
+                            <input type="text" class="form-control" id="complement" name="complement" default="" placeholder="{{ current_user.complement }}">
+                        </div>
+
+
+
+                        <div class="container">
+                            <button class="btn btn-md bg-warning btn-outline-dark mt-4" type="submit">Alterar</button>
+                        </div>
+
+            </form>
+            <!-- Button Change Data -->
+
+
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- Button Change Data -->
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!-- Profile Button Group -->
 
 
 
@@ -102,7 +185,8 @@
 
                 <button class="btn btn-md bg-info btn-outline-light" type="submit">Logar</button>
 
-            </form>
+            </form> 
+
 
 
     <!-- box-login -->

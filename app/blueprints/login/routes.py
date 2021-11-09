@@ -59,8 +59,8 @@ def change_password(user_email):
             db.session.commit()
             return render_template('login/login.html')
         else:
-            return render_template('change_pwd.html',
-                                   check_error=True)
+            return render_template('login/login.html',
+                                   error=True)
 
 
 @login.route('/<user_email>/change_data', methods=['GET', 'POST'])
