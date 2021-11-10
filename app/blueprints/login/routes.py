@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for
 
 from flask_login import login_user, logout_user, current_user
 
@@ -7,6 +7,8 @@ from app import db, login_manager
 from app.models.user import User
 from app.models.product import Product
 from app.models.therapy import Therapy
+from app.models.cart_product import Cart_Product
+from app.models.cart_therapy import Cart_Therapy
 
 
 # Instancia do Blueprint login
@@ -72,6 +74,28 @@ def cart():
         return render_template('login/cart.html',
                                user_products=user_products,
                                user_therapies=user_therapies)
+
+
+@login.route('/cart/delete/product/<product_id>', methods=['GET'])
+def delete_product(product_id):
+    if(request.method == 'GET'):
+        user = current_user
+        if(user):
+            cart_id = Cart_Product.query.filter_by(id_user=user.id, id_product=int(product_id)).first()
+            db.session.delete(cart_id)
+            db.session.commit()
+            return redirect(url_for('login.cart'))
+
+
+@login.route('/cart/delete/therapy/<therapy_id>', methods=['GET'])
+def delete_therapy(therapy_id):
+    if(request.method == 'GET'):
+        user = current_user
+        if(user):
+            cart_id = Cart_Therapy.query.filter_by(id_user=user.id, id_therapy=int(therapy_id)).first()
+            db.session.delete(cart_id)
+            db.session.commit()
+            return redirect(url_for('login.cart'))
 
 
 @login.route('/<user_email>/change_password', methods=['GET', 'POST'])

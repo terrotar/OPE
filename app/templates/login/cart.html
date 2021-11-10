@@ -29,7 +29,8 @@
                     <br>
                     <strong>Preço: </strong> R$ {{ product.price }}
                     <br>
-                    <button class="btn btn-sm bg-danger btn-outline-light" type="submit">Remover</button>
+                    <a class="btn btn-sm bg-danger btn-outline-light rounded" href="{{ url_for('login.delete_product', product_id=product.id) }}">Remover</a>
+                    <br>
                     <br>
 
 
@@ -47,7 +48,8 @@
                     <br>
                     <strong>Preço: </strong> R$ {{ therapy.price }}
                     <br>
-                    <button class="btn btn-sm bg-danger btn-outline-light" type="submit">Remover</button>
+                    <a class="btn btn-sm bg-danger btn-outline-light rounded" href="{{ url_for('login.delete_therapy', therapy_id=therapy.id) }}">Remover</a>
+                    <br>
                     <br>
 
 
