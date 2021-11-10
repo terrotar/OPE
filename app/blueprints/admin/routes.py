@@ -59,12 +59,12 @@ def admin_products():
 def list_products():
     if (request.method == 'GET'):
         all_products = Product.query.all()
-        return render_template('admin/products/products.html',
+        return render_template('admin/products/list.html',
                                all_products=all_products)
 
 
 # URL to delete a product by it's id
-@admin.route('/delete/product/<id_product>', methods=['GET'])
+@admin.route('/products/delete/<id_product>', methods=['GET'])
 def delete_product(id_product):
     if (request.method == 'GET'):
         product = Product.query.get(id_product)
@@ -77,11 +77,10 @@ def delete_product(id_product):
 
 
 # Add new product
-@admin.route('/add/product', methods=['GET', 'POST'])
+@admin.route('/products/add', methods=['GET', 'POST'])
 def add_product():
     if (request.method == 'GET'):
-        return render_template('admin/products/products.html',
-                               new_product=True)
+        return render_template('admin/products/add.html')
     if (request.method == 'POST'):
         name = request.form['name']
         description = request.form['description']
@@ -102,13 +101,13 @@ def add_product():
 
 
 # UPDATE a product
-@admin.route('/change/product', methods=['GET', 'POST'])
-def change_product():
-    id_product = request.args.get('id_product')
+@admin.route('/products/change/<id_product>', methods=['GET', 'POST'])
+def change_product(id_product):
     product = Product.query.get(id_product)
     if (request.method == 'GET'):
-        return render_template('change_prod.html',
-                               product=product)
+        # return redirect(url_for('admin.admin_products', change_product=True))
+        return render_template('admin/products/products.html',
+                               change_product=True)
     if (request.method == 'POST'):
         product_id = request.form['product_id']
         product = Product.query.get(product_id)

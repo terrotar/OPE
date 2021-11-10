@@ -1,9 +1,8 @@
-{% extends "admin/base.html" %}
 
-{% block head %}
-{% endblock %}
+{% extends 'admin/index.html' %}
 
 {% block body %}
+
 
 <div class="container col-7">
 
@@ -34,12 +33,10 @@
 
 
 
-        {% if change_product %}
+            <!-- new_product Form -->
+        <div class="container d-flex align-items-center justify-content-center pr-4 mt-5">
 
-            <!-- change_product Form -->
-        <div class="container d-flex align-items-center justify-content-center pr-4 mt-4">
-
-            <form action="#" class="" method="POST">
+            <form action="{{ url_for('admin.add_product') }}" class="" method="POST">
 
                 <div class="form-group lead text-center d-flex justify-content-between">
                     <label for="name">Nome: </label>
@@ -69,13 +66,11 @@
             
 
           </div>
-          <!-- change_product Form -->
+          <!-- new_product Form -->
 
-        {% endif %}
 
 
 
 
     </div>
-
 {% endblock %}
