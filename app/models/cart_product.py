@@ -12,6 +12,7 @@ class Cart_Product(db.Model):
     __qtd = db.Column("qtd", db.Integer, unique=False, nullable=False)
 
     product = db.relationship("Product")
+    owner = db.relationship("User", back_populates="products")
 
     def __init__(self, id_user, id_product, unit_price, qtd):
         self.__id_user = id_user

@@ -1,10 +1,12 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, jsonify
 
 from flask_login import login_user, logout_user, current_user
 
 from app import db, login_manager
 
 from app.models.user import User
+from app.models.product import Product
+from app.models.therapy import Therapy
 
 
 # Instancia do Blueprint login
@@ -41,9 +43,35 @@ def logout():
 
 
 @login.route('/cart', methods=['GET'])
-def chart():
+def cart():
     if (request.method == 'GET'):
-        return render_template('cart.html')
+
+        # Get current_user if it's authenticated
+        user = current_user
+        if(user):
+
+            # Get all chart_products with user's id
+            user_cart_products = user.products
+
+            # Get all products objects that were in chart_products
+            user_products = []
+            for item in user_cart_products:
+                product = Product.query.get(item.id_product)
+                user_products.append(product)
+
+            # Get all chart_therapies with user's id
+            user_cart_therapies = user.therapies
+
+            # Get all therapies objects that were in chart_therapies
+            user_therapies = []
+            for item in user_cart_therapies:
+                therapy = Therapy.query.get(item.id_therapy)
+                user_therapies.append(therapy)
+
+        # Return the products and therapies
+        return render_template('login/cart.html',
+                               user_products=user_products,
+                               user_therapies=user_therapies)
 
 
 @login.route('/<user_email>/change_password', methods=['GET', 'POST'])

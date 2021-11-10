@@ -2,6 +2,7 @@
 * {
     margin-left: 0px !important;
     margin-right: 0px !important;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 
@@ -25,6 +26,11 @@ body .product-card {
 }
 
 .btn-group .btn-card {
+  border-radius: 12px;
+  padding: 5px 32px 5px 32px;
+}
+
+.card-body .btn-dhor {
   border-radius: 12px;
   padding: 5px 32px 5px 32px;
 }

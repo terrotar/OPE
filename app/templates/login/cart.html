@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Carrinho</title>
+{% endblock %}
+
+{% block body %}
+
+
+        {% if current_user.is_authenticated %}
+        <main role="main" style="margin-bottom: 42.35rem;">
+
+            <!-- box-cart -->
+            <div class="container col-md-6 mx-auto">
+                <br>
+
+                <h1 class="display-4">Carrinho</h1>
+                <hr>
+
+
+                <h2><u>Produtos</u></h2>
+                {% for product in user_products %}
+
+                    <strong>Nome: </strong>{{ product.name }}
+                    <br>
+                    <strong>Descrição: </strong>{{ product.description }}.
+                    <br>
+                    <strong>Tamanho: </strong> {{ product.size }} L
+                    <br>
+                    <strong>Preço: </strong> R$ {{ product.price }}
+                    <br>
+                    <button class="btn btn-sm bg-danger btn-outline-light" type="submit">Remover</button>
+                    <br>
+
+
+                    {% endfor %}
+                <br>
+                <hr>
+
+
+                <h2><u>Terapias</u></h2>
+                {% for therapy in user_therapies %}
+
+                    <strong>Nome: </strong>{{ therapy.name }}
+                    <br>
+                    <strong>Descrição: </strong>{{ therapy.description }}.
+                    <br>
+                    <strong>Preço: </strong> R$ {{ therapy.price }}
+                    <br>
+                    <button class="btn btn-sm bg-danger btn-outline-light" type="submit">Remover</button>
+                    <br>
+
+
+                    {% endfor %}
+                <br>
+
+
+            </div>
+            <!-- box-cart -->
+
+
+
+
+        {% else %}
+        <main role="main" style="margin-bottom: 42.35rem;">
+
+            <!-- box-cart -->
+            <div class="container col-md-6 mx-auto">
+                <br>
+
+                <h1 class="display-4">Carrinho</h1>
+                <hr>
+
+
+
+
+            <!-- box-cart -->
+            </div>
+
+
+
+    {% endif %}
+
+</main>
+
+{% endblock %}

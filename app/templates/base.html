@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="../static/css/main.css"/>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <!-- Google Font Roboto 400 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     {% block head %} {% endblock %}
 </head>
 
@@ -67,7 +70,7 @@
 
 
                     <li class="nav-item active">
-                        <a class="nav-link link-navbar font-weight-bold lead px-3" href="#">
+                        <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('login.cart') }}">
                             Carrinho
                         </a>
                     </li>
@@ -112,7 +115,7 @@
       <footer class="d-flex flex-wrap justify-content-between align-items-center py-0 border-top bg-dark sticky-bottom">
 
         <div class="container d-flex flex-wrap justify-content-between align-items-center">
-        <p class="mb-0 text-white" style="padding-left: 40%;">&copy; 2021 CallingTherapies, Inc</p>
+        <p class="mb-0 text-white font-weight-bold" style="padding-left: 40%;">&copy; 2021 CallingTherapies, Inc</p>
         <a href="#"><img src="../static/img/Nav/scroll-down-BIOS.png" class="mb-2" style="transform: rotate(180deg); padding-left: 11.15rem;"/></a>
       </div>
 
