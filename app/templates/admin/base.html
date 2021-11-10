@@ -20,40 +20,50 @@
     <div class="wrapper bg-info">
         <!-- Sidebar -->
         <nav id="sidebar">
-            <div class="sidebar-header py-1 px-3 bg-dark align-center text-white font-weight-bold">
-                <img src="../../static/img/Nav/logo.png" class="ml-5 my-2 mt-1" width="135" />
+            <div class="sidebar-header py-1 pt-2 px-3 bg-dark text-white font-weight-bold col-12 mx-auto text-center">
+                <a href='{{ url_for("admin.index") }}'><img src="../../static/img/Nav/logo.png" class="ml-5 my-2 mt-1 mx-auto" width="135" /></a>
             </div>
-    
+
             <ul class="list-unstyled components text-white">
 
 
+            {% if current_user.is_authenticated %}
+            <div class="container text-center mt-4">
+                <a class="btn btn-lg btn-sidebar bg-light btn-outline-info txt-center text-dark" href="{{ url_for('admin.logout') }}">Logout</a>
+            </div>
 
-                <div class="container text-center mt-4">
-                    <a class="btn btn-lg btn-sidebar bg-light btn-outline-info txt-center text-dark" href='#'>Logar</a>
-                </div>
+            <li class="text-center mr-2">
+                <a href="#" data-target="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-center ml-1 mt-4 btn btn-lg btn-sidebar bg-light btn-outline-info txt-center text-dark btn-itens">Itens</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#" class="btn btn-sm btn-sidebar bg-dark btn-outline-info txt-center text-white mt-1">Terapias</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('admin.admin_products') }}" class="btn btn-sm btn-sidebar bg-dark btn-outline-info txt-center text-white my-1">Produtos Naturais</a>
+                    </li>
+                </ul>
+            </li>
 
 
-                <li class="text-center mr-2">
-                    <a href="#" data-target="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-center ml-1 mt-4 btn btn-lg btn-sidebar bg-light btn-outline-info txt-center text-dark btn-itens">Itens</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#" class="btn btn-sm btn-sidebar bg-dark btn-outline-info txt-center text-white mt-1">Terapias</a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn btn-sm btn-sidebar bg-dark btn-outline-info txt-center text-white my-1">Produtos Naturais</a>
-                        </li>
-                    </ul>
-                </li>
 
+            <div class="container text-center mt-4">
+                <a class=" btn btn-lg btn-sidebar bg-light btn-outline-info txt-center text-dark btn-perfil" href='#'>Perfil</a>
+            </div>
 
-                <div class="container text-center mt-4">
-                    <a class=" btn btn-lg btn-sidebar bg-light btn-outline-info txt-center text-dark btn-perfil" href='#'>Perfil</a>
-                </div>
+            {% else %}
+
+            <div class="container text-center mt-4">
+                <a class="btn btn-lg btn-sidebar bg-light btn-outline-info txt-center text-dark" href='#'>Login</a>
+            </div>
+
+            {% endif %}
+
 
             </ul>
         </nav>
-    
+
     </div>
+
 
 
     {% block body %} {% endblock %}

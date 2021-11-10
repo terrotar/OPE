@@ -1,0 +1,102 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container col-7">
+
+
+
+    <div class="jumbotron jumbotron-admin text-dark bt-5">
+
+
+
+    <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>
+        <br>
+        <p class="lead text-center">Para navegar na página utilize a barra de navegação na lateral esquerda.</p>
+        {% if error %}
+        <p class="lead text-center font-weight-bold">E-mail e/ou Senha incorreto(s).</p>
+        {% endif %}
+
+        <hr class="my-3">
+
+
+        <h2 class="display-4 text-center text-info">Produtos Naturais</h2>
+        <br>
+
+        <div class="btn-group d-flex justify-content-center">
+            <a href="{{ url_for('admin.list_products') }}" class="btn btn-lg btn-product bg-info btn-outline-light mr-5 px-4 border border-dark">Listar</a>
+            <a href="{{ url_for('admin.add_product') }}" class="btn btn-lg btn-product bg-info btn-outline-light mr-5 px-4 border border-dark">Novo</a>
+        </div>
+
+
+        {% if all_products %}
+
+        <div class="container list-products mt-5">
+
+            {% for product in all_products %}
+            <div class="row">
+                <p class="col-6"><strong class="px-2">Nome: </strong>{{ product.name }}</p>
+                <br>
+                <p class="col-6"><strong class="px-2">Descrição: </strong>{{ product.description }}.</p>
+                <br>
+                <p class="col-6"><strong class="px-2">Tamanho: </strong> {{ product.size }} L</p>
+                <br>
+                <p class="col-6"><strong class="px-2">Preço: </strong> R$ {{ product.price }}</p>
+                <br>
+                <a class="btn btn-sm bg-danger btn-outline-light rounded mb-3" href="{{ url_for('admin.delete_product', id_product=product.id) }}">Remover</a>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+        {% if new_product %}
+
+            <!-- new_product Form -->
+        <div class="container d-flex align-items-center justify-content-center pr-4 mt-4">
+
+            <form action="{{ url_for('admin.add_product') }}" class="" method="POST">
+
+                <div class="form-group lead text-center d-flex justify-content-between">
+                    <label for="name">Nome: </label>
+                    <input type="text" class="form-control text-center ml-2 col-8" id="name" name="name" placeholder="Nome">
+                </div>
+
+                <div class="form-group lead text-center d-flex justify-content-between">
+                    <label for="description">Descrição: </label>
+                    <input type="text" class="form-control text-center ml-2 col-8" id="description" name="description" placeholder="Descrição">
+                </div>
+
+                <div class="form-group lead text-center d-flex justify-content-between">
+                    <label for="price">Preço: </label>
+                    <input type="number" class="form-control text-center ml-2 col-8" min="0" step="0.1" id="price" name="price" placeholder="Preço">
+                </div>
+
+                <div class="form-group lead text-center d-flex justify-content-between">
+                    <label for="size">Tamanho: </label>
+                    <input type="number" class="form-control text-center ml-2 col-8" min="0" step="0.5" id="size" name="size" placeholder="Tamanho">
+                </div>
+
+                <div class="container text-center">
+                    <button class="btn btn-md bg-info btn-outline-dark text-light txt-center btn-product mr-4 mt-2" type="submit">Cadastrar</button>
+                </div>
+
+            </form>
+            
+
+          </div>
+          <!-- new_product Form -->
+
+        {% endif %}
+
+
+
+
+    </div>
+
+{% endblock %}

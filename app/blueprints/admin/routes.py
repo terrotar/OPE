@@ -1,5 +1,5 @@
 
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 
 from flask_login import login_user, logout_user, current_user
 
@@ -17,24 +17,24 @@ import requests
 admin = Blueprint('admin', __name__,
                   url_prefix="/admin",
                   template_folder="../../templates",
-                  static_folder="../../estatic")
+                  static_folder="../../static")
 
 
 # URL homepage admin
 @admin.route('/', methods=['GET', 'POST'])
 def index():
     if(request.method == 'GET'):
-        return render_template('admin/admin.html')
+        return render_template('admin/index.html')
     if(request.method == 'POST'):
         email = request.form['email']
         password = request.form['password']
     func = User.query.filter_by(email=email).first()
     if(not func or not func.verify_password(password) or func.user_type != "admin"):
-        return render_template('index_admin.html',
+        return render_template('admin/index.html',
                                error=True)
     else:
         login_user(func)
-        return render_template('index_admin.html')
+        return render_template('admin/index.html')
 
 
 # URL to logout Admin/funcionario
@@ -42,18 +42,24 @@ def index():
 def logout():
     logout_user()
     return redirect('/admin')
-    # return render_template('index_admin.html')
 
 
 # PRODUCT
 
 
+# Index Products
+@admin.route('/products', methods=['GET'])
+def admin_products():
+    if (request.method == 'GET'):
+        return render_template('admin/products/products.html')
+
+
 # READ all products
-@admin.route('/products', methods=['GET', 'POST'])
+@admin.route('/products/list', methods=['GET'])
 def list_products():
     if (request.method == 'GET'):
         all_products = Product.query.all()
-        return render_template('products.html',
+        return render_template('admin/products/products.html',
                                all_products=all_products)
 
 
@@ -67,14 +73,15 @@ def delete_product(id_product):
             db.session.commit()
             return redirect('/admin/products')
         else:
-            return {'Error': 'id_product não existe no banco de dados.'}
+            return redirect(url_for('admin.list_products'))
 
 
 # Add new product
 @admin.route('/add/product', methods=['GET', 'POST'])
 def add_product():
     if (request.method == 'GET'):
-        return render_template('new_product.html')
+        return render_template('admin/products/products.html',
+                               new_product=True)
     if (request.method == 'POST'):
         name = request.form['name']
         description = request.form['description']

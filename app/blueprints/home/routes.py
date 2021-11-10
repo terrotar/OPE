@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request
 # Instancia do Blueprint home
 home = Blueprint('home', __name__,
                  template_folder="../../templates",
-                 static_folder="../../estatic")
+                 static_folder="../../static")
 
 
 # URL da homepage

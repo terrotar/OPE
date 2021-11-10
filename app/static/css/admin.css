@@ -12,7 +12,8 @@ html {
 
 body {
     /*background-image: linear-gradient(to right top, #17a2b8, #009de1, #008fff, #8c6eff, #ec00d8) !important;*/
-    background-image: linear-gradient(to right top, #67baa7, #61ab9a, #5b9d8d, #548e80, #4e8074);
+    /*background-image: linear-gradient(to right top, #67baa7, #61ab9a, #5b9d8d, #548e80, #4e8074);*/
+    background-image: linear-gradient(to right, #17a2b8, #17a2b8, #74b6d4, #afcbe6, #ffffff);
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
@@ -21,22 +22,34 @@ body {
 
 .jumbotron-admin {
     background-color: #eee !important;
-    border: 3px solid #ffffff !important;
+    border: 3px solid #343a40 !important;
     box-shadow: 3px 3px 5px 2px !important;
     border-radius: 1.25rem !important;
     margin-top: 6rem !important;
     margin-left: 17rem !important;
     width: 80% !important;
-    height: 30rem !important;
+    min-height: 32rem !important;
 }
 
 .wrapper {
     width: 15%;
-    border: 1px solid;
+    border: 1px #ffffff solid;
     box-shadow: 7px 5px 14px 11px !important;
+    border-radius: 0.6rem !important;
+}
+
+.wrapper .sidebar-header {
+    border-radius: 0.6rem !important;
 }
 
 .wrapper .btn-sidebar {
+    padding: 0.5rem 4rem;
+    border-radius: 2rem !important;
+    border: 1px rgb(0, 0, 0) solid;
+}
+
+
+.btn-product {
     padding: 0.5rem 4rem;
     border-radius: 2rem !important;
 }
@@ -53,4 +66,8 @@ body {
 
 .btn-perfil {
     width: 72% !important;
+}
+
+.list-products {
+    height: 11rem !important;
 }

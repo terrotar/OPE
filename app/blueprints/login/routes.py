@@ -14,7 +14,7 @@ from app.models.cart_therapy import Cart_Therapy
 # Instancia do Blueprint login
 login = Blueprint('login', __name__,
                   template_folder="../../templates",
-                  static_folder="../../estatic")
+                  static_folder="../../static")
 
 
 @login.route('/login', methods=['GET', 'POST'])
@@ -34,7 +34,7 @@ def log_user():
             user = User.query.get(user_id)
             user.set_age()
             db.session.commit()
-            return render_template('index.html')
+            return redirect(url_for('home.index'))
 
 
 @login.route('/logout', methods=['GET'])

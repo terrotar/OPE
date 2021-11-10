@@ -41,26 +41,33 @@
 
                 <div class="nav navbar-buttons">
                   {% if current_user.is_authenticated %}
+
                   <li class="nav-item active">
                     <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('login.log_user') }}">
                         Perfil
                     </a>
                 </li>
+
+                <li class="nav-item active">
+                  <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('login.logout') }}">
+                      Logout
+                  </a>
+              </li>
+
+              <li class="nav-item active">
+                <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('login.cart') }}">
+                    Carrinho
+                </a>
+            </li>
+
+
                   {% else %}
                     <li class="nav-item active">
                         <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('register.register_user') }}">
                             Cadastrar
                         </a>
                     </li>
-                  {% endif %}
 
-                  {% if current_user.is_authenticated %}
-                  <li class="nav-item active">
-                    <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('login.logout') }}">
-                        Logout
-                    </a>
-                </li>
-                  {% else %}
                   <li class="nav-item active">
                     <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('login.log_user') }}">
                         Login
@@ -68,12 +75,6 @@
                 </li>
                   {% endif %}
 
-
-                    <li class="nav-item active">
-                        <a class="nav-link link-navbar font-weight-bold lead px-3" href="{{ url_for('login.cart') }}">
-                            Carrinho
-                        </a>
-                    </li>
                   </div>
 
                 </ul>

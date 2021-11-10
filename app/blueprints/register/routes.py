@@ -12,7 +12,7 @@ import datetime
 # Instancia do Blueprint register
 register = Blueprint('register', __name__,
                      template_folder="../../templates",
-                     static_folder="../../estatic")
+                     static_folder="../../static")
 
 
 @register.route('/cadastrar', methods=['GET', 'POST'])

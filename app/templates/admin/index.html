@@ -1,4 +1,4 @@
-{%  extends "admin/admin_base.html" %}
+{%  extends "admin/base.html" %}
 
 {% block head %}
     <title>Admin - Homepage</title>
@@ -10,17 +10,40 @@
     <div class="container col-7">
 
 
+
         <div class="jumbotron jumbotron-admin text-dark bt-5">
+
+        {% if current_user.is_authenticated %}
+
+
+        <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>
+            <br>
+            <p class="lead text-center">Para navegar na página utilize a barra de navegação na lateral esquerda.</p>
+            {% if error %}
+            <p class="lead text-center font-weight-bold">E-mail e/ou Senha incorreto(s).</p>
+            {% endif %}
+
+            <hr class="my-3">
+
+
+        {% else %}
+
+
             <h1 class="display-4 text-center text-info font-weight-bold">Admin</h1>
             <br>
             <p class="lead text-center">Para acessar as funcionalidades de administrator é necessário efetuar o login.</p>
-            <hr class="my-4">
+            {% if error %}
+            <p class="lead text-center font-weight-bold">E-mail e/ou Senha incorreto(s).</p>
+            {% endif %}
+
+            <hr class="my-3">
+
 
 
         <!-- Login Form -->
         <div class="container d-flex align-items-center justify-content-center">
 
-            <form action="#" class="" method="GET">
+            <form action="{{ url_for('admin.index') }}" class="" method="POST">
 
                 <div class="form-group lead text-center">
                 <label for="email">E-mail</label>
@@ -42,11 +65,16 @@
           </div>
           <!-- Login Form -->
 
+
+          {% endif %}
+
+
     </div>
     <!-- jumbotron box -->
 
     <div class="container ml-5 pl-5">
         <p class="text-center mt-2 ml-5 pl-5"><i class="ml-5 pl-5 text-dark font-weight-bold copyright">&copy; Calling Therapies</i></p>
     </div>
+
 
 {% endblock %}
