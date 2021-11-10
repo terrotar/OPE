@@ -16,15 +16,15 @@ import requests
 # Blueprint admin
 admin = Blueprint('admin', __name__,
                   url_prefix="/admin",
-                  template_folder="../../html_teste",
-                  static_folder="../../estaticos_teste")
+                  template_folder="../../templates",
+                  static_folder="../../estatic")
 
 
-# URL homepage/login of table Admin/funcionario
+# URL homepage admin
 @admin.route('/', methods=['GET', 'POST'])
 def index():
     if(request.method == 'GET'):
-        return render_template('index_admin.html')
+        return render_template('admin/admin.html')
     if(request.method == 'POST'):
         email = request.form['email']
         password = request.form['password']

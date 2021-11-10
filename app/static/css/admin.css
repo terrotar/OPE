@@ -1,0 +1,56 @@
+
+* {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+html {
+    height: 100%;
+    font-size: 1rem;
+}
+
+body {
+    /*background-image: linear-gradient(to right top, #17a2b8, #009de1, #008fff, #8c6eff, #ec00d8) !important;*/
+    background-image: linear-gradient(to right top, #67baa7, #61ab9a, #5b9d8d, #548e80, #4e8074);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.jumbotron-admin {
+    background-color: #eee !important;
+    border: 3px solid #ffffff !important;
+    box-shadow: 3px 3px 5px 2px !important;
+    border-radius: 1.25rem !important;
+    margin-top: 6rem !important;
+    margin-left: 17rem !important;
+    width: 80% !important;
+    height: 30rem !important;
+}
+
+.wrapper {
+    width: 15%;
+    border: 1px solid;
+    box-shadow: 7px 5px 14px 11px !important;
+}
+
+.wrapper .btn-sidebar {
+    padding: 0.5rem 4rem;
+    border-radius: 2rem !important;
+}
+
+
+.dropdown-toggle {
+    width: 67% !important;
+}
+
+
+.btn-itens {
+    padding-right: 7.3rem !important;
+}
+
+.btn-perfil {
+    width: 72% !important;
+}
