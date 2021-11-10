@@ -104,19 +104,19 @@ def add_product():
 @admin.route('/products/change/<id_product>', methods=['GET', 'POST'])
 def change_product(id_product):
     product = Product.query.get(id_product)
-    if (request.method == 'GET'):
-        # return redirect(url_for('admin.admin_products', change_product=True))
-        return render_template('admin/products/products.html',
-                               change_product=True)
-    if (request.method == 'POST'):
-        product_id = request.form['product_id']
-        product = Product.query.get(product_id)
-        product.name = request.form['name']
-        product.description = request.form['description']
-        product.size = request.form['size']
-        product.price = request.form['price']
-        db.session.commit()
-        return redirect('/admin/products')
+    if(product):
+        if (request.method == 'GET'):
+            return render_template('admin/products/update.html',
+                                   product=product)
+        if (request.method == 'POST'):
+            product.name = request.form['name']
+            product.description = request.form['description']
+            product.size = request.form['size']
+            product.price = request.form['price']
+            db.session.commit()
+            return redirect('/admin/products')
+    return render_template('admin/products/update.html',
+                           error=True)
 
 
 # THERAPY
