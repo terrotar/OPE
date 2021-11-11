@@ -35,8 +35,8 @@ class User(db.Model, UserMixin):
     __user_type = db.Column("tipo_usuario", db.String(20), default='user')
 
     # Relationships
-    products = db.relationship("Cart_Product", back_populates="owner")
-    therapies = db.relationship("Cart_Therapy", back_populates="owner")
+    products = db.relationship("Cart_Product", cascade="all,delete", back_populates="owner")
+    therapies = db.relationship("Cart_Therapy", cascade="all,delete", back_populates="owner")
 
     # When create a new User object, you must use the following functions:
     # check_age() --> Validates if user can purchase items or not

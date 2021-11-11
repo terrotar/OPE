@@ -71,3 +71,9 @@ body {
 .list-products {
     height: 11rem !important;
 }
+
+.ul-products {
+    height: 5rem !important;
+    width: 60% !important;
+    padding-right: 2rem !important;
+}
