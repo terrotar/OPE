@@ -107,6 +107,8 @@ def change_data():
                         db.session.commit()
                         logout_user()
                         return redirect(url_for('admin.index'))
+                    else:
+                        raise ValueError('Valor de CEP inválido...')
                 except Exception:
                     return render_template('admin/profile.html',
                                            error=True)

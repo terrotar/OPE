@@ -20,13 +20,13 @@ login = Blueprint('login', __name__,
 @login.route('/login', methods=['GET', 'POST'])
 def log_user():
     if(request.method == 'GET'):
-        return render_template('login/login.html')
+        return render_template('login/profile.html')
     if(request.method == 'POST'):
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
         if(not user or not user.verify_password(password)):
-            return render_template('login/login.html',
+            return render_template('login/profile.html',
                                    error=True)
         else:
             login_user(user)
@@ -98,66 +98,80 @@ def delete_therapy(therapy_id):
             return redirect(url_for('login.cart'))
 
 
-@login.route('/<user_email>/change_password', methods=['GET', 'POST'])
-def change_password(user_email):
-    if(request.method == 'GET'):
-        return render_template('change_pwd.html')
+@login.route('/login/password', methods=['POST'])
+def change_password():
     if(request.method == 'POST'):
-        pwd = request.form['old_password']
-        new_pwd = request.form['new_password']
-        user = User.query.filter_by(email=user_email).first()
-        if user and user.verify_password(pwd):
-            user.password = new_pwd
-            db.session.commit()
-            return render_template('login/login.html')
-        else:
-            return render_template('login/login.html',
-                                   error=True)
-
-
-@login.route('/<user_email>/change_data', methods=['GET', 'POST'])
-def change_data(user_email):
-    if(request.method == 'GET'):
-        return render_template('change_data.html')
-    if(request.method == 'POST'):
-        email = request.form['email']
-        cep = request.form['cep']
-        number = request.form['number']
-        complement = request.form['complement']
-        fname = request.form['fname']
-        lname = request.form['lname']
-        pwd = request.form['password']
-        user = User.query.filter_by(email=user_email).first()
-        if user and user.verify_password(pwd):
-            user.email = email
-            user.cep = cep
-            user.number = number
-            user.complement = complement
-            user.fname = fname
-            user.lname = lname
-            try:
-                if(user.set_address() is True):
-                    db.session.commit()
-                    return render_template('login/login.html')
-            except Exception:
-                return render_template('login/login.html',
+        user = current_user
+        if(user):
+            pwd = request.form['old_password']
+            new_pwd = request.form['new_password']
+            if(user.verify_password(pwd)):
+                user.password = new_pwd
+                db.session.commit()
+                logout_user()
+                return redirect(url_for('home.index'))
+            else:
+                return render_template('login/profile.html',
                                        error=True)
-        else:
-            return render_template('login/login.html',
-                                   error=True)
 
 
-@login.route('/<user_email>/delete', methods=['GET', 'POST'])
-def delete_user(user_email):
-    if(request.method == 'GET'):
-        return render_template('delete_account.html')
+@login.route('/login/data', methods=['POST'])
+def change_data():
     if(request.method == 'POST'):
-        pwd = request.form['password']
-        user = User.query.filter_by(email=user_email).first()
-        if user and user.verify_password(pwd):
-            db.session.delete(user)
-            db.session.commit()
-            return render_template('index.html')
-        else:
-            return render_template('delete_account.html',
-                                   check_error=True)
+        user = current_user
+        if(user):
+            email = request.form['email']
+            cep = request.form['cep']
+            number = request.form['number']
+            complement = request.form['complement']
+            fname = request.form['fname']
+            lname = request.form['lname']
+            pwd = request.form['password']
+
+            # Check if already exists user with the form's e-mail
+            check_email = User.query.filter_by(email=email).first()
+            if(check_email):
+                if(check_email.email != user.email):
+                    return render_template('login/profile.html',
+                                           email_error=True)
+                else:
+                    pass
+
+            # verify's password
+            if(user.verify_password(pwd)):
+                try:
+                    user.cep = cep
+                    if(user.cep == cep):
+                        user.email = email
+                        user.number = number
+                        user.complement = complement
+                        user.fname = fname
+                        user.lname = lname
+                        user.set_address()
+                        db.session.commit()
+                        logout_user()
+                        return redirect(url_for('home.index'))
+                    else:
+                        raise ValueError('Valor de CEP inválido...')
+                except Exception:
+                    return render_template('login/profile.html',
+                                           error=True)
+            else:
+                return render_template('login/profile.html',
+                                       error=True)
+
+
+@login.route('/login/account', methods=['POST'])
+def delete_user():
+    if(request.method == 'POST'):
+        user = current_user
+        if(user):
+            pwd = request.form['password']
+            if(user.verify_password(pwd)):
+                db.session.delete(user)
+                db.session.commit()
+                logout_user()
+                return redirect(url_for('home.index'))
+            else:
+                return render_template('login/profile.html',
+                                       error=True)
