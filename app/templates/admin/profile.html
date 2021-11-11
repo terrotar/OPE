@@ -1,35 +1,46 @@
-{% extends "base.html" %}
+{% extends 'admin/base.html' %}
+
 
 {% block head %}
-    <title>Login</title>
+    <link rel="stylesheet" href="../../../static/css/admin.css"/>
+    <title>Admin - Perfil</title>
 {% endblock %}
 
 {% block body %}
 
-
-        {% if current_user.is_authenticated %}
-        <main role="main" style="margin-bottom: 38.35rem;">
-
-            <!-- box-login -->
-            <div class="container col-md-6 mx-auto">
-                <br>
-        
-        <h1 class="display-4">Perfil</h1>
-        <hr>
+    <!-- jumbotron box -->
+    <div class="container col-7">
 
 
-        {% if error %}
-            <h3><strong>E-mail, Senha ou CPF incorreto(s).</strong></h3>
+
+        <div class="jumbotron jumbotron-admin text-dark bt-5">
+
+            <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>
             <br>
-        {% endif %}
+            <p class="lead text-center">Para navegar na página utilize a barra de navegação na lateral esquerda.</p>
+
+            {% if error %}
+            <p class="lead text-center font-weight-bold">E-mail, senha e/ou cep incorreto(s).</p>
+            {% endif %}
+
+            {% if email_error %}
+            <p class="lead text-center font-weight-bold">E-mail já cadastrado no sistema.</p>
+            {% endif %}
+
+            <hr class="my-3">
+
+            <h1 class="display-4 text-center text-info font-weight-bold">Perfil</h1>
+            <br>
 
 
-        <!-- Profile Button Group -->
+
+
+            <!-- Profile Button Group -->
         <div class="btn-group d-flex align-items-center justify-content-center">
 
 
             <!-- Button Change Password -->
-            <button class="btn btn-lg bg-info btn-outline-light mr-5 border border-dark rounded" data-toggle="modal" data-target="#change-password" type="submit">Alterar Senha</button>
+            <button class="btn btn-lg btn-product bg-info btn-outline-light mr-5 px-4 border border-dark" data-toggle="modal" data-target="#change-password" type="submit">Alterar Senha</button>
 
                 <div class="modal fade" id="change-password" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -42,7 +53,7 @@
                       </div>
                       <div class="modal-body text-dark">
 
-                        <form action="{{ url_for('login.change_password', user_email=current_user.email) }}" method="POST">
+                        <form action="{{ url_for('admin.change_password') }}" method="POST">
 
                             <div class="form-group col-7 lead">
                             <label for="new_password">Nova Senha</label>
@@ -67,9 +78,8 @@
 
 
 
-
-        <!-- Button Change Data -->
-        <button class="btn btn-lg bg-info btn-outline-light mr-5 border border-dark rounded" data-toggle="modal" data-target="#change-data" type="submit">Alterar Dados</button>
+            <!-- Button Change Data -->
+        <button class="btn btn-lg btn-product bg-info btn-outline-light mr-5 px-4 border border-dark" data-toggle="modal" data-target="#change-data" type="submit">Alterar Dados</button>
 
         <div class="modal fade" id="change-data" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -83,7 +93,7 @@
               <div class="modal-body text-dark">
 
 
-                <form action="{{ url_for('login.change_data', user_email=current_user.email) }}" method="POST">
+                <form action="{{ url_for('admin.change_data') }}" method="POST">
 
                         <div class="row d-flex justify-content-between">
 
@@ -134,56 +144,8 @@
         <!-- Button Change Data -->
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Button Change Data -->
-
-
-
-
-        <!-- Button Delete Account -->
-        <button class="btn btn-lg bg-info btn-outline-light mr-5 border border-dark rounded" data-toggle="modal" data-target="#delete-account" type="submit">Deletar Conta</button>
-
-        <div class="modal fade" id="delete-account" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content bg-light" style="left: 42rem; bottom: 10rem;">
-              <div class="modal-header">
-                <h5 class="modal-title" style="color: #1ec0c1;"><strong>Deletar Conta</strong></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body text-dark">
-
-                <form action="{{ url_for('login.delete_user', user_email=current_user.email) }}" method="POST">
-
-                    <div class="form-group col-7 lead">
-                    <label for="password">Confirme sua Senha</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="******">
-                    </div>
-
-                    <button class="btn btn-md bg-danger btn-outline-light" type="submit">Deletar</button>
-
-                </form>
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Button Delete Account -->
-
-
-
-
-
-
-
-
-
-
+        
+            
         </div>
         <!-- Profile Button Group -->
 
@@ -191,47 +153,11 @@
 
 
 
-        {% else %}
-        <main role="main" style="margin-bottom: 27.46rem;">
-
-            <!-- box-login -->
-            <div class="container col-md-6 mx-auto">
-                <br>
-        <h1 class="display-4">Login</h1>
-        <hr>
+        </div>
 
 
 
-        {% if error %}
-            <h3><strong>E-mail e/ou Senha incorreto(s).</strong></h3>
-            <br>
-        {% endif %}
-
-
-            <form action="#" method="POST">
-
-                <div class="form-group col-5 lead">
-                <label for="email">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail">
-                </div>
-
-                <div class="form-group col-5 lead">
-                <label for="password">Senha</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha">
-                </div>
-
-                <button class="btn btn-md bg-info btn-outline-light" type="submit">Logar</button>
-
-            </form>
-
-
-
-    <!-- box-login -->
     </div>
 
-</main>
-    {% endif %}
-
-</main>
 
 {% endblock %}

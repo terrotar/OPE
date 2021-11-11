@@ -44,6 +44,77 @@ def logout():
     return redirect('/admin')
 
 
+# URL Profile admin
+@admin.route('/profile', methods=['GET'])
+def profile():
+    if(request.method == 'GET'):
+        return render_template('admin/profile.html')
+
+
+# UPDATE Admin
+
+# Password
+@admin.route('/profile/password/', methods=['POST'])
+def change_password():
+    if(request.method == 'POST'):
+        pwd = request.form['old_password']
+        new_pwd = request.form['new_password']
+        user = current_user
+        if user and user.verify_password(pwd):
+            user.password = new_pwd
+            db.session.commit()
+            logout_user()
+            return redirect(url_for('admin.index'))
+        else:
+            return render_template('admin/profile.html',
+                                   error=True)
+
+
+# Data
+@admin.route('/profile/data', methods=['POST'])
+def change_data():
+    if(request.method == 'POST'):
+        user = current_user
+        if(user):
+            email = request.form['email']
+            cep = request.form['cep']
+            number = request.form['number']
+            complement = request.form['complement']
+            fname = request.form['fname']
+            lname = request.form['lname']
+            pwd = request.form['password']
+
+            # Check if already exists user with the form's e-mail
+            check_email = User.query.filter_by(email=email).first()
+            if(check_email):
+                if(check_email.email != user.email):
+                    return render_template('admin/profile.html',
+                                           email_error=True)
+                else:
+                    pass
+
+            # verify's password
+            if(user.verify_password(pwd)):
+                try:
+                    user.cep = cep
+                    if(user.cep == cep):
+                        user.email = email
+                        user.number = number
+                        user.complement = complement
+                        user.fname = fname
+                        user.lname = lname
+                        user.set_address()
+                        db.session.commit()
+                        logout_user()
+                        return redirect(url_for('admin.index'))
+                except Exception:
+                    return render_template('admin/profile.html',
+                                           error=True)
+            else:
+                return render_template('admin/profile.html',
+                                       error=True)
+
+
 # PRODUCT
 
 

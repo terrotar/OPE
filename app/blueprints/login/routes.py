@@ -136,7 +136,7 @@ def change_data(user_email):
             user.fname = fname
             user.lname = lname
             try:
-                if(user.set_Addres() is True):
+                if(user.set_address() is True):
                     db.session.commit()
                     return render_template('login/login.html')
             except Exception:
