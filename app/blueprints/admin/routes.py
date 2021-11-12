@@ -148,6 +148,7 @@ def delete_product(id_product):
     if (request.method == 'GET'):
         product = Product.query.get(id_product)
         if (product):
+            os.remove(f"{UPLOAD_FOLDER}/Product/{product.img}")
             db.session.delete(product)
             db.session.commit()
             return redirect('/admin/products')
@@ -165,19 +166,39 @@ def add_product():
         description = request.form['description']
         size = request.form['size']
         price = request.form['price']
-        new_product = Product(name=name,
-                              description=description,
-                              size=size,
-                              price=price)
-        # Checks if already exists a product with same name
-        check_product = Product.query.filter_by(name=name).first()
-        if (check_product):
-            return render_template('admin/products/add.html',
-                                   error=True)
-        else:
-            db.session.add(new_product)
-            db.session.commit()
-            return redirect('/admin/products')
+        img = request.files['img']
+        if(img):
+            img_filename = secure_filename(img.filename)
+
+            # Check if there's a valid extension
+            check_ext = img_filename.split('.')
+            if(check_ext[-1] not in ALLOWED_EXT):
+                return render_template('admin/products/add.html',
+                                       ext_error=True)
+
+            # Check if already exists an img with same name
+            check_img = Product.query.filter_by(img=img_filename).first()
+            if(check_img):
+                return render_template('admin/products/add.html',
+                                       upload_error=True)
+
+            # Save img inside UPLOAD_FOLDER
+            img.save(os.path.join(f"{UPLOAD_FOLDER}/Product", img_filename))
+            new_product = Product(name=name,
+                                  description=description,
+                                  size=size,
+                                  price=price,
+                                  img=img_filename)
+
+            # Checks if already exists a product with same name
+            check_product = Product.query.filter_by(name=name).first()
+            if (check_product):
+                return render_template('admin/products/add.html',
+                                       error=True)
+            else:
+                db.session.add(new_product)
+                db.session.commit()
+                return redirect('/admin/products')
 
 
 # UPDATE a product
@@ -200,12 +221,38 @@ def change_product(id_product):
                 if(product.name != check_product.name):
                     return render_template('admin/products/update.html',
                                            error=True, product=product)
-            product.name = name
-            product.description = description
-            product.size = size
-            product.price = price
-            db.session.commit()
-            return redirect('/admin/products')
+
+            # Get img and set a secure_filename
+            img = request.files['img']
+            if(img):
+                img_filename = secure_filename(img.filename)
+
+                # Check if there's a valid extension
+                check_ext = img_filename.split('.')
+                if(check_ext[-1] not in ALLOWED_EXT):
+                    return render_template('admin/products/update.html',
+                                           ext_error=True,
+                                           product=product)
+
+                # Check if already exists an img with same name
+                check_img = Product.query.filter_by(img=img_filename).first()
+                if(check_img):
+                    return render_template('admin/products/update.html',
+                                           upload_error=True,
+                                           product=product)
+
+                # Update new_img inside UPLOAD_FOLDER
+                os.remove(f"{UPLOAD_FOLDER}/Product/{product.img}")
+                img.save(os.path.join(f"{UPLOAD_FOLDER}/Product", img_filename))
+
+                # Update image's name in product's column
+                product.img = img_filename
+                product.name = name
+                product.description = description
+                product.size = size
+                product.price = price
+                db.session.commit()
+                return redirect('/admin/products')
     return render_template('admin/products/update.html',
                            error=True, product=product)
 
@@ -230,7 +277,7 @@ def list_therapies():
 
 
 # ADD new therapy
-@admin.route('/add/therapy', methods=['GET', 'POST'])
+@admin.route('/therapies/add', methods=['GET', 'POST'])
 def add_therapy():
     if (request.method == 'GET'):
         return render_template('admin/therapies/add.html')
@@ -255,7 +302,7 @@ def add_therapy():
                                        upload_error=True)
 
             # Save img inside UPLOAD_FOLDER
-            img.save(os.path.join(UPLOAD_FOLDER, img_filename))
+            img.save(os.path.join(f"{UPLOAD_FOLDER}/Therapy", img_filename))
 
             new_therapy = Therapy(name=name,
                                   description=description,
@@ -278,6 +325,7 @@ def delete_therapy(id_therapy):
     if (request.method == 'GET'):
         therapy = Therapy.query.get(id_therapy)
         if (therapy):
+            os.remove(f"{UPLOAD_FOLDER}/Therapy/{therapy.img}")
             db.session.delete(therapy)
             db.session.commit()
             return redirect('/admin/therapies')
@@ -325,8 +373,8 @@ def change_therapy(id_therapy):
                                            therapy=therapy)
 
                 # Update new_img inside UPLOAD_FOLDER
-                os.remove(f"{UPLOAD_FOLDER}/{therapy.img}")
-                img.save(os.path.join(UPLOAD_FOLDER, img_filename))
+                os.remove(f"{UPLOAD_FOLDER}/Therapy/{therapy.img}")
+                img.save(os.path.join(f"{UPLOAD_FOLDER}/Therapy", img_filename))
 
                 # Update image's name in therapy's column
                 therapy.img = img_filename

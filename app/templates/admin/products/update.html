@@ -1,4 +1,4 @@
-{% extends 'admin/index.html' %}
+{% extends 'admin/base.html' %}
 
 {% block head %}
     <link rel="stylesheet" href="../../../static/css/admin.css"/>
@@ -31,6 +31,15 @@
     <p class="lead text-center font-weight-bold">Nome já cadastrado no sistema.</p>
     {% endif %}
 
+    {% if upload_error %} <!-- Check if file's already in database -->
+        <p class="lead text-center font-weight-bold">Imagem com mesmo nome já cadastrado no sistema.</p>
+    {% endif %}
+
+    {% if ext_error %} <!-- Check if file's extensions is allowed -->
+        <p class="lead text-center font-weight-bold">Selecione um arquivo com extensão válida (jpg, jpeg, png).</p>
+    {% endif %}
+
+
     <hr class="my-3">
 
 
@@ -41,7 +50,7 @@
     <!-- change_product Form -->
     <div class="container d-flex align-items-center justify-content-center pr-4 mt-4">
 
-        <form action="#" class="" method="POST">
+        <form action="#" class="" enctype="multipart/form-data" method="POST">
 
             <div class="form-group lead text-center d-flex justify-content-between">
                 <label for="name">Nome: </label>
@@ -61,6 +70,11 @@
             <div class="form-group lead text-center d-flex justify-content-between">
                 <label for="size">Tamanho: </label>
                 <input type="number" class="form-control text-center ml-2 col-8" min="0" step="0.5" id="size" name="size" placeholder="{{ product.size }}">
+            </div>
+
+            <div class="form-group">
+                Imagem:
+                <input type="file" id="img" name="img" class="ml-5"/>
             </div>
 
             <div class="container text-center">
