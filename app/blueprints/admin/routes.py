@@ -9,12 +9,21 @@ from app.models.user import User
 from app.models.product import Product
 from app.models.therapy import Therapy
 
+from werkzeug.utils import secure_filename
+
+from app.config import UPLOAD_FOLDER
+
+import os
+
 
 # Blueprint admin
 admin = Blueprint('admin', __name__,
                   url_prefix="/admin",
                   template_folder="../../templates",
                   static_folder="../../static")
+
+
+ALLOWED_EXT = ['jpeg', 'jpg', 'png']
 
 
 # URL homepage admin
@@ -229,18 +238,38 @@ def add_therapy():
         name = request.form['name']
         description = request.form['description']
         price = request.form['price']
-        new_therapy = Therapy(name=name,
-                              description=description,
-                              price=price)
-        # Checks if already exists a therapy with same name
-        check_therapy = Therapy.query.filter_by(name=name).first()
-        if (check_therapy):
-            return render_template('admin/therapies/add.html',
-                                   error=True)
-        else:
-            db.session.add(new_therapy)
-            db.session.commit()
-            return redirect('/admin/therapies')
+        img = request.files['img']
+        if(img):
+            img_filename = secure_filename(img.filename)
+
+            # Check if there's a valid extension
+            check_ext = img_filename.split('.')
+            if(check_ext[-1] not in ALLOWED_EXT):
+                return render_template('admin/therapies/add.html',
+                                       ext_error=True)
+
+            # Check if already exists an img with same name
+            check_img = Therapy.query.filter_by(img=img_filename).first()
+            if(check_img):
+                return render_template('admin/therapies/add.html',
+                                       upload_error=True)
+
+            # Save img inside UPLOAD_FOLDER
+            img.save(os.path.join(UPLOAD_FOLDER, img_filename))
+
+            new_therapy = Therapy(name=name,
+                                  description=description,
+                                  price=price,
+                                  img=img_filename)
+            # Checks if already exists a therapy with same name
+            check_therapy = Therapy.query.filter_by(name=name).first()
+            if (check_therapy):
+                return render_template('admin/therapies/add.html',
+                                       error=True)
+            else:
+                db.session.add(new_therapy)
+                db.session.commit()
+                return redirect('/admin/therapies')
 
 
 # DELETE a therapy
@@ -275,10 +304,34 @@ def change_therapy(id_therapy):
                 if(therapy.name != check_therapy.name):
                     return render_template('admin/therapies/update.html',
                                            error=True, therapy=therapy)
-            therapy.name = name
-            therapy.description = description
-            therapy.price = price
-            db.session.commit()
-            return redirect('/admin/therapies')
+
+            # Get img and set a secure_filename
+            img = request.files['img']
+            if(img):
+                img_filename = secure_filename(img.filename)
+
+                # Check if there's a valid extension
+                check_ext = img_filename.split('.')
+                if(check_ext[-1] not in ALLOWED_EXT):
+                    return render_template('admin/therapies/update.html',
+                                           ext_error=True)
+
+                # Check if already exists an img with same name
+                check_img = Therapy.query.filter_by(img=img_filename).first()
+                if(check_img):
+                    return render_template('admin/therapies/add.html',
+                                           upload_error=True)
+
+                # Update new_img inside UPLOAD_FOLDER
+                os.remove(f"{UPLOAD_FOLDER}/{therapy.img}")
+                img.save(os.path.join(UPLOAD_FOLDER, img_filename))
+
+                # Update image's name in therapy's column
+                therapy.img = img_filename
+                therapy.name = name
+                therapy.description = description
+                therapy.price = price
+                db.session.commit()
+                return redirect('/admin/therapies')
     return render_template('admin/therapies/update.html',
                            error=True, therapy=therapy)

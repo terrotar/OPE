@@ -45,6 +45,7 @@
                 <li class="list-group-item col-4"><strong>Nome: </strong>{{ therapy.name }}</li>
                 <li class="list-group-item col-4"><strong>Descrição: </strong>{{ therapy.description }}.</li>
                 <li class="list-group-item col-4"><strong>Preço: </strong> R$ {{ therapy.price }}</li>
+                <img src='../../../static/img/Therapy/{{ therapy.img }}' class="mx-3" width='80'/>
                 <a class="btn btn-sm bg-primary btn-outline-dark text-light txt-center mx-2 my-4 px-4" href="{{ url_for('admin.change_therapy', id_therapy=therapy.id) }}">Alterar</a>
                 <a class="btn btn-sm bg-danger btn-outline-dark text-light txt-center mx-2 my-4 px-3" href="{{ url_for('admin.delete_therapy', id_therapy=therapy.id) }}">Remover</a>
             </div>

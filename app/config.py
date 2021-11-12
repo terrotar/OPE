@@ -5,8 +5,10 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 
 
-db = SQLAlchemy()
+db = SQLAlchemy(session_options={"autoflush": False})
 
 login_manager = LoginManager()
 
 migrate = Migrate()
+
+UPLOAD_FOLDER = './static/img/Therapy'

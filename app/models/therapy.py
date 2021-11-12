@@ -7,16 +7,18 @@ class Therapy(db.Model):
     __tablename__ = "terapia"
     id = db.Column("id_terapia", db.Integer, primary_key=True)
     __name = db.Column("nome", db.String, unique=True, nullable=False)
-    __description = db.Column("descricao", db.String, unique=False, nullable=False)
-    __price = db.Column("preco", db.Float, unique=False, nullable=False)
+    __description = db.Column("descricao", db.String, nullable=False)
+    __price = db.Column("preco", db.Float, nullable=False)
+    __img = db.Column("imagem", db.String, nullable=False)
 
     # Relationships
     chart_therapy = db.relationship("Cart_Therapy")
 
-    def __init__(self, name, description, price):
+    def __init__(self, name, description, price, img):
         self.__name = name
         self.__description = description
         self.__price = price
+        self.__img = img
 
 # PROPERTIES of GET and SET attributes
     # Name
@@ -45,3 +47,12 @@ class Therapy(db.Model):
     @price.setter
     def price(self, price):
         self.__price = price
+
+    # img
+    @hybrid_property
+    def img(self):
+        return self.__img
+
+    @img.setter
+    def img(self, img):
+        self.__img = img
