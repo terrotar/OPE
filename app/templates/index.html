@@ -14,16 +14,21 @@
       <div class="container">
         <h1>Terapias</h1>
 
+
+
         {% for therapy in all_therapies %}
 
         <div class="card-horizontal dhor-card d-flex justify-content-between">
+
           <img class="card-img dhor-img-card" width="200" height="300" src="../static/img/Therapy/{{ therapy.img }}" alt="Imagem ilustrativa da terapia">
+
           <div class="card-body card-therapy">
             <h3 class="card-title">{{ therapy.name }}</h3>
             <p class="card-text therapy-description">{{ therapy.description }}</p>
             <p class="card-text therapy-price"><strong>Preço: </strong>R$ {{ therapy.price }}</p>
-            <button type="button" class="btn btn-lg btn-outline-info btn-card btn-dhor">Adicionar</button>
+            <a href="{{ url_for('login.add_therapy_cart', therapy_id=therapy.id) }}" class="btn btn-lg btn-outline-info btn-card btn-dhor">Adicionar</a>
           </div>
+
         </div>
         <br>
 
@@ -48,10 +53,10 @@
                 </div>
                 <p class="card-text"><strong>Descrição: </strong>{{ product.description }}</p>
                 <p class="card-text mt-3"><strong>Preço: </strong>R$ {{ product.price }}</p>
-                <p class="card-text my-3"><strong>Tamanho: </strong>{{ product.size }} mL</p>
+                <p class="card-text mb-3 mt-1"><strong>Tamanho: </strong>{{ product.size }} mL</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Adicionar</button>
+                    <a href="{{ url_for('login.add_product_cart', product_id=product.id) }}" class="btn btn-lg btn-outline-info btn-card">Adicionar</a>
                   </div>
                 </div>
               </div>

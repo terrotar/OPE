@@ -9,15 +9,14 @@ class Cart_Therapy(db.Model):
     __id_user = db.Column("id_usuario", db.Integer, db.ForeignKey("usuario.id_usuario"))
     __id_therapy = db.Column("id_terapia", db.Integer, db.ForeignKey("terapia.id_terapia"))
     __unit_price = db.Column("preco_unit", db.Float, unique=False, nullable=False)
-    __qtd = db.Column("qtd", db.Integer, unique=False, nullable=False)
+    # __qtd = db.Column("qtd", db.Integer, unique=False, nullable=False)
 
     owner = db.relationship("User", back_populates="therapies")
 
-    def __init__(self, id_user, id_therapy, unit_price, qtd):
+    def __init__(self, id_user, id_therapy, unit_price):
         self.__id_user = id_user
         self.__id_therapy = id_therapy
         self.__unit_price = unit_price
-        self.__qtd = qtd
 
 # GETTERS AND SETTERS
     # id_user
@@ -42,12 +41,3 @@ class Cart_Therapy(db.Model):
     @unit_price.setter
     def unit_price(self, unit_price):
         self.__unit_price = unit_price
-
-    # qtd
-    @hybrid_property
-    def qtd(self):
-        return self.__qtd
-
-    @qtd.setter
-    def qtd(self, qtd):
-        self.__qtd = qtd

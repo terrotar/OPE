@@ -44,38 +44,6 @@ def logout():
         return redirect('/')
 
 
-@login.route('/cart', methods=['GET'])
-def cart():
-    if (request.method == 'GET'):
-
-        # Get current_user if it's authenticated
-        user = current_user
-        if(user):
-
-            # Get all chart_products with user's id
-            user_cart_products = user.products
-
-            # Get all products objects that were in chart_products
-            user_products = []
-            for item in user_cart_products:
-                product = Product.query.get(item.id_product)
-                user_products.append(product)
-
-            # Get all chart_therapies with user's id
-            user_cart_therapies = user.therapies
-
-            # Get all therapies objects that were in chart_therapies
-            user_therapies = []
-            for item in user_cart_therapies:
-                therapy = Therapy.query.get(item.id_therapy)
-                user_therapies.append(therapy)
-
-        # Return the products and therapies
-        return render_template('login/cart.html',
-                               user_products=user_products,
-                               user_therapies=user_therapies)
-
-
 @login.route('/cart/delete/product/<product_id>', methods=['GET'])
 def delete_product(product_id):
     if(request.method == 'GET'):
@@ -175,3 +143,63 @@ def delete_user():
             else:
                 return render_template('login/profile.html',
                                        error=True)
+
+
+@login.route('/cart', methods=['GET'])
+def cart():
+    if (request.method == 'GET'):
+
+        # Get current_user if it's authenticated
+        user = current_user
+        if(user):
+
+            # Get all chart_products with user's id
+            user_cart_products = user.products
+
+            # Get all products objects that were in chart_products
+            user_products = []
+            for item in user_cart_products:
+                product = Product.query.get(item.id_product)
+                user_products.append(product)
+
+            # Get all chart_therapies with user's id
+            user_cart_therapies = user.therapies
+
+            # Get all therapies objects that were in chart_therapies
+            user_therapies = []
+            for item in user_cart_therapies:
+                therapy = Therapy.query.get(item.id_therapy)
+                user_therapies.append(therapy)
+
+        # Return the products and therapies
+        return render_template('login/cart.html',
+                               user_products=user_products,
+                               user_therapies=user_therapies)
+
+
+@login.route('/cart/therapy/add/<therapy_id>', methods=['GET'])
+def add_therapy_cart(therapy_id):
+    if(request.method == 'GET'):
+        user = current_user
+        therapy = Therapy.query.get(therapy_id)
+        if(user and therapy):
+            user_therapy = Cart_Therapy(id_user=user.id,
+                                        id_therapy=therapy.id,
+                                        unit_price=therapy.price)
+            db.session.add(user_therapy)
+            db.session.commit()
+            return redirect(url_for('home.index'))
+
+
+@login.route('/cart/product/add/<product_id>', methods=['GET'])
+def add_product_cart(product_id):
+    if(request.method == 'GET'):
+        user = current_user
+        product = Product.query.get(product_id)
+        if(user and product):
+            user_product = Cart_Product(id_user=user.id,
+                                        id_product=product.id,
+                                        unit_price=product.price)
+            db.session.add(user_product)
+            db.session.commit()
+            return redirect(url_for('home.index'))

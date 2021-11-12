@@ -21,17 +21,24 @@
                 <h2><u>Produtos</u></h2>
                 {% for product in user_products %}
 
-                    <strong>Nome: </strong>{{ product.name }}
-                    <br>
-                    <strong>Descrição: </strong>{{ product.description }}.
-                    <br>
-                    <strong>Tamanho: </strong> {{ product.size }} L
-                    <br>
-                    <strong>Preço: </strong> R$ {{ product.price }}
-                    <br>
-                    <a class="btn btn-sm bg-danger btn-outline-light rounded" href="{{ url_for('login.delete_product', product_id=product.id) }}">Remover</a>
-                    <br>
-                    <br>
+                <div class="container card-therapy d-flex">
+
+                    <div class="container">
+                        <img class="card-img dhor-img-card" width="200" height="300" src="../static/img/Product/{{ product.img }}" alt="Imagem ilustrativa da terapia">
+                    </div>
+    
+                    <div class="container">
+                        <p class="cart-therapy-name"><strong>Nome: </strong>{{ product.name }}</p>
+                        <br>
+                        <p class="cart-therapy-description therapy-description"><strong>Descrição: </strong>{{ product.description }}.</p>
+                        <br>
+                        <br>
+                        <p class="cart-therapy-price"><strong>Preço: </strong> R$ {{ product.price }}</p>
+                        <br>
+                        <a class="btn btn-sm bg-danger btn-outline-light rounded" href="{{ url_for('login.delete_product', product_id=product.id) }}">Remover</a>
+                        <br>
+                        <br>
+                    </div>
 
 
                     {% endfor %}
@@ -42,18 +49,29 @@
                 <h2><u>Terapias</u></h2>
                 {% for therapy in user_therapies %}
 
-                    <strong>Nome: </strong>{{ therapy.name }}
+            <div class="container card-therapy d-flex">
+
+                <div class="container">
+                    <img class="card-img dhor-img-card" width="200" height="300" src="../static/img/Therapy/{{ therapy.img }}" alt="Imagem ilustrativa da terapia">
+                </div>
+
+                <div class="container">
+                    <p class="cart-therapy-name"><strong>Nome: </strong>{{ therapy.name }}</p>
                     <br>
-                    <strong>Descrição: </strong>{{ therapy.description }}.
+                    <p class="cart-therapy-description therapy-description"><strong>Descrição: </strong>{{ therapy.description }}.</p>
                     <br>
-                    <strong>Preço: </strong> R$ {{ therapy.price }}
+                    <br>
+                    <p class="cart-therapy-price"><strong>Preço: </strong> R$ {{ therapy.price }}</p>
                     <br>
                     <a class="btn btn-sm bg-danger btn-outline-light rounded" href="{{ url_for('login.delete_therapy', therapy_id=therapy.id) }}">Remover</a>
                     <br>
                     <br>
+                </div>
+
+            </div>
 
 
-                    {% endfor %}
+                {% endfor %}
                 <br>
 
 
