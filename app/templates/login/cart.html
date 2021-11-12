@@ -21,17 +21,18 @@
                 <h2><u>Produtos</u></h2>
                 {% for product in user_products %}
 
-                <div class="container card-therapy d-flex">
+                <div class="container d-flex card-therapy my-4">
 
                     <div class="container">
                         <img class="card-img dhor-img-card" width="200" height="300" src="../static/img/Product/{{ product.img }}" alt="Imagem ilustrativa da terapia">
                     </div>
     
                     <div class="container">
-                        <p class="cart-therapy-name"><strong>Nome: </strong>{{ product.name }}</p>
+                        <p class="cart-therapy-name mt-3"><strong>Nome: </strong>{{ product.name }}</p>
                         <br>
                         <p class="cart-therapy-description therapy-description"><strong>Descrição: </strong>{{ product.description }}.</p>
                         <br>
+                        <p class="cart-therapy-size mt-2"><strong>Tamanho: </strong>{{ product.size }}</p>
                         <br>
                         <p class="cart-therapy-price"><strong>Preço: </strong> R$ {{ product.price }}</p>
                         <br>
@@ -41,15 +42,19 @@
                     </div>
 
 
+                </div>
+
+
                     {% endfor %}
                 <br>
                 <hr>
+                <br>
 
 
                 <h2><u>Terapias</u></h2>
                 {% for therapy in user_therapies %}
 
-            <div class="container card-therapy d-flex">
+            <div class="container card-therapy d-flex my-4">
 
                 <div class="container">
                     <img class="card-img dhor-img-card" width="200" height="300" src="../static/img/Therapy/{{ therapy.img }}" alt="Imagem ilustrativa da terapia">
@@ -61,7 +66,7 @@
                     <p class="cart-therapy-description therapy-description"><strong>Descrição: </strong>{{ therapy.description }}.</p>
                     <br>
                     <br>
-                    <p class="cart-therapy-price"><strong>Preço: </strong> R$ {{ therapy.price }}</p>
+                    <p class="cart-therapy-price mt-1"><strong>Preço: </strong> R$ {{ therapy.price }}</p>
                     <br>
                     <a class="btn btn-sm bg-danger btn-outline-light rounded" href="{{ url_for('login.delete_therapy', therapy_id=therapy.id) }}">Remover</a>
                     <br>
