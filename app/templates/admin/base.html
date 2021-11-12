@@ -36,7 +36,7 @@
                 <a href="#" data-target="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-center ml-1 mt-4 btn btn-lg btn-sidebar bg-light btn-outline-info txt-center text-dark btn-itens">Itens</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="#" class="btn btn-sm btn-sidebar bg-dark btn-outline-info txt-center text-white mt-1">Terapias</a>
+                        <a href="{{ url_for('admin.admin_therapies') }}" class="btn btn-sm btn-sidebar bg-dark btn-outline-info txt-center text-white mt-1">Terapias</a>
                     </li>
                     <li>
                         <a href="{{ url_for('admin.admin_products') }}" class="btn btn-sm btn-sidebar bg-dark btn-outline-info txt-center text-white my-1">Produtos Naturais</a>

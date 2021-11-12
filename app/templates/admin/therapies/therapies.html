@@ -1,0 +1,41 @@
+{% extends "admin/base.html" %}
+
+{% block head %}
+    <title>Admin - Terapias</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="container col-7">
+
+
+
+    <div class="jumbotron jumbotron-admin text-dark bt-5">
+
+
+
+    <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>
+        <br>
+        <p class="lead text-center">Para navegar na página utilize a barra de navegação na lateral esquerda.</p>
+        {% if error %}
+        <p class="lead text-center font-weight-bold">E-mail e/ou Senha incorreto(s).</p>
+        {% endif %}
+
+        <hr class="my-3">
+
+
+        <h2 class="display-4 text-center text-info">Terapias</h2>
+        <br>
+
+        <div class="btn-group d-flex justify-content-center">
+            <a href="{{ url_for('admin.list_therapies') }}" class="btn btn-lg btn-product bg-info btn-outline-light mr-5 px-4 border border-dark">Listar</a>
+            <a href="{{ url_for('admin.add_therapy') }}" class="btn btn-lg btn-product bg-info btn-outline-light mr-5 px-4 border border-dark">Novo</a>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+{% endblock %}

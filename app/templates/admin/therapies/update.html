@@ -1,0 +1,68 @@
+{% extends 'admin/base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="../../../static/css/admin.css"/>
+    <title>Admin - Terapias</title>
+{% endblock %}
+
+
+
+{% block body %}
+
+
+<div class="container col-7">
+
+
+    <div class="jumbotron jumbotron-admin text-dark bt-5">
+
+
+
+        <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>
+        <br>
+        <p class="lead text-center">Para navegar na página utilize a barra de navegação na lateral esquerda.</p>
+        {% if error %}
+        <p class="lead text-center font-weight-bold">Nome já cadastrado no sistema.</p>
+        {% endif %}
+
+        <hr class="my-3">
+
+
+        <h2 class="display-4 text-center text-info">Terapias</h2>
+        <br>
+
+
+        <!-- change_therapy Form -->
+        <div class="container d-flex align-items-center justify-content-center pr-4 mt-4">
+
+            <form action="#" class="" method="POST">
+
+                <div class="form-group lead text-center d-flex justify-content-between">
+                    <label for="name">Nome: </label>
+                    <input type="text" class="form-control text-center ml-2 col-8" id="name" name="name" placeholder="{{ therapy.name }}">
+                </div>
+
+                <div class="form-group lead text-center d-flex justify-content-between">
+                    <label for="description">Descrição: </label>
+                    <input type="text" class="form-control text-center ml-2 col-8" id="description" name="description" placeholder="{{ therapy.description }}">
+                </div>
+
+                <div class="form-group lead text-center d-flex justify-content-between">
+                    <label for="price">Preço: </label>
+                    <input type="number" class="form-control text-center ml-2 col-8" min="0" step="0.1" id="price" name="price" placeholder="{{ therapy.price }}">
+                </div>
+
+                <div class="container text-center">
+                    <button class="btn btn-md bg-info btn-outline-dark text-light txt-center btn-product mr-4 mt-2" type="submit">Atualizar</button>
+                </div>
+
+            </form>
+
+
+    </div>
+<!-- change_therapy Form -->
+
+
+    </div>
+</div>
+
+{% endblock %}

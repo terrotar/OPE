@@ -10,9 +10,6 @@ from app.models.product import Product
 from app.models.therapy import Therapy
 
 
-import requests
-
-
 # Blueprint admin
 admin = Blueprint('admin', __name__,
                   url_prefix="/admin",
@@ -166,7 +163,8 @@ def add_product():
         # Checks if already exists a product with same name
         check_product = Product.query.filter_by(name=name).first()
         if (check_product):
-            return {'Error': 'Produto com mesmo nome já cadastrado.'}
+            return render_template('admin/products/add.html',
+                                   error=True)
         else:
             db.session.add(new_product)
             db.session.commit()
@@ -182,25 +180,43 @@ def change_product(id_product):
             return render_template('admin/products/update.html',
                                    product=product)
         if (request.method == 'POST'):
-            product.name = request.form['name']
-            product.description = request.form['description']
-            product.size = request.form['size']
-            product.price = request.form['price']
+            name = request.form['name']
+            description = request.form['description']
+            size = request.form['size']
+            price = request.form['price']
+
+            # Check if already exists a product with that name
+            check_product = Product.query.filter_by(name=name).first()
+            if(check_product):
+                if(product.name != check_product.name):
+                    return render_template('admin/products/update.html',
+                                           error=True, product=product)
+            product.name = name
+            product.description = description
+            product.size = size
+            product.price = price
             db.session.commit()
             return redirect('/admin/products')
     return render_template('admin/products/update.html',
-                           error=True)
+                           error=True, product=product)
 
 
 # THERAPY
 
 
+# Index Therapies
+@admin.route('/therapies', methods=['GET'])
+def admin_therapies():
+    if (request.method == 'GET'):
+        return render_template('admin/therapies/therapies.html')
+
+
 # READ all therapies
-@admin.route('/therapies', methods=['GET', 'POST'])
+@admin.route('/therapies/list', methods=['GET'])
 def list_therapies():
     if (request.method == 'GET'):
         all_therapies = Therapy.query.all()
-        return render_template('therapies.html',
+        return render_template('admin/therapies/list.html',
                                all_therapies=all_therapies)
 
 
@@ -208,7 +224,7 @@ def list_therapies():
 @admin.route('/add/therapy', methods=['GET', 'POST'])
 def add_therapy():
     if (request.method == 'GET'):
-        return render_template('new_therapy.html')
+        return render_template('admin/therapies/add.html')
     if (request.method == 'POST'):
         name = request.form['name']
         description = request.form['description']
@@ -219,7 +235,8 @@ def add_therapy():
         # Checks if already exists a therapy with same name
         check_therapy = Therapy.query.filter_by(name=name).first()
         if (check_therapy):
-            return {'Error': 'Terapia com mesmo nome já cadastrado.'}
+            return render_template('admin/therapies/add.html',
+                                   error=True)
         else:
             db.session.add(new_therapy)
             db.session.commit()
@@ -227,7 +244,7 @@ def add_therapy():
 
 
 # DELETE a therapy
-@admin.route('/delete/therapy/<id_therapy>', methods=['GET'])
+@admin.route('/therapies/delete/<id_therapy>', methods=['GET'])
 def delete_therapy(id_therapy):
     if (request.method == 'GET'):
         therapy = Therapy.query.get(id_therapy)
@@ -236,22 +253,32 @@ def delete_therapy(id_therapy):
             db.session.commit()
             return redirect('/admin/therapies')
         else:
-            return {'Error': 'id_therapy não existe no banco de dados.'}
+            return redirect('/admin/therapies')
 
 
 # UPDATE a therapy
-@admin.route('/change/therapy', methods=['GET', 'POST'])
-def change_therapy():
-    id_therapy = request.args.get('id_therapy')
+@admin.route('/therapies/change/<id_therapy>', methods=['GET', 'POST'])
+def change_therapy(id_therapy):
     therapy = Therapy.query.get(id_therapy)
-    if (request.method == 'GET'):
-        return render_template('change_therap.html',
-                               therapy=therapy)
-    if (request.method == 'POST'):
-        therapy_id = request.form['therapy_id']
-        therapy = Therapy.query.get(therapy_id)
-        therapy.name = request.form['name']
-        therapy.description = request.form['description']
-        therapy.price = request.form['price']
-        db.session.commit()
-        return redirect('/admin/therapies')
+    if(therapy):
+        if(request.method == 'GET'):
+            return render_template('admin/therapies/update.html',
+                                   therapy=therapy)
+        if(request.method == 'POST'):
+            name = request.form['name']
+            description = request.form['description']
+            price = request.form['price']
+
+            # Check if already exists a therapy with that name
+            check_therapy = Therapy.query.filter_by(name=name).first()
+            if(check_therapy):
+                if(therapy.name != check_therapy.name):
+                    return render_template('admin/therapies/update.html',
+                                           error=True, therapy=therapy)
+            therapy.name = name
+            therapy.description = description
+            therapy.price = price
+            db.session.commit()
+            return redirect('/admin/therapies')
+    return render_template('admin/therapies/update.html',
+                           error=True, therapy=therapy)
