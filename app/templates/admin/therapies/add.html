@@ -23,6 +23,15 @@
         <p class="lead text-center font-weight-bold">Nome de terapia já cadastrado no sistema.</p>
         {% endif %}
 
+        {% if upload_error %} <!-- Check if file's already in database -->
+            <p class="lead text-center font-weight-bold">Imagem com mesmo nome já cadastrado no sistema.</p>
+        {% endif %}
+
+        {% if ext_error %} <!-- Check if file's extensions is allowed -->
+            <p class="lead text-center font-weight-bold">Selecione um arquivo com extensão válida (jpg, jpeg, png).</p>
+        {% endif %}
+
+
         <hr class="my-3">
 
 
@@ -62,22 +71,6 @@
                     Imagem:
                     <input type="file" id="img" name="img" class="ml-5"/>
                 </div>
-
-
-                {% if upload_error %} <!-- Check if file's already in database -->
-                    <p class="lead">Arquivo com mesmo nome já está salvo no banco de dados...
-                    </p>
-                {% endif %}
-
-
-
-                {% if ext_error %} <!-- Check if file's extensions is allowed -->
-                <br>
-                <br>
-                    <p class="lead">Selecione um arquivo com extensão válida(csv, txt).
-                    </p>
-                {% endif %}
-
 
 
                 <div class="container text-center">

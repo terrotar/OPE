@@ -24,6 +24,15 @@
         <p class="lead text-center font-weight-bold">Nome já cadastrado no sistema.</p>
         {% endif %}
 
+        {% if upload_error %} <!-- Check if file's already in database -->
+            <p class="lead text-center font-weight-bold">Imagem com mesmo nome já cadastrado no sistema.</p>
+        {% endif %}
+
+        {% if ext_error %} <!-- Check if file's extensions is allowed -->
+            <p class="lead text-center font-weight-bold">Selecione um arquivo com extensão válida (jpg, jpeg, png).</p>
+        {% endif %}
+
+
         <hr class="my-3">
 
 

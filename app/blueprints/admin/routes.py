@@ -314,13 +314,15 @@ def change_therapy(id_therapy):
                 check_ext = img_filename.split('.')
                 if(check_ext[-1] not in ALLOWED_EXT):
                     return render_template('admin/therapies/update.html',
-                                           ext_error=True)
+                                           ext_error=True,
+                                           therapy=therapy)
 
                 # Check if already exists an img with same name
                 check_img = Therapy.query.filter_by(img=img_filename).first()
                 if(check_img):
-                    return render_template('admin/therapies/add.html',
-                                           upload_error=True)
+                    return render_template('admin/therapies/update.html',
+                                           upload_error=True,
+                                           therapy=therapy)
 
                 # Update new_img inside UPLOAD_FOLDER
                 os.remove(f"{UPLOAD_FOLDER}/{therapy.img}")
@@ -334,4 +336,5 @@ def change_therapy(id_therapy):
                 db.session.commit()
                 return redirect('/admin/therapies')
     return render_template('admin/therapies/update.html',
-                           error=True, therapy=therapy)
+                           error=True,
+                           therapy=therapy)
