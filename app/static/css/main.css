@@ -122,3 +122,45 @@ footer p {
 
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+
+
+
+
+.card-product p {
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 0;
+}
+
+.card-product p::-webkit-scrollbar {
+  display: none;
+}
+
+.card-product p {
+  max-height: 10rem !important;
+}
+
+
+.card-therapy .therapy-description {
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 0;
+}
+
+.card-therapy .therapy-description::-webkit-scrollbar {
+  display: none;
+}
+
+.card-therapy .therapy-description {
+  max-height: 7.3rem !important;
+}
+
+.therapy-description {
+  max-width: 50rem !important;
+}
+
+
+.therapy-price {
+  padding-top: 1rem !important;
+}

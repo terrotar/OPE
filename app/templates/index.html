@@ -14,159 +14,50 @@
       <div class="container">
         <h1>Terapias</h1>
 
-          <div class="card-horizontal dhor-card d-flex justify-content-between">
-            <img class="card-img dhor-img-card" src="../static/img/Dhor/1.png" alt="Imagem ilustrativa da terapia">
-            <div class="card-body">
-              <h3 class="card-title">Ozonioterapia</h3>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button type="button" class="btn btn-lg btn-outline-info btn-card btn-dhor mt-md-5">Comprar</button>
-            </div>
+        {% for therapy in all_therapies %}
+
+        <div class="card-horizontal dhor-card d-flex justify-content-between">
+          <img class="card-img dhor-img-card" width="200" height="300" src="../static/img/Therapy/{{ therapy.img }}" alt="Imagem ilustrativa da terapia">
+          <div class="card-body card-therapy">
+            <h3 class="card-title">{{ therapy.name }}</h3>
+            <p class="card-text therapy-description">{{ therapy.description }}</p>
+            <p class="card-text therapy-price"><strong>Preço: </strong>R$ {{ therapy.price }}</p>
+            <button type="button" class="btn btn-lg btn-outline-info btn-card btn-dhor">Adicionar</button>
           </div>
-          <br>
+        </div>
+        <br>
 
-          <div class="card-horizontal dhor-card d-flex justify-content-between">
-            <img class="card-img dhor-img-card" src="../static/img/Dhor/2.png" alt="Imagem ilustrativa da terapia">
-            <div class="card-body">
-              <h3 class="card-title">Hemoterapia</h3>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button type="button" class="btn btn-lg btn-outline-info btn-card btn-dhor mt-md-5">Comprar</button>
-            </div>
+        {% endfor %}
 
-
-
-      </div>
       <br>
       <br>
-
-
 
 
       <div class="container">
         <h1>Produtos Naturais</h1>
 
+
         <div class="row">
+          {% for product in all_products %}
           <div class="col-md-4">
             <div class="card mb-4 box-shadow product-card">
-              <img class="card-img-top" src="../static/img/Dhor/1.png" alt="Produto ilustrativo">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <img class="card-img-top" src="../static/img/Product/{{ product.img }}" width="100" height="300" alt="Produto ilustrativo">
+              <div class="card-body card-product">
+                <div class="card-title">
+                  <strong>Nome: </strong>{{ product.name }}
+                </div>
+                <p class="card-text"><strong>Descrição: </strong>{{ product.description }}</p>
+                <p class="card-text mt-3"><strong>Preço: </strong>R$ {{ product.price }}</p>
+                <p class="card-text my-3"><strong>Tamanho: </strong>{{ product.size }} mL</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Comprar</button>
+                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Adicionar</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow product-card">
-              <img class="card-img-top" src="../static/img/Dhor/1.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Comprar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow product-card">
-              <img class="card-img-top" src="../static/img/Dhor/1.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Comprar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow product-card">
-              <img class="card-img-top" src="../static/img/Dhor/1.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Comprar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow product-card">
-              <img class="card-img-top" src="../static/img/Dhor/1.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Comprar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow product-card">
-              <img class="card-img-top" src="../static/img/Dhor/1.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Comprar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow product-card">
-              <img class="card-img-top" src="../static/img/Dhor/1.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Comprar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow product-card">
-              <img class="card-img-top" src="../static/img/Dhor/1.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Comprar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow product-card">
-              <img class="card-img-top" src="../static/img/Dhor/1.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group product-btn">
-                    <button type="button" class="btn btn-lg btn-outline-info btn-card">Comprar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          {% endfor %}
 
   </main>
 
