@@ -24,7 +24,7 @@
 
           <div class="card-body card-therapy">
             <h3 class="card-title">{{ therapy.name }}</h3>
-            <p class="card-text therapy-description">{{ therapy.description }}</p>
+            <p class="card-text therapy-description text-justify mb-3">{{ therapy.description }}</p>
             <p class="card-text therapy-price"><strong>Preço: </strong>R$ {{ therapy.price }}</p>
             <a href="{{ url_for('login.add_therapy_cart', therapy_id=therapy.id) }}" class="btn btn-lg btn-outline-info btn-card btn-dhor">Adicionar</a>
           </div>
@@ -45,14 +45,14 @@
         <div class="row">
           {% for product in all_products %}
           <div class="col-md-4">
-            <div class="card mb-4 box-shadow product-card">
+            <div class="card mb-4 box-shadow product-card" style="min-height: 41.8rem;">
               <img class="card-img-top" src="../static/img/Product/{{ product.img }}" width="100" height="300" alt="Produto ilustrativo">
               <div class="card-body card-product">
                 <div class="card-title">
                   <strong>Nome: </strong>{{ product.name }}
                 </div>
-                <p class="card-text"><strong>Descrição: </strong>{{ product.description }}</p>
-                <p class="card-text mt-3"><strong>Preço: </strong>R$ {{ product.price }}</p>
+                <p class="card-text text-justify"><strong>Descrição: </strong>{{ product.description }}</p>
+                <p class="card-text text-justify mt-3"><strong>Preço: </strong>R$ {{ product.price }}</p>
                 <p class="card-text mb-3 mt-1"><strong>Tamanho: </strong>{{ product.size }} mL</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group product-btn">

@@ -24,13 +24,13 @@
                 <div class="container d-flex card-therapy my-4">
 
                     <div class="container">
-                        <img class="card-img dhor-img-card" width="200" height="300" src="../static/img/Product/{{ product.img }}" alt="Imagem ilustrativa da terapia">
+                        <img class="card-img dhor-img-card" width="200" height="300" src="../static/img/Product/{{ product.img }}" alt="Imagem ilustrativa do produto">
                     </div>
     
                     <div class="container">
                         <p class="cart-therapy-name mt-3"><strong>Nome: </strong>{{ product.name }}</p>
                         <br>
-                        <p class="cart-therapy-description therapy-description"><strong>Descrição: </strong>{{ product.description }}.</p>
+                        <p class="cart-therapy-description therapy-description text-justify"><strong>Descrição: </strong>{{ product.description }}.</p>
                         <br>
                         <p class="cart-therapy-size mt-2"><strong>Tamanho: </strong>{{ product.size }}</p>
                         <br>
@@ -66,7 +66,7 @@
                 <div class="container">
                     <p class="cart-therapy-name"><strong>Nome: </strong>{{ therapy.name }}</p>
                     <br>
-                    <p class="cart-therapy-description therapy-description"><strong>Descrição: </strong>{{ therapy.description }}.</p>
+                    <p class="cart-therapy-description therapy-description text-justify"><strong>Descrição: </strong>{{ therapy.description }}.</p>
                     <br>
                     <br>
                     <p class="cart-therapy-price mt-1"><strong>Preço: </strong> R$ {{ therapy.price }}</p>
