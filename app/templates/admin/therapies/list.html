@@ -35,25 +35,34 @@
         </div>
 
 
+        {% for therapy in all_therapies %}
 
-        <div class="container list-products mt-5">
+                <div class="container d-flex card-therapy my-2 mt-5">
 
-            
-            <ul class="list-group position-absolute pr-5">
-                {% for therapy in all_therapies %}
-                <div class="container ul-products d-flex justify-content-between my-2">
-                <li class="list-group-item col-4"><strong>Nome: </strong>{{ therapy.name }}</li>
-                <li class="list-group-item col-4"><strong>Descrição: </strong>{{ therapy.description }}.</li>
-                <li class="list-group-item col-4"><strong>Preço: </strong> R$ {{ therapy.price }}</li>
-                <img src='../../../static/img/Therapy/{{ therapy.img }}' class="mx-3" width='80'/>
-                <a class="btn btn-sm bg-primary btn-outline-dark text-light txt-center mx-2 my-4 px-4" href="{{ url_for('admin.change_therapy', id_therapy=therapy.id) }}">Alterar</a>
-                <a class="btn btn-sm bg-danger btn-outline-dark text-light txt-center mx-2 my-4 px-3" href="{{ url_for('admin.delete_therapy', id_therapy=therapy.id) }}">Remover</a>
-            </div>
-                {% endfor %}
-            </ul>
-            
+                    <div class="container">
+                        <img class="card-img dhor-img-card mt-3 text-center ml-3" width="200" height="300" src="../static/img/Therapy/{{ therapy.img }}" alt="Imagem ilustrativa da terapia">
+                    </div>
 
-        </div>
+                    <div class="container">
+                        <p class="cart-therapy-name mt-3"><strong>Nome: </strong>{{ therapy.name }}</p>
+                        <br>
+                        <p class="cart-therapy-description therapy-description"><strong>Descrição: </strong>{{ therapy.description }}.</p>
+                        <br>
+                        <p class="cart-therapy-price" style="margin-top: 1rem !important;"><strong>Preço: </strong> R$ {{ therapy.price }}</p>
+                        <br>
+                        <a class="btn btn-sm bg-primary btn-outline-dark text-light txt-center mx-2 my-4 px-4" href="{{ url_for('admin.change_therapy', id_therapy=therapy.id) }}">Alterar</a>
+                         <a class="btn btn-sm bg-danger btn-outline-dark text-light txt-center mx-2 my-4 px-3" href="{{ url_for('admin.delete_therapy', id_therapy=therapy.id) }}">Remover</a>
+                        <br>
+                        <br>
+                    </div>
+
+
+                </div>
+                <hr>
+
+
+        {% endfor %}
+
 
 
     </div>

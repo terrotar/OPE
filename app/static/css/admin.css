@@ -72,8 +72,50 @@ body {
     height: 11rem !important;
 }
 
-.ul-products {
-    height: 5rem !important;
-    width: 60% !important;
-    padding-right: 2rem !important;
-}
+
+.card-therapy .therapy-description {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 0;
+  }
+  
+  .card-therapy .therapy-description::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .card-therapy .therapy-description {
+    height: 7.3rem !important;
+  }
+  
+  .therapy-description {
+    max-width: 50rem !important;
+  }
+  
+  
+  .therapy-price {
+    padding-top: -1rem !important;
+  }
+  
+  .cart-therapy-name {
+    margin-bottom: -1rem !important;
+  }
+  
+  .cart-therapy-description {
+    margin-bottom: -1rem !important;
+  }
+  
+  
+  .cart-therapy-price {
+    margin-bottom: -1rem !important;
+    margin-top: -2rem !important;
+  }
+  
+  
+  .dhor-img-card {
+    max-width: 18rem !important;
+    max-height: 15rem !important;
+    border: 3px solid #8DC0F0 !important;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 20px !important;
+  }
+  
