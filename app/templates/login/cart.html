@@ -44,10 +44,13 @@
 
                 </div>
 
+                {% endfor %}
 
-                    {% endfor %}
+                
+
+                
+
                 <br>
-                <hr>
                 <br>
 
 
@@ -77,7 +80,16 @@
 
 
                 {% endfor %}
-                <br>
+
+                <hr class="my-4">
+
+                <div class="container d-flex justify-content-end mt-4">
+                    <p class="lead mx-3"><strong class=" font-weight-bold">Total: </strong></p>
+                    <p class="lead">R$ {{ amount_cart }}</p>
+                </div>
+
+
+
 
 
             </div>

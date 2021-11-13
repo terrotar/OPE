@@ -153,6 +153,10 @@ def cart():
         user = current_user
         if(user):
 
+            amount_cart = 0
+            amount_product = 0
+            amount_therapy = 0
+
             # Get all chart_products with user's id
             user_cart_products = user.products
 
@@ -161,6 +165,8 @@ def cart():
             for item in user_cart_products:
                 product = Product.query.get(item.id_product)
                 user_products.append(product)
+                amount_product += product.price
+                amount_cart += product.price
 
             # Get all chart_therapies with user's id
             user_cart_therapies = user.therapies
@@ -170,11 +176,16 @@ def cart():
             for item in user_cart_therapies:
                 therapy = Therapy.query.get(item.id_therapy)
                 user_therapies.append(therapy)
+                amount_therapy += therapy.price
+                amount_cart += therapy.price
 
-        # Return the products and therapies
-        return render_template('login/cart.html',
-                               user_products=user_products,
-                               user_therapies=user_therapies)
+            # Return the products and therapies
+            return render_template('login/cart.html',
+                                   user_products=user_products,
+                                   user_therapies=user_therapies,
+                                   amount_product=round(amount_product, 2),
+                                   amount_therapy=round(amount_therapy, 2),
+                                   amount_cart=round(amount_cart, 2))
 
 
 @login.route('/cart/therapy/add/<therapy_id>', methods=['GET'])

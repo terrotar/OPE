@@ -118,4 +118,12 @@ body {
     box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25) !important;
     border-radius: 20px !important;
   }
-  
+
+.admin-img {
+    max-width: 18rem !important;
+    max-height: 15rem !important;
+    border: 3px solid #17a2b8 !important;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 20px !important;
+}
+
