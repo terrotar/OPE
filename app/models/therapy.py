@@ -12,7 +12,8 @@ class Therapy(db.Model):
     __img = db.Column("imagem", db.String, nullable=False)
 
     # Relationships
-    chart_therapy = db.relationship("Cart_Therapy")
+    cart = db.relationship("Cart_Therapy", cascade="all,delete", back_populates="therapy")
+    # orders = db.relationship("Order", back_populates="therapies")
 
     def __init__(self, name, description, price, img):
         self.__name = name

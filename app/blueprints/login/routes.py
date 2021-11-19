@@ -9,6 +9,7 @@ from app.models.product import Product
 from app.models.therapy import Therapy
 from app.models.cart_product import Cart_Product
 from app.models.cart_therapy import Cart_Therapy
+from app.models.order import Order
 
 
 # Instancia do Blueprint login
@@ -214,3 +215,54 @@ def add_product_cart(product_id):
             db.session.add(user_product)
             db.session.commit()
             return redirect(url_for('home.index'))
+
+
+@login.route('/cart/order', methods=['GET'])
+def send_order():
+    user = current_user
+    if(user):
+        if(request.method == 'GET'):
+
+            amount_cart = 0
+
+            # Get all chart_products with user's id
+            user_cart_products = user.products
+
+            # Get all products objects that were in chart_products
+            user_products = []
+            for item in user_cart_products:
+                product = Product.query.get(item.id_product)
+                user_products.append(product.id)
+                amount_cart += product.price
+
+                # Delete that product of user's cart
+                cart_product = Cart_Product.query.filter_by(id_user=user.id, id_product=int(item.id_product)).first()
+                db.session.delete(cart_product)
+                db.session.commit()
+
+            # Get all chart_therapies with user's id
+            user_cart_therapies = user.therapies
+
+            # Get all therapies objects that were in chart_therapies
+            user_therapies = []
+            for item in user_cart_therapies:
+                therapy = Therapy.query.get(item.id_therapy)
+                user_therapies.append(therapy.id)
+                amount_cart += therapy.price
+
+                # Delete that therapy of user's cart
+                cart_therapy = Cart_Therapy.query.filter_by(id_user=user.id, id_therapy=int(item.id_therapy)).first()
+                db.session.delete(cart_therapy)
+                db.session.commit()
+
+            new_order = Order(id_user=user.id,
+                              products=user_products,
+                              therapies=user_therapies,
+                              amount_order=amount_cart)
+
+            db.session.add(new_order)
+            db.session.commit()
+
+            return redirect(url_for('login.cart'))
+
+    return redirect(url_for('home.index'))

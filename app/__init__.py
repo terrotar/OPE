@@ -13,6 +13,7 @@ from .models.product import Product
 from .models.therapy import Therapy
 from .models.cart_therapy import Cart_Therapy
 from .models.cart_product import Cart_Product
+from .models.order import Order
 
 
 def create_app(config):

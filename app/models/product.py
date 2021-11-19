@@ -14,6 +14,7 @@ class Product(db.Model):
 
     # Relationships
     cart = db.relationship("Cart_Product", cascade="all,delete", back_populates="product")
+    # orders = db.relationship("Order", back_populates="therapies")
 
     def __init__(self, name, description, size, price, img):
         self.__name = name

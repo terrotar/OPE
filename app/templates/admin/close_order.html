@@ -1,22 +1,44 @@
-{% extends "base.html" %}
+{% extends "admin/base.html" %}
 
 {% block head %}
-    <title>Carrinho</title>
+    <title>Admin - Fechar Pedido</title>
 {% endblock %}
 
 {% block body %}
 
 
-        {% if current_user.is_authenticated %}
-        <main role="main" style="margin-bottom: 42.35rem;">
 
-            <!-- box-cart -->
-            <div class="container col-md-6 mx-auto">
+
+    <div class="container col-7">
+
+
+
+        <div class="jumbotron jumbotron-admin position-absolute text-dark bt-5">
+
+
+
+        <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>
+            <br>
+            <p class="lead text-center">Para navegar na página utilize a barra de navegação na lateral esquerda.</p>
+            {% if error %}
+            <p class="lead text-center font-weight-bold">E-mail e/ou Senha incorreto(s).</p>
+            {% endif %}
+
+            <hr class="my-3">
+
+                <h1 class="display-4 text-center text-info my-5">Pedido {{ order.id }}</h1>
+
+
+                <h2><u>Usuário</u></h2>
+                <div class="container">
+                    <p class="cart-therapy-name mt-3"><strong>Nome: {{ owner.fname }} {{ owner.lname }}</strong></p>
+                    <br>
+                    <p class="cart-therapy-description therapy-description text-justify"><strong>E-mail: {{ owner.email }}</strong></p>
+                    <br>
+                    <p class="cart-therapy-size"><strong>CPF: {{ owner.cpf }}</strong></p>
+                    <br>
+                </div>
                 <br>
-
-                <h1 class="display-4">Carrinho</h1>
-                <hr>
-
 
                 <h2><u>Produtos</u></h2>
                 {% for product in user_products %}
@@ -36,9 +58,6 @@
                         <br>
                         <p class="cart-therapy-price"><strong>Preço: </strong> R$ {{ product.price }}</p>
                         <br>
-                        <a class="btn btn-sm bg-danger btn-outline-light rounded" href="{{ url_for('login.delete_product', product_id=product.id) }}">Remover</a>
-                        <br>
-                        <br>
                     </div>
 
 
@@ -46,9 +65,7 @@
 
                 {% endfor %}
 
-                
 
-                
 
                 <br>
                 <br>
@@ -71,9 +88,6 @@
                     <br>
                     <p class="cart-therapy-price mt-1"><strong>Preço: </strong> R$ {{ therapy.price }}</p>
                     <br>
-                    <a class="btn btn-sm bg-danger btn-outline-light rounded" href="{{ url_for('login.delete_therapy', therapy_id=therapy.id) }}">Remover</a>
-                    <br>
-                    <br>
                 </div>
 
             </div>
@@ -85,42 +99,21 @@
 
                 <div class="container d-flex justify-content-end mt-4">
                     <p class="lead mx-3"><strong class=" font-weight-bold">Total do Carrinho: </strong></p>
-                    <p class="lead">R$ {{ amount_cart }}</p>
+                    <p class="lead">R$ {{ order.amount_order }}</p>
                 </div>
 
                 <div class="container d-flex justify-content-end">
-                    <a href="{{ url_for('login.send_order', products=user_products, therapies=user_therapies, amount=amount_car) }}" class="btn btn-lg bg-dark btn-outline-info btn-card">Enviar Pedido</a>
+                    <a href="{{ url_for('admin.delete_order', order_id=order.id) }}" class="btn btn-lg bg-dark btn-outline-info btn-card">Fechar Pedido</a>
                 </div>
 
 
-
-
-
             </div>
             <!-- box-cart -->
 
 
 
 
-        {% else %}
-        <main role="main" style="margin-bottom: 42.35rem;">
 
-            <!-- box-cart -->
-            <div class="container col-md-6 mx-auto">
-                <br>
-
-                <h1 class="display-4">Carrinho</h1>
-                <hr>
-
-
-
-
-            <!-- box-cart -->
-            </div>
-
-
-
-    {% endif %}
 
 </main>
 

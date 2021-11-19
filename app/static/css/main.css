@@ -187,3 +187,9 @@ footer p {
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25) !important;
   border-radius: 20px !important;
 }
+
+.text-bios {
+    max-width: 44rem !important;
+    text-align: center !important;
+    margin: 2rem 0rem 0rem 35rem !important;
+}

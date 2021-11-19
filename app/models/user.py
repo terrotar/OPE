@@ -37,6 +37,7 @@ class User(db.Model, UserMixin):
     # Relationships
     products = db.relationship("Cart_Product", cascade="all,delete", back_populates="owner")
     therapies = db.relationship("Cart_Therapy", cascade="all,delete", back_populates="owner")
+    orders = db.relationship("Order", cascade="all,delete", back_populates="owner")
 
     # When create a new User object, you must use the following functions:
     # check_age() --> Validates if user can purchase items or not

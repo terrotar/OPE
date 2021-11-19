@@ -1,0 +1,51 @@
+{% extends 'admin/index.html' %}
+
+{% block head %}
+    <title>Admin - Pedidos</title>
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class="container col-7">
+
+
+
+    <div class="jumbotron jumbotron-admin position-absolute text-dark bt-5">
+
+
+
+    <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>
+        <br>
+        <p class="lead text-center">Para navegar na página utilize a barra de navegação na lateral esquerda.</p>
+        {% if error %}
+        <p class="lead text-center font-weight-bold">E-mail e/ou Senha incorreto(s).</p>
+        {% endif %}
+
+        <hr class="my-3">
+
+
+        <h2 class="display-4 text-center text-info">Pedidos</h2>
+        <br>
+
+
+
+                <div class="container d-flex justify-content-center card-order my-2 mt-3">
+
+                    {% for order in all_orders %}
+                    <div class="container text-center">
+                         <a class="btn btn-sm bg-info btn-outline-dark text-light txt-center mx-2 my-4 px-3 font-weight-bold" href="{{ url_for('admin.get_order', order_id=order.id) }}">Pedido {{ order.id }}</a>
+                    </div>
+            {% endfor %}
+
+
+
+
+
+
+
+
+    </div>
+</div>
+{% endblock %}

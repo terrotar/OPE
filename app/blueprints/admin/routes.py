@@ -8,6 +8,7 @@ from app import db
 from app.models.user import User
 from app.models.product import Product
 from app.models.therapy import Therapy
+from app.models.order import Order
 
 from werkzeug.utils import secure_filename
 
@@ -386,3 +387,58 @@ def change_therapy(id_therapy):
     return render_template('admin/therapies/update.html',
                            error=True,
                            therapy=therapy)
+
+
+# ORDERS
+
+
+# List orders
+@admin.route('/orders', methods=['GET'])
+def orders():
+    user = current_user
+    if(user):
+        if(request.method == 'GET'):
+            all_orders = Order.query.all()
+            return render_template('admin/orders.html',
+                                   all_orders=all_orders)
+
+    return render_template('admin/orders.html',
+                           error=True)
+
+
+# Display a certain order
+@admin.route('/order/<order_id>', methods=['GET'])
+def get_order(order_id):
+    user = current_user
+    if(user):
+        if(request.method == 'GET'):
+            order = Order.query.get(order_id)
+            # set a list of products and therapies objects
+            user_products = []
+            user_therapies = []
+            for product in order.products:
+                item = Product.query.get(product)
+                user_products.append(item)
+            for therapy in order.therapies:
+                item = Therapy.query.get(therapy)
+                user_therapies.append(item)
+
+            owner = User.query.get(order.id_user)
+            return render_template('admin/close_order.html',
+                                   order=order,
+                                   owner=owner,
+                                   user_products=user_products,
+                                   user_therapies=user_therapies)
+
+
+# Close an order
+@admin.route('/order/delete/<order_id>', methods=['GET'])
+def delete_order(order_id):
+    user = current_user
+    if(user):
+        if(request.method == 'GET'):
+            order = Order.query.get(order_id)
+            db.session.delete(order)
+            db.session.commit()
+
+            return redirect(url_for('admin.orders'))
