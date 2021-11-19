@@ -238,13 +238,15 @@ def change_product(id_product):
                 # Check if already exists an img with same name
                 check_img = Product.query.filter_by(img=img_filename).first()
                 if(check_img):
-                    return render_template('admin/products/update.html',
-                                           upload_error=True,
-                                           product=product)
+                    if(img_filename != check_img.img):
+                        return render_template('admin/products/update.html',
+                                               upload_error=True,
+                                               product=product)
 
                 # Update new_img inside UPLOAD_FOLDER
                 os.remove(f"{UPLOAD_FOLDER}/Product/{product.img}")
-                img.save(os.path.join(f"{UPLOAD_FOLDER}/Product", img_filename))
+                img.save(os.path.join(
+                    f"{UPLOAD_FOLDER}/Product", img_filename))
 
                 # Update image's name in product's column
                 product.img = img_filename
@@ -369,13 +371,15 @@ def change_therapy(id_therapy):
                 # Check if already exists an img with same name
                 check_img = Therapy.query.filter_by(img=img_filename).first()
                 if(check_img):
-                    return render_template('admin/therapies/update.html',
-                                           upload_error=True,
-                                           therapy=therapy)
+                    if(img_filename != check_img.img):
+                        return render_template('admin/therapies/update.html',
+                                               upload_error=True,
+                                               therapy=therapy)
 
                 # Update new_img inside UPLOAD_FOLDER
                 os.remove(f"{UPLOAD_FOLDER}/Therapy/{therapy.img}")
-                img.save(os.path.join(f"{UPLOAD_FOLDER}/Therapy", img_filename))
+                img.save(os.path.join(
+                    f"{UPLOAD_FOLDER}/Therapy", img_filename))
 
                 # Update image's name in therapy's column
                 therapy.img = img_filename
