@@ -1,2 +1,2 @@
 cd app
-flask run --host=0.0.0.0 --port=5000
+flask run --host=tccope.herokuapp.com --port=5000
