@@ -3,7 +3,7 @@ from flask import Flask
 
 from .config import db, login_manager, migrate, UPLOAD_FOLDER
 
-from .blueprints.home.routes import home
+from app.blueprints.home.routes import home
 from .blueprints.register.routes import register
 from .blueprints.login.routes import login
 from .blueprints.admin.routes import admin
