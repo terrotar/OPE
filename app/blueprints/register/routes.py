@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request
 
 from flask_login import login_user
 
-from app import db, login_manager
+from app.config import db, login_manager
 
 from app.models.user import User
 

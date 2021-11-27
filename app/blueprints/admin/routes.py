@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 
 from flask_login import login_user, logout_user, current_user
 
-from app import db
+from app.config import db
 
 from app.models.user import User
 from app.models.product import Product

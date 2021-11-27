@@ -8,12 +8,12 @@ from .blueprints.register.routes import register
 from .blueprints.login.routes import login
 from .blueprints.admin.routes import admin
 
-from .models.user import User
-from .models.product import Product
-from .models.therapy import Therapy
-from .models.cart_therapy import Cart_Therapy
-from .models.cart_product import Cart_Product
-from .models.order import Order
+from app.models.user import User
+from app.models.product import Product
+from app.models.therapy import Therapy
+from app.models.cart_therapy import Cart_Therapy
+from app.models.cart_product import Cart_Product
+from app.models.order import Order
 
 
 def create_app(config):
