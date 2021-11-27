@@ -1,12 +1,12 @@
 # import app
 from flask import Flask
 
-from .config import db, login_manager, migrate, UPLOAD_FOLDER
+from app.config import db, login_manager, migrate, UPLOAD_FOLDER
 
 from app.blueprints.home.routes import home
-from .blueprints.register.routes import register
-from .blueprints.login.routes import login
-from .blueprints.admin.routes import admin
+from app.blueprints.register.routes import register
+from app.blueprints.login.routes import login
+from app.blueprints.admin.routes import admin
 
 from app.models.user import User
 from app.models.product import Product
