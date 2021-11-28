@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 
 from flask_login import login_user
 
-from app.config import db, login_manager
+from app.config import db
 
 from app.models.user import User
 
@@ -44,7 +44,7 @@ def register_user():
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
-            return render_template('index.html')
+            return redirect(url_for('home.index'))
         else:
             return render_template('register.html',
                                    check_error=True)
