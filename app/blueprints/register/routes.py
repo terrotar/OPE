@@ -20,6 +20,11 @@ def register_user():
     if(request.method == 'GET'):
         return render_template('register.html')
     if(request.method == 'POST'):
+        pwd = request.form['password']
+        check_pwd = request.form['confirm_password']
+        if(pwd != check_pwd):
+            return render_template('register.html',
+                                   check_error=True)
         bday = int(request.form['bday'])
         bmonth = int(request.form['bmonth'])
         byear = int(request.form['byear'])
