@@ -166,8 +166,9 @@ def cart():
             for item in user_cart_products:
                 product = Product.query.get(item.id_product)
                 user_products.append(product)
-                amount_product += product.price
-                amount_cart += product.price
+                price = float(product.price)
+                amount_product += price
+                amount_cart += price
 
             # Get all chart_therapies with user's id
             user_cart_therapies = user.therapies
@@ -186,7 +187,7 @@ def cart():
                                    user_therapies=user_therapies,
                                    amount_product=round(amount_product, 2),
                                    amount_therapy=round(amount_therapy, 2),
-                                   amount_cart=round(amount_cart, 2))
+                                   amount_cart=f"{amount_cart:.2f}")
 
 
 @login.route('/cart/therapy/add/<therapy_id>', methods=['GET'])
