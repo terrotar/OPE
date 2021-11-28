@@ -1,6 +1,5 @@
 from app.config import db
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.dialects.postgresql import ARRAY as test
 
 
 # Columns of table Order
@@ -8,7 +7,7 @@ class Order(db.Model):
     __tablename__ = "pedido"
     id = db.Column("id_pedido", db.Integer, primary_key=True)
     __id_user = db.Column("id_usuario", db.Integer, db.ForeignKey("usuario.id_usuario"))
-    __products = db.Column("id_produtos", test(db.Integer()), nullable=True)
+    __products = db.Column("id_produtos", db.ARRAY(db.Integer), nullable=True)
     __therapies = db.Column("id_terapias", db.ARRAY(db.Integer), nullable=True)
     __amount_order = db.Column("total", db.Float, nullable=False)
 
