@@ -8,7 +8,7 @@ class Therapy(db.Model):
     id = db.Column("id_terapia", db.Integer, primary_key=True)
     __name = db.Column("nome", db.String, unique=True, nullable=False)
     __description = db.Column("descricao", db.String, nullable=False)
-    __price = db.Column("preco", db.Float, nullable=False)
+    __price = db.Column("preco", db.String, nullable=False)
     __img = db.Column("imagem", db.String, nullable=False)
 
     # Relationships

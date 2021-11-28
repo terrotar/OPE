@@ -16,6 +16,8 @@ from app.config import UPLOAD_FOLDER
 
 import os
 
+import cv2
+
 
 # Blueprint admin
 admin = Blueprint('admin', __name__,
@@ -185,6 +187,11 @@ def add_product():
 
             # Save img inside UPLOAD_FOLDER
             img.save(os.path.join(f"{UPLOAD_FOLDER}/Product", img_filename))
+
+            # Check if price has 2 decimals
+            check_decimal = list(price.split("."))[-1]
+            if(len(check_decimal) < 2):
+                price += "0"
             new_product = Product(name=name,
                                   description=description,
                                   size=size,
@@ -215,6 +222,11 @@ def change_product(id_product):
             description = request.form['description']
             size = request.form['size']
             price = request.form['price']
+
+            # Check if price has 2 decimals
+            check_decimal = list(price.split("."))[-1]
+            if(len(check_decimal) < 2):
+                price += "0"
 
             # Check if already exists a product with that name
             check_product = Product.query.filter_by(name=name).first()
@@ -307,6 +319,11 @@ def add_therapy():
             # Save img inside UPLOAD_FOLDER
             img.save(os.path.join(f"{UPLOAD_FOLDER}/Therapy", img_filename))
 
+            # Check if price has 2 decimals
+            check_decimal = list(price.split("."))[-1]
+            if(len(check_decimal) < 2):
+                price += "0"
+
             new_therapy = Therapy(name=name,
                                   description=description,
                                   price=price,
@@ -348,6 +365,11 @@ def change_therapy(id_therapy):
             name = request.form['name']
             description = request.form['description']
             price = request.form['price']
+
+            # Check if price has 2 decimals
+            check_decimal = list(price.split("."))[-1]
+            if(len(check_decimal) < 2):
+                price += "0"
 
             # Check if already exists a therapy with that name
             check_therapy = Therapy.query.filter_by(name=name).first()

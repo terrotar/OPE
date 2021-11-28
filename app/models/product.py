@@ -9,7 +9,7 @@ class Product(db.Model):
     __name = db.Column("nome", db.String, unique=True, nullable=False)
     __description = db.Column("descricao", db.String, unique=False, nullable=False)
     __size = db.Column("tamanho", db.Float, unique=False, nullable=False)
-    __price = db.Column("preco", db.Float, unique=False, nullable=False)
+    __price = db.Column("preco", db.String, unique=False, nullable=False)
     __img = db.Column("imagem", db.String, nullable=False)
 
     # Relationships

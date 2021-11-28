@@ -11,4 +11,4 @@ login_manager = LoginManager()
 
 migrate = Migrate()
 
-UPLOAD_FOLDER = 'static/img'
+UPLOAD_FOLDER = 'app/static/img'
