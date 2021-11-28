@@ -9,7 +9,7 @@ class Order(db.Model):
     id = db.Column("id_pedido", db.Integer, primary_key=True)
     __id_user = db.Column("id_usuario", db.Integer, db.ForeignKey("usuario.id_usuario"))
     __products = db.Column("id_produtos", db.ARRAY(db.Integer), nullable=True)
-    __therapies = db.Column("id_terapias", db.test(db.Integer), nullable=True)
+    __therapies = db.Column("id_terapias", test(db.Integer), nullable=True)
     __amount_order = db.Column("total", db.Float, nullable=False)
 
     # Relationships
