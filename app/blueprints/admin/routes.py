@@ -16,8 +16,6 @@ from app.config import UPLOAD_FOLDER
 
 import os
 
-import cv2
-
 
 # Blueprint admin
 admin = Blueprint('admin', __name__,
