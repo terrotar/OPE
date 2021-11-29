@@ -1,7 +1,7 @@
 # import app
 from flask import Flask
 
-from app.config import db, login_manager, migrate, UPLOAD_FOLDER
+from app.config import db, login_manager, migrate, UPLOAD_FOLDER, DATABASE_URI
 
 from app.blueprints.home.routes import home
 from app.blueprints.register.routes import register
@@ -21,8 +21,7 @@ def create_app(config):
 
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-    # app.config['SQLALCHEMY_DATABASE_URL'] = "postgresql://postgres:postgres@localhost/TCC"
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://drzqvuvqbehtlc:975200bfaaca476937e61bfc1cf315e9f5a11e326c11c068ec2400754a8b9b0d@ec2-3-89-214-80.compute-1.amazonaws.com:5432/dep7ghagq8oere'
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
     app.config['SECRET_KEY'] = "f1S\xbd\xb4cK/\xf4\x11\x0f\xc7f\xda7@"
     app.secret_key = "\xc8\n~R\xae\xe3\xaao~\xb8E\x0fw\xc99"
 
