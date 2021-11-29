@@ -201,4 +201,4 @@ pip-selfcheck.json
 # End of https://www.toptal.com/developers/gitignore/api/vscode,database,flask,git,virtualenv
 
 ### config ###
-config.py
+
