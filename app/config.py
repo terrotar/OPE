@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 
 
-db = SQLAlchemy()
+db = SQLAlchemy(session_options={"autoflush": False})
 
 login_manager = LoginManager()
 
