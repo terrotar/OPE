@@ -234,7 +234,7 @@ def send_order():
             for item in user_cart_products:
                 product = Product.query.get(item.id_product)
                 user_products.append(product.id)
-                amount_cart += product.price
+                amount_cart += float(product.price)
 
                 # Delete that product of user's cart
                 cart_product = Cart_Product.query.filter_by(id_user=user.id, id_product=int(item.id_product)).first()
@@ -249,7 +249,7 @@ def send_order():
             for item in user_cart_therapies:
                 therapy = Therapy.query.get(item.id_therapy)
                 user_therapies.append(therapy.id)
-                amount_cart += therapy.price
+                amount_cart += float(therapy.price)
 
                 # Delete that therapy of user's cart
                 cart_therapy = Cart_Therapy.query.filter_by(id_user=user.id, id_therapy=int(item.id_therapy)).first()
