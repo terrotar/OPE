@@ -178,8 +178,8 @@ def cart():
             for item in user_cart_therapies:
                 therapy = Therapy.query.get(item.id_therapy)
                 user_therapies.append(therapy)
-                amount_therapy += therapy.price
-                amount_cart += therapy.price
+                amount_therapy += float(therapy.price)
+                amount_cart += float(therapy.price)
 
             # Return the products and therapies
             return render_template('login/cart.html',
