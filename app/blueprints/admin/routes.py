@@ -311,8 +311,9 @@ def add_therapy():
             # Check if already exists an img with same name
             check_img = Therapy.query.filter_by(img=img_filename).first()
             if(check_img):
-                return render_template('admin/therapies/add.html',
-                                       upload_error=True)
+                if(img_filename != check_img.img):
+                    return render_template('admin/therapies/add.html',
+                                           upload_error=True)
 
             # Save img inside UPLOAD_FOLDER
             img.save(os.path.join(f"{UPLOAD_FOLDER}/Therapy", img_filename))
