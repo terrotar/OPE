@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, flash, render_template, request, redirect, url_for
 
 from flask_login import login_user, logout_user, current_user
 
@@ -264,6 +264,7 @@ def send_order():
             db.session.add(new_order)
             db.session.commit()
 
+            flash("Pedido enviado com sucesso!\n Aguarde o contato da loja no seu e-mail cadastrado =)")
             return redirect(url_for('login.cart'))
 
     return redirect(url_for('home.index'))

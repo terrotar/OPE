@@ -92,7 +92,15 @@
                     <a href="{{ url_for('login.send_order', products=user_products, therapies=user_therapies, amount=amount_car) }}" class="btn btn-lg bg-dark btn-outline-info btn-card">Enviar Pedido</a>
                 </div>
 
-
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  <ul class=flashes>
+                  {% for message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+              {% endwith %}
 
 
 

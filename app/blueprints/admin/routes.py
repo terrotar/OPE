@@ -488,7 +488,7 @@ def delete_order(order_id):
 # USERS
 
 
-# List all users 
+# List all users
 @admin.route('/users', methods=['GET', 'POST'])
 def users():
     if(request.method == 'GET'):
