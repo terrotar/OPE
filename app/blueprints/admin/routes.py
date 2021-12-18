@@ -206,6 +206,9 @@ def add_product():
                 db.session.commit()
                 return redirect('/admin/products')
 
+        return render_template('admin/products/add.html',
+                           ext_error=True)
+
 
 # UPDATE a product
 @admin.route('/products/change/<id_product>', methods=['GET', 'POST'])
@@ -270,7 +273,8 @@ def change_product(id_product):
                 db.session.commit()
                 return redirect('/admin/products')
     return render_template('admin/products/update.html',
-                           error=True, product=product)
+                           ext_error=True,
+                           product=product)
 
 
 # THERAPY
