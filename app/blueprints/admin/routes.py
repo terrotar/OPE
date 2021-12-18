@@ -483,3 +483,15 @@ def delete_order(order_id):
             db.session.commit()
 
             return redirect(url_for('admin.orders'))
+
+
+# USERS
+
+
+# List all users
+@admin.route('/users', methods=['GET', 'POST'])
+def users():
+    if(request.method == 'GET'):
+        all_users = User.query.all()
+        return render_template('admin/users.html',
+                               all_users=all_users)

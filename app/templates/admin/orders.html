@@ -34,10 +34,10 @@
                 <div class="container d-flex justify-content-center card-order my-2 mt-3">
 
                     {% for order in all_orders %}
-                    <div class="container text-center">
-                         <a class="btn btn-sm bg-info btn-outline-dark text-light txt-center mx-2 my-4 px-3 font-weight-bold" href="{{ url_for('admin.get_order', order_id=order.id) }}">Pedido {{ order.id }}</a>
-                    </div>
-            {% endfor %}
+                            <div class="container text-center">
+                                <a class="btn btn-sm bg-info btn-outline-dark text-light txt-center mx-2 my-4 px-3 font-weight-bold" href="{{ url_for('admin.get_order', order_id=order.id) }}">Pedido {{ order.id }}</a>
+                            </div>
+                    {% endfor %}
 
 
 
