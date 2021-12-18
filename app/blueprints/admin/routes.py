@@ -340,6 +340,9 @@ def add_therapy():
                 db.session.commit()
                 return redirect('/admin/therapies')
 
+        return render_template('admin/therapies/add.html',
+                               ext_error=True)
+
 
 # DELETE a therapy
 @admin.route('/therapies/delete/<id_therapy>', methods=['GET'])
@@ -416,7 +419,7 @@ def change_therapy(id_therapy):
                 db.session.commit()
                 return redirect('/admin/therapies')
     return render_template('admin/therapies/update.html',
-                           error=True,
+                           ext_error=True,
                            therapy=therapy)
 
 
