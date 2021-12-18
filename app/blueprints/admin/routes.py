@@ -401,7 +401,10 @@ def change_therapy(id_therapy):
                                                therapy=therapy)
 
                 # Update new_img inside UPLOAD_FOLDER
-                os.remove(f"{UPLOAD_FOLDER}/Therapy/{therapy.img}")
+                try:
+                    os.remove(f"{UPLOAD_FOLDER}/Therapy/{therapy.img}")
+                except Exception:
+                    pass
                 img.save(os.path.join(
                     f"{UPLOAD_FOLDER}/Therapy", img_filename))
 
