@@ -254,9 +254,12 @@ def change_product(id_product):
                                                product=product)
 
                 # Update new_img inside UPLOAD_FOLDER
-                os.remove(f"{UPLOAD_FOLDER}/Product/{product.img}")
+                try:
+                    os.remove(f"{UPLOAD_FOLDER}/Product/{product.img}")
+                except Exception:
+                    pass
                 img.save(os.path.join(
-                    f"{UPLOAD_FOLDER}/Product", img_filename))
+                        f"{UPLOAD_FOLDER}/Product", img_filename))
 
                 # Update image's name in product's column
                 product.img = img_filename
