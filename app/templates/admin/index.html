@@ -13,7 +13,7 @@
 
         <div class="jumbotron jumbotron-admin text-dark bt-5">
 
-        {% if current_user.is_authenticated %}
+            {% if current_user.user_type == 'admin' %}
 
 
         <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>

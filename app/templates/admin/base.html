@@ -27,7 +27,7 @@
             <ul class="list-unstyled components text-white">
 
 
-            {% if current_user.is_authenticated %}
+            {% if current_user.user_type == 'admin' %}
             <div class="container text-center mt-4">
                 <a class="btn btn-lg btn-sidebar bg-light btn-outline-info txt-center text-dark" href="{{ url_for('admin.logout') }}">Logout</a>
             </div>

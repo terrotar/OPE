@@ -10,7 +10,7 @@
 
 
 <div class="container col-7">
-
+    {% if current_user.user_type == 'admin' %}
 
 
     <div class="jumbotron jumbotron-admin position-absolute text-dark bt-5">
@@ -73,4 +73,6 @@
 
     </div>
 </div>
+
+{% endif %}
 {% endblock %}

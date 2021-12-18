@@ -16,7 +16,7 @@
         <div class="jumbotron jumbotron-admin position-absolute text-dark bt-5">
 
 
-
+            {% if current_user.user_type == 'admin' %}
         <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>
             <br>
             <p class="lead text-center">Para navegar na página utilize a barra de navegação na lateral esquerda.</p>
@@ -111,7 +111,7 @@
             <!-- box-cart -->
 
 
-
+{% endif %}
 
 
 

@@ -11,7 +11,7 @@
     <!-- jumbotron box -->
     <div class="container col-7">
 
-
+      {% if current_user.user_type == 'admin' %}
 
         <div class="jumbotron jumbotron-admin text-dark bt-5">
 
@@ -159,5 +159,5 @@
 
     </div>
 
-
+{% endif %}
 {% endblock %}

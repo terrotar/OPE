@@ -14,7 +14,7 @@
 
     <div class="jumbotron jumbotron-admin position-absolute text-dark bt-5">
 
-
+        {% if current_user.user_type == 'admin' %}
 
     <h1 class="display-4 text-center text-info font-weight-bold">Bem-vindo, {{ current_user.fname }}!</h1>
         <br>
@@ -89,4 +89,5 @@
 
 </div>
 
+{% endif %}
 {% endblock %}
