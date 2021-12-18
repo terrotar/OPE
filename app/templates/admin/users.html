@@ -48,7 +48,7 @@
                     <br>
                     <p class="cart-therapy-description therapy-description text-justify"><strong>UF: </strong>{{ user.uf }}</p>
                     <br>
-                    <a class="btn btn-sm bg-danger btn-outline-dark text-light txt-center mx-2 my-4 px-3" href="#">Remover</a>
+                    <a class="btn btn-sm bg-danger btn-outline-dark text-light txt-center mx-2 my-4 px-3" href="{{ url_for('admin.delete_user', user_id=user.id) }}">Remover</a>
                     <br>
                     <br>
                 </div>

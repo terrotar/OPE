@@ -495,3 +495,16 @@ def users():
         all_users = User.query.all()
         return render_template('admin/users.html',
                                all_users=all_users)
+
+
+# Delete user
+@admin.route('/users/delete/<user_id>', methods=['GET'])
+def delete_user(user_id):
+    user = current_user
+    if(user):
+        if(request.method == 'GET'):
+            user = User.query.get(user_id)
+            db.session.delete(user)
+            db.session.commit()
+
+            return redirect(url_for('admin.users'))
