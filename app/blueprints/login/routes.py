@@ -96,6 +96,7 @@ def change_data():
             fname = request.form['fname']
             lname = request.form['lname']
             pwd = request.form['password']
+            cpf = request.form['cpf']
 
             # Check if already exists user with the form's e-mail
             check_email = User.query.filter_by(email=email).first()
@@ -111,15 +112,17 @@ def change_data():
                 try:
                     user.cep = cep
                     if(user.cep == cep):
-                        user.email = email
-                        user.number = number
-                        user.complement = complement
-                        user.fname = fname
-                        user.lname = lname
-                        user.set_address()
-                        db.session.commit()
-                        logout_user()
-                        return redirect(url_for('home.index'))
+                        if(user.check_cpf() is True):
+                            user.email = email
+                            user.number = number
+                            user.complement = complement
+                            user.fname = fname
+                            user.lname = lname
+                            user.cpf = cpf
+                            user.set_address()
+                            db.session.commit()
+                            logout_user()
+                            return redirect(url_for('home.index'))
                     else:
                         raise ValueError('Valor de CEP inválido...')
                 except Exception:
